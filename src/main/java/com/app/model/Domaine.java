@@ -1,34 +1,36 @@
-Public Class Domaine{
-    Private Integer id;
-    Private String domaine;
+package com.app.model;
+public class Domaine{
+    private Integer id;
+    private String domaine;
+    
     
     //Constructeur
-    Public Domaine(Integer id,String domaine){
+    public Domaine(Integer id,String domaine){
         this.id=id;
         this.domaine=doamine;
     }
     //getters
-    Public getDomaine(String domaine){
+    public getDomaine(String domaine){
         return domaine
     }
     //setters
-    Public setDomaine(Sring domaine){
+    public setDomaine(Sring domaine){
         this.domaine=domaine
     }
     //les methodes
     
-    Public AjouterDomaine(int id,String domaine){
+    public String AjouterDomaine(int id,String domaine){
         System.out.println('Votre domaine est ajouté avec succes')
     }
         
-     Public AfficherDomaine(){
+    public String AfficherDomaine(){
         
         System.out.println('Votre domaine est:'+ domaine)
     }
-     Public ModifierDomaine(){
+    public String ModifierDomaine(){
        System.out.println('Votre domaine est modifier avec succes')  
     }
-     Public SupprimerDomaine(){
+    public String SupprimerDomaine(){
           System.out.println('Votre domaine est supprimé avec succes')
         
     }
