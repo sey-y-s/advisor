@@ -24,7 +24,7 @@ public class Main {
                 ));
             }
 
-            users.forEach(u -> System.out.println("Utilisateur trouvé : " + u.nom()));
+            users.forEach(u -> System.out.println("Utilisateur trouvé : " + u.email()));
 
         } catch (SQLException e) {
             e.printStackTrace();
