@@ -1,112 +1,38 @@
-import java.util.*;
-package model;
+package com.app.model;
 
-public abstract class Utilisateur {
+public class Utilisateur {
+    private int id;
+    private String nom;
+    private String email;
 
-    protected Integer idUtilisateur;
-    protected String nom;
-    protected String prenom;
-    protected String email;
-    protected String motDePasse;
-    protected Integer telephone;
-   
-  
-    public Utilisateur(Integer id, String nom, String prenom, String email, String motDePasse, Integer telephone, Role role) {
-        this.idUtilisateur = id;
+    // Constructeur utilisé par votre Main.java
+    public Utilisateur(int id, String nom, String email) {
+        this.id = id;
         this.nom = nom;
-        this.prenom = prenom;
         this.email = email;
-        this.motDePasse = motDePasse;
-        this.telephone = telephone;
-        this.role = role;   
     }
 
+    // Méthode appelée par u.nom() dans votre Main
+    public String nom() {
+        return this.nom;
+    }
+
+    public String email() {
+        return this.email;
+    }
+
+    public int id() {
+        return this.id;
+    }
+
+    // --- Ajoutez ici vos méthodes métier (ajouter, seConnecter, etc.) ---
     
-    public void ajouterUtilisateur(Utilisateur utilisateur) {
-        this.utilisateurs.add(utilisateur);   
+    public void ajouterUtilisateur() {
+        // ... votre code JDBC
     }
 
-  
-    public boolean seConnecter(String email, String motDePasse) {
-        return this.email != null && this.email.equals(email)
-                && this.motDePasse != null && this.motDePasse.equals(motDePasse);
-    }
-
-    
-    public void modifierUtilisateur(String nom, String prenom, String email, Integer telephone) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.telephone = telephone;
-    }
-
-  
-    public void afficherUtilisateur() {
-        System.out.println("ID: " + idUtilisateur);
-        System.out.println("Nom: " + nom);
-        System.out.println("Prénom: " + prenom);
-        System.out.println("Email: " + email);
-        System.out.println("Téléphone: " + telephone);
-        System.out.println("Rôle: " + role);
-    }
-
-    
-    public void supprimerUtilisateur() {
-        utilisateurs.remove(this);
-    }
-}import java.util.*;
-
-public abstract class Utilisateur {
-
-    protected Integer idUtilisateur;
-    protected String nom;
-    protected String prenom;
-    protected String email;
-    protected String motDePasse;
-    protected Integer telephone;
-   
-  
-    public Utilisateur(Integer id, String nom, String prenom, String email, String motDePasse, Integer telephone, Role role) {
-        this.idUtilisateur = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.motDePasse = motDePasse;
-        this.telephone = telephone;
-        
-    }
-
-    
-    public void ajouterUtilisateur(Utilisateur utilisateur) {
-        this.utilisateurs.add(utilisateur);
-    }
-
-  
-    public boolean seConnecter(String email, String motDePasse) {
-        return this.email != null && this.email.equals(email)
-                && this.motDePasse != null && this.motDePasse.equals(motDePasse);
-    }
-
-    
-    public void modifierUtilisateur(String nom, String prenom, String email, Integer telephone) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.telephone = telephone;
-    }
-
-  
-    public void afficherUtilisateur() {
-        System.out.println("ID: " + idUtilisateur);
-        System.out.println("Nom: " + nom);
-        System.out.println("Prénom: " + prenom);
-        System.out.println("Email: " + email);
-        System.out.println("Téléphone: " + telephone);
-        System.out.println("Rôle: " + role);
-    }
-
-    
-    public void supprimerUtilisateur() {
-        utilisateurs.remove(this);
+    public boolean seConnecter() {
+        // ... votre code JDBC
+        return false; 
     }
 }
