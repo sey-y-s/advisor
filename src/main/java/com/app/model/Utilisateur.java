@@ -12,6 +12,8 @@ public class Utilisateur {
         this.email = email;
     }
 
+    public Utilisateur(){}
+
     // Méthode appelée par u.nom() dans votre Main
     public String nom() {
         return this.nom;
