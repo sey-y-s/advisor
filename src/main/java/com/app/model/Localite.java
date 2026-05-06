@@ -1,19 +1,18 @@
 package com.app.model;
 
-public class Localite {
-    public class Localite{
+public class Localite{
     public Integer id;
     public String regionClient;
     
     public Localite(Integer id, String regionClient){
         this.id = id;
-        this.regionClient = region.client;
+        this.regionClient = regionClient;
     }
     //Les getters
-    public getId(){
+    public Integer getId(){
         return id;
     }
-    public getRegionClient(){
+    public String getRegionClient(){
         return regionClient;
     }
     
@@ -27,21 +26,20 @@ public class Localite {
     
     //Les méthodes
     
-     Public AjouterLocalite(int id,String regionClient){
+     public void AjouterLocalite(int id,String regionClient){
         System.out.println("Localite est ajouté avec succes");
     }
         
-    Public AfficherLocalite(int id,String regionClient){
+    public void AfficherLocalite(int id,String regionClient){
         System.out.println("Localite modifié avec succes");
     }
     
-    Public ModifierLocalite(int id,String regionClient){
+    public void ModifierLocalite(int id,String regionClient){
         System.out.println("Localite modifié avec succes");
     }
     
-    Public SupprimerLocalite(int id,String regionClient){
+    public void SupprimerLocalite(int id,String regionClient){
         System.out.println("Localite supprimé avec succes");
     }
     }
     
-}
