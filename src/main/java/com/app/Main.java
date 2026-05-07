@@ -30,7 +30,7 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-                Domaine.AjouterDomaine("ds");
+             
 
     }
 }

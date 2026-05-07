@@ -1,5 +1,5 @@
 public class ClientCompetence{
-     private competence idcompetence;
+     private competence id;
      private client idclient;
      
     

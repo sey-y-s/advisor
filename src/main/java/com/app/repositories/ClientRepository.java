@@ -14,3 +14,12 @@ interface ClientRepository {
     int delete(int id);
     boolean existsByEmail(String email);
 } 
+
+
+
+
+
+
+
+
+

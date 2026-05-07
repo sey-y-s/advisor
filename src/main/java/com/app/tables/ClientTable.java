@@ -16,7 +16,7 @@ public class ClientTable implements ClientRepository {
       
     @Override
     public void add(Client client) {
-        try(Connection conn= databaseManager.getConnection(); 
+        try(Connection conn= DatabaseManager.getConnection(); 
             PreparedStatement stmt= conn.prepareStatement(insert)) {
                 stmt.setString(1, client.getNom());
                 stmt.setString(2, client.getPrenom());
@@ -26,7 +26,7 @@ public class ClientTable implements ClientRepository {
                 stmt.setString(6, client.getRole().name());
                 stmt.setString(7, client.getNiveau().name());
                 stmt.setDouble(8, client.getBudgetApporte());
-                stmt.setInt(9, client.getIdLocalite());
+                stmt.setInt(9, client.getLocalite().getId());
                 int ligne= stmt.executeUpdate();
                 System.out.println("Client ajouté avec succès.!!!!!!!!!!");
             
@@ -54,7 +54,7 @@ public class ClientTable implements ClientRepository {
                         client.setRole(Role.valueOf(rs.getString("role")));
                         client.setNiveau(Niveau.valueOf(rs.getString("niveau")));
                         client.setBudgetApporte(rs.getInt("budget_apporte"));
-                        client.setIdLocalite(rs.getInt("id_localite"));
+                        client.setIdLocalite(rs.getLocalite().getInt("id_localite"));
                         return Optional.of(client); 
                     }
                 }

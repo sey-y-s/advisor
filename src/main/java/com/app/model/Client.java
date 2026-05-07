@@ -1,25 +1,32 @@
 package com.app.model;
 import com.app.enums.Niveau;
 import com.app.model.Utilisateur;
+
 public class Client extends Utilisateur {
 
     private Niveau niveau= Niveau.DEBUTANT;
     private int budgetApporte; 
-    private int idLocalite; 
+    private Localite localite; 
+   
 
    
-    public Client(Integer id, String nom, String prenom, String email, String motDePasse, Niveau niveau, int budgetApporte, int idLocalite, int telephone, Role role) {
-        super(id, nom, prenom, email, motDePasse, telephone, role);
+    public Client(String nom, String prenom, String email, String motDePasse, Niveau niveau, int budgetApporte, Localite localite, int telephone, Role role) {
+        super(nom, prenom, email, motDePasse, telephone, role);
         this.niveau = niveau;
         this.budgetApporte = budgetApporte;
-        this.idLocalite = idLocalite;
+        this.localite = localite;
+        
+    }
+
+    public Niveau getNiveau(){
+        return niveau;
     }
     
     public void setNiveau(Niveau niveau){
         this.niveau= niveau;
     }
     
-     public int getBudgetApporte(){
+    public int getBudgetApporte(){
         return budgetApporte;
     }
     
@@ -27,11 +34,20 @@ public class Client extends Utilisateur {
         this.budgetApporte = budgetApporte;
     }
 
-    public int getIdLocalite(){
-        return idLocalite;
-    }
+    // public int getIdLocalite(){
+    //     return idLocalite;
+    // }
     
-    public void setIdLocalite(int idlocalite){
-        this.idLocalite = idlocalite;
+    // public void setIdLocalite(int idlocalite){
+    //     this.idLocalite = idlocalite;
+    // }
+
+    public Localite getLocalite() { 
+        return localite; 
     }
+    public void setLocalite(Localite localite) { 
+        this.localite = localite; 
+    }
+
+    
 }

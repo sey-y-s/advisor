@@ -10,12 +10,14 @@ public class Depense {
     private double montant;
     private String description;
     private LocalDate date;
+    private Activite activite;
 
-    public Depense(Integer idDepense, double montant, String description, LocalDate date) {
+    public Depense(Integer idDepense, double montant, String description, LocalDate date,Activite activite) {
         this.idDepense = idDepense;
         this.montant = montant;
         this.description = description;
         this.date = date;
+        this.activite=activite;
     }
 
     public Integer getIdDepense() {
@@ -33,6 +35,9 @@ public class Depense {
     public LocalDate getDate() {
         return date;
     }
+    public Activite getActivite(){
+        return activite;
+    }
 
     public void setMontant(double montant) {
         if (montant >= 0) {
@@ -45,11 +50,14 @@ public class Depense {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    public void setActivite(Activite activite){
+        this.activite=activite;
+    }
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
+     
     public void afficherDepense() {
 
         System.out.println("ID : " + idDepense);
@@ -57,6 +65,9 @@ public class Depense {
         System.out.println("Description : " + description);
         System.out.println("Date : " + date);
     }
+
+
+    // TODO : Implémenter ces méthodes dans les services
 
     private List<Depense> listeDeDepense = new ArrayList<>();
 

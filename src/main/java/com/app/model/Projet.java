@@ -5,8 +5,8 @@ public class Projet {
     private Integer idProjet;
     private String titre;
     private String description;
-    private Integer idDomaine;
-    private int duree;
+    private Domaine domaine;
+    private float duree;
     private int budget;
     
     //RELATIONS AVEC AUTRES CLASSES
@@ -15,15 +15,14 @@ public class Projet {
     
     
     // CONSTRUCTEUR
-    public Projet(Integer idProjet, String titre, String description,
-    Integer idDomaine, int duree, int budget, Client client) { 
-        this.idProjet = idProjet; 
+    public Projet(String titre, String description,
+    Domaine domaine, float duree, int budget, Client client) { 
         this.titre = titre; 
         this.description = description; 
-        this.idDomaine = idDomaine; 
+        this.domaine = domaine; 
         this.duree = duree; 
         this.budget = budget; 
-        this.client = client; 
+        this.client = client;
    }
     
     public void ajouterEtape(Etape etape) {
@@ -40,7 +39,7 @@ public class Projet {
    }
    
    //MODIFIER LE PROJET
-    public void modifierProjet(String titre, String description, int duree, int budget) {
+    public void modifierProjet(String titre, String description, float duree, int budget) {
         this.titre = titre;
         this.description = description;
         this.duree = duree;
@@ -84,7 +83,7 @@ public class Projet {
             this.description = description; 
             
         }
-        public void setDuree(int duree) {
+        public void setDuree(float duree) {
             this.duree = duree; 
             
         }

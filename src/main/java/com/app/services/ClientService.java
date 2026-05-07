@@ -7,6 +7,8 @@ public class ClientService {
 
     public ClientService (ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
+        
+        
     }
 
     public void addClient(Client client) {

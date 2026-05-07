@@ -1,25 +1,26 @@
 package com.app.model;
 
 import com.app.enums.Statut;
+import com.app.model.Etape;
 
 
 public class Activite{
     // Les Attributs
-    
     private int id;
     private String titre;
     private String description;
     private int duree;
     private Statut statut;
+    private Etape etape;
     
     // Le constructeur
 
-    public Activite(int id, String titre, String description, int duree, Statut statut) {
-        this.id = id;
+    public Activite(String titre, String description, int duree, Statut statut, Etape etape) {
         this.titre = titre;
         this.description = description;
         this.duree = duree;
         this.statut = statut;
+        this.etape = etape;
     }
     
     // Les getters et setters
@@ -64,6 +65,16 @@ public class Activite{
         this.statut = statut;
     }
 
+    public Etape getEtape() {
+        return etape;
+    }
+
+    public void setEtape(Etape etape){
+        this.etape = etape;
+    }
+
+
+  
     // Les methodes
     
     public void afficherActivite() {
