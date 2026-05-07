@@ -33,11 +33,11 @@ abstract class Utilisateur {
         this.role = role;
     }
 
-    // AJOUT
-    public static void ajouterUtilisateur(Utilisateur utilisateur) {
-        if (utilisateur != null) {
-            utilisateurs.add(utilisateur);
-        }
+    public Utilisateur(){}
+
+    // Méthode appelée par u.nom() dans votre Main
+    public String nom() {
+        return this.nom;
     }
 
     // SUPPRESSION
