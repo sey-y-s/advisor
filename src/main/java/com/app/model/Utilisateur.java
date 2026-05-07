@@ -1,15 +1,36 @@
 package com.app.model;
+import java.util.*;
 
-public class Utilisateur {
-    private int id;
-    private String nom;
-    private String email;
 
-    // Constructeur utilisé par votre Main.java
-    public Utilisateur(int id, String nom, String email) {
-        this.id = id;
+
+// ENUM ROLE
+enum Role {
+    ADMIN,
+    CLIENT
+}
+
+// CLASSE ABSTRAITE
+abstract class Utilisateur {
+
+    protected Integer idUtilisateur;
+    protected String nom;
+    protected String prenom;
+    protected String email;
+    protected String motDePasse;
+    protected Integer telephone;
+    protected Role role;
+
+    // LISTE PARTAGÉE
+    protected static List<Utilisateur> utilisateurs = new ArrayList<>();
+
+    public Utilisateur(Integer id, String nom, String prenom, String email, String motDePasse, Integer telephone, Role role) {
+        this.idUtilisateur = id;
         this.nom = nom;
+        this.prenom = prenom;
         this.email = email;
+        this.motDePasse = motDePasse;
+        this.telephone = telephone;
+        this.role = role;
     }
 
     public Utilisateur(){}
@@ -19,22 +40,40 @@ public class Utilisateur {
         return this.nom;
     }
 
-    public String email() {
-        return this.email;
+    // SUPPRESSION
+    public void supprimerUtilisateur() {
+        utilisateurs.remove(this);
     }
 
-    public int id() {
-        return this.id;
+    // CONNEXION
+    public boolean seConnecter(String email, String motDePasse) {
+        return this.email.equals(email) && this.motDePasse.equals(motDePasse);
     }
 
-    // --- Ajoutez ici vos méthodes métier (ajouter, seConnecter, etc.) ---
-    
-    public void ajouterUtilisateur() {
-        // ... votre code JDBC
+    // MODIFIER
+    public void modifierUtilisateur(String nom, String prenom, String email, Integer telephone) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.telephone = telephone;
     }
 
-    public boolean seConnecter() {
-        // ... votre code JDBC
-        return false; 
+    // AFFICHER
+    public void afficherUtilisateur() {
+        System.out.println("ID: " + idUtilisateur);
+        System.out.println("Nom: " + nom);
+        System.out.println("Prénom: " + prenom);
+        System.out.println("Email: " + email);
+        System.out.println("Téléphone: " + telephone);
+        System.out.println("Rôle: " + role);
+        System.out.println("----------------------");
     }
 }
+
+// CLASSE CLIENT
+// class Client extends Utilisateur {
+
+//     public Client(Integer id, String nom, String prenom, String email, String motDePasse, Integer telephone) {
+//         super(id, nom, prenom, email, motDePasse, telephone, Role.CLIENT);
+//     }
+// }
