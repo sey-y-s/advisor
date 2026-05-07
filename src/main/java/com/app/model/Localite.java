@@ -27,11 +27,11 @@ public class Localite{
     //Les méthodes
     
      public void AjouterLocalite(int id,String regionClient){
-        System.out.println("Localite est ajouté avec succes");
+        System.out.println("Localite est ajouté avec succès");
     }
         
     public void AfficherLocalite(int id,String regionClient){
-        System.out.println("Localite modifié avec succes");
+        System.out.println("Localite modifié avec succès");
     }
     
     public void ModifierLocalite(int id,String regionClient){
