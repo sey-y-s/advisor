@@ -15,7 +15,7 @@ public class ClientTable implements ClientRepository {
     String delete= "DELETE FROM client WHERE id = ?"; 
       
     @Override
-    public Client add(Client client) {
+    public void add(Client client) {
         try(Connection conn= databaseManager.getConnection(); 
             PreparedStatement stmt= conn.prepareStatement(insert)) {
                 stmt.setString(1, client.getNom());
@@ -28,11 +28,13 @@ public class ClientTable implements ClientRepository {
                 stmt.setDouble(8, client.getBudgetApporte());
                 stmt.setInt(9, client.getIdLocalite());
                 int ligne= stmt.executeUpdate();
+                System.out.println("Client ajouté avec succès.!!!!!!!!!!");
             
         } catch (SQLException e) {
+            System.out.println("Erreur lors de l'ajout du client : " + e.getMessage()); 
             e.printStackTrace();
         }
-        return client; 
+        
     }
 
     @Override
@@ -60,7 +62,7 @@ public class ClientTable implements ClientRepository {
             e.printStackTrace();
         }
 
-        return Optional.empty(); 
+      
     }
 
     @Override
@@ -88,28 +90,25 @@ public class ClientTable implements ClientRepository {
             
         } catch (SQLException e) {
             e.printStackTrace();    
-        }
-      
-        
+        } 
     }
 
     @Override
-    public String update(int id) {
+    public void update(int id) {
         try(Connection conn= databaseManager.getConnection(); 
             PreparedStatement stmt= conn.prepareStatement(update)) {
                 stmt.setInt(10, id);
                 int ligne= stmt.executeUpdate();
                 if (ligne > 0) {
-                    return "Client mis à jour avec succès."; 
+                    System.out.println("Client mis à jour avec succès."); 
                 } else {
-                    return "Aucun client trouvé avec l'ID spécifié."; 
+                    System.out.println("Aucun client trouvé avec l'ID spécifié."); 
                 }
             
         } catch (SQLException e) {
             e.printStackTrace();    
         }
        
-        return null; 
     }
 
     @Override
@@ -130,5 +129,21 @@ public class ClientTable implements ClientRepository {
         
         
     }
-    
+
+    @Override
+    public boolean existsByEmail(String email) {
+        String query = "SELECT COUNT(*) FROM client WHERE email = ?";
+        try (Connection conn = databaseManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, email);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
