@@ -1,13 +1,7 @@
 package com.app.model;
 import java.util.*;
+import com.java.enums.Role;
 
-
-
-// ENUM ROLE
-enum Role {
-    ADMIN,
-    CLIENT
-}
 
 // CLASSE ABSTRAITE
 abstract class Utilisateur {
@@ -35,9 +29,63 @@ abstract class Utilisateur {
 
     public Utilisateur(){}
 
-    // Méthode appelée par u.nom() dans votre Main
-    public String nom() {
-        return this.nom;
+
+    // Getters
+    public Integer getIdUtilisateur() {
+        return idUtilisateur;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public Integer getTelephone() {
+        return telephone;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    // Setters
+    public void setIdUtilisateur(Integer idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
+
+    public void setTelephone(Integer telephone) {
+        this.telephone = telephone;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     // SUPPRESSION
@@ -67,13 +115,4 @@ abstract class Utilisateur {
         System.out.println("Téléphone: " + telephone);
         System.out.println("Rôle: " + role);
         System.out.println("----------------------");
-    }
-}
-
-// CLASSE CLIENT
-// class Client extends Utilisateur {
-
-//     public Client(Integer id, String nom, String prenom, String email, String motDePasse, Integer telephone) {
-//         super(id, nom, prenom, email, motDePasse, telephone, Role.CLIENT);
-//     }
-// }
+    }}

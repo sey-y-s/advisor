@@ -12,7 +12,7 @@ public class Activite{
     private int duree;
     private Statut statut;
     
-    // Les constructeurs
+    // Le constructeur
 
     public Activite(int id, String titre, String description, int duree, Statut statut) {
         this.id = id;

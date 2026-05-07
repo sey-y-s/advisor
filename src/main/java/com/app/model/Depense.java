@@ -34,10 +34,6 @@ public class Depense {
         return date;
     }
 
-    public void setIdDepense(Integer idDepense) {
-        this.idDepense = idDepense;
-    }
-
     public void setMontant(double montant) {
         if (montant >= 0) {
             this.montant = montant;
