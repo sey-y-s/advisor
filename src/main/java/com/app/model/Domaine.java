@@ -25,7 +25,7 @@ public class Domaine{
     
     public String AjouterDomaine(String domaine){
         String sql="INSERT INTO Domaine (domaine) values(?)";
-        try(Connection cnn=Geeks.getConnection();
+        try(Connection cnn=DatabaseManager.getConnection();
         PreparedStatement stml=cnn.prepareStatement(sql)){
             stml.setString(1,domaine)
             int rows=stml.executeUpdate();
@@ -39,7 +39,7 @@ public class Domaine{
         
     public String AfficherDomaine(){
         String sql="SELECT * FROM Domaine";
-        try( Connection cnn=Geeks.getConnection();
+        try( Connection cnn=DatabaseManager.getConnection();
         Statement stml=cnn.createStatement();
             ResultSet rs=stml.executeQuery(sql)){
                 while(rs.next()){
@@ -53,7 +53,7 @@ public class Domaine{
     }
     public String ModifierDomaine(Integer id,String domaine){
        String sql="Update domaine SET domaine=? where id=?";
-       try(Connection cnn=Geeks.getConnection();
+       try(Connection cnn=DatabaseManager.getConnection();
        PreparedStatement stml=cnn.prepareStatement(sql)){
         stml.setString(1,domaine);
         stml.setInt(2,id);
@@ -66,7 +66,7 @@ public class Domaine{
     }
     public String SupprimerDomaine(){
         String sql="DELETE FROM Domaine WHERE id=?";
-        try(Connection cnn=Geeks.getConnection()
+        try(Connection cnn=DatabaseManager.getConnection()
         PreparedStatement stml=cnn.prepareStatement(sql)){
             stml.setInt(1,id);
             int rows=stml.executeUpdate(sql);
