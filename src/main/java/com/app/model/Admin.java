@@ -1,4 +1,3 @@
-package com.app.model;
 
 public class Admin extends Utilisateur {
     
@@ -10,9 +9,9 @@ public class Admin extends Utilisateur {
 
 //Methodes
 public void voirFeedback(){
-    systeme.out.println("");
+    System.out.println("");
 }
 
 public void voirStatistiques(){
-    systeme.out.println("");
+    System.out.println("");
 }
