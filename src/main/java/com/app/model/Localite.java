@@ -3,6 +3,10 @@ package com.app.model;
 public class Localite{
     public Integer id;
     public String regionClient;
+
+    public Localite(){
+        
+    }
     
     public Localite(Integer id, String regionClient){
         this.id = id;
