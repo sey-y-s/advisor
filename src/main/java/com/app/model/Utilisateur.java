@@ -1,6 +1,6 @@
 package com.app.model;
 import java.util.*;
-import com.java.enums.Role;
+import com.app.enums.Role;
 
 
 // CLASSE ABSTRAITE
@@ -17,8 +17,7 @@ abstract class Utilisateur {
     // LISTE PARTAGÉE
     protected static List<Utilisateur> utilisateurs = new ArrayList<>();
 
-    public Utilisateur(Integer id, String nom, String prenom, String email, String motDePasse, Integer telephone, Role role) {
-        this.idUtilisateur = id;
+    public Utilisateur(String nom, String prenom, String email, String motDePasse, Integer telephone, Role role) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;

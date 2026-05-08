@@ -1,6 +1,8 @@
 package com.app.model;
 import com.app.enums.Niveau;
-import com.app.model.Utilisateur;
+import com.app.enums.Role;
+
+
 
 public class Client extends Utilisateur {
 

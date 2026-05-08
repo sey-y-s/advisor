@@ -9,9 +9,7 @@ public class Etape {
     private Statut statut;
     private Projet projet;
 
-    public Etape() {
-    }
-
+     //Le constructeur
     public Etape(String titre, String description, Statut statut, Projet projet) {
         this.titre = titre;
         this.description = description;
@@ -33,42 +31,48 @@ public class Etape {
         return idEtape;
     }
 
-    public void setIdEtape(Integer idEtape) {
-        this.idEtape = idEtape;
-    }
-
     public String getTitre() {
         return titre;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
     public String getDescription() {
         return description;
+    }
+  
+    public String getTitre() {
+        return titre;
+    }       
+    public String getDescription() {
+        return description;
+    }       
+    public Statut getStatut() {
+        return statut;
+    }    
+    public Projet getProjet() {
+        return projet;
+    }
+
+        
+    //Les setters
+    public void setIdEtape(int idEtape) {
+        this.idEtape = idEtape;
+    }
+    
+    public void setTitre(String titre) {
+        this.titre = titre;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public Statut getStatut() {
-        return statut;
-    }
-
     public void setStatut(Statut statut) {
         this.statut = statut;
     }
 
-    public Projet getProjet() {
-        return projet;
+    public void setProjet(Statut projet) {
+        this.statut = projet;
     }
-
-    public void setProjet(Projet projet) {
-        this.projet = projet;
-    }
-
 
     // Méthode pour valider et créer une étape
     @Override
