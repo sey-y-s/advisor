@@ -11,7 +11,7 @@ public class Projet {
     
     //RELATIONS AVEC AUTRES CLASSES
     private Client client;
-    private List<Etape> etapes = new ArrayList<>();
+    // private List<Etape> etapes = new ArrayList<>();
     
     
     // CONSTRUCTEUR
@@ -25,9 +25,9 @@ public class Projet {
         this.client = client;
    }
     
-    public void ajouterEtape(Etape etape) {
-    this.etapes.add(etape);
-   }
+    // public void ajouterEtape(Etape etape) {
+    //     this.etapes.add(etape);
+    // }
    
    // AFFICHER LE PROJET
     public void afficherProjet() { 
@@ -61,17 +61,20 @@ public class Projet {
         return budget; 
         
     } 
-        public Client getClient() {
-            return client; 
-            
-        } 
-        public void afficherEtapes() {
-            for (Etape etape : etapes) { 
+    public Client getClient() {
+        return client;   
+    } 
+    public Domaine getDomaine() {
+        return domaine;   
+    } 
+
+        // public void afficherEtapes() {
+        //     for (Etape etape : etapes) { 
                 
-                etape.afficherEtapes(); 
+        //         etape.afficherEtapes(); 
                 
-            }
-        }
+        //     }
+        // }
         
         // SETTER
         

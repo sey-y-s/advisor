@@ -1,5 +1,6 @@
 package com.app.model;
 
+import com.app.db.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,16 +17,16 @@ public class Domaine{
         this.domaine=domaine;
     }
     //getters
-    public getDomaine(){
+    public String getDomaine(){
         return domaine;
     }
     //setters
-    public  setDomaine(String domaine){
+    public void setDomaine(String domaine){
         this.domaine=domaine;
     }
     //les methodes
     
-    public String AjouterDomaine(String domaine){
+    public void AjouterDomaine(String domaine){
         String sql="INSERT INTO Domaine (domaine) values(?)";
         try(Connection cnn=DatabaseManager.getConnection();
         PreparedStatement stml=cnn.prepareStatement(sql)){
@@ -39,7 +40,7 @@ public class Domaine{
         }
     }
         
-    public String AfficherDomaine(){
+    public void AfficherDomaine(){
         String sql="SELECT * FROM Domaine";
         try( Connection cnn=DatabaseManager.getConnection();
         Statement stml=cnn.createStatement();
@@ -54,7 +55,7 @@ public class Domaine{
         }
     }
     
-    public String ModifierDomaine(Integer id,String domaine){
+    public void ModifierDomaine(Integer id,String domaine){
        String sql="Update domaine SET domaine=? where id=?";
        try(Connection cnn=DatabaseManager.getConnection();
        PreparedStatement stml=cnn.prepareStatement(sql)){
@@ -68,7 +69,7 @@ public class Domaine{
        }
     }
     
-    public String SupprimerDomaine(){
+    public void SupprimerDomaine(){
         String sql="DELETE FROM Domaine WHERE id=?";
         try(Connection cnn=DatabaseManager.getConnection();
         PreparedStatement stml=cnn.prepareStatement(sql)){

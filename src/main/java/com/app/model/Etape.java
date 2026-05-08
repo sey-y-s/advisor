@@ -1,6 +1,6 @@
-import com.app.enums.enum_etape;
-import com.app.model.projet;
-import com.app.model.activite;
+package com.app.model;
+
+import com.app.enums.Statut;
 
 
 public class Etape {
@@ -11,43 +11,51 @@ public class Etape {
     private Projet projet;
 
      //Le constructeur
-    public Etape(String titre, String description, Statut statut) {
+    public Etape(String titre, String description, Statut statut, Projet projet) {
         this.titre = titre;
         this.description = description;
         this.statut = statut;
+        this.projet = projet;
     }
    
     //Les getters
     public Integer getIdEtape() {
         return idEtape;
-}   
+    }   
     public String getTitre() {
         return titre;
-}       
+    }       
     public String getDescription() {
         return description;
-}       
-    public String getStatut() {
+    }       
+    public Statut getStatut() {
         return statut;
-}
+    }    
+    public Projet getProjet() {
+        return projet;
+    }
 
         
     //Les setters
     public void setIdEtape(int idEtape) {
         this.idEtape = idEtape;
-}
+    }
     
     public void setTitre(String titre) {
         this.titre = titre;
-}
+    }
 
     public void setDescription(String description) {
         this.description = description;
-}
+    }
 
-    public void setStatut(String statut) {
+    public void setStatut(Statut statut) {
         this.statut = statut;
-}
+    }
+
+    public void setProjet(Statut projet) {
+        this.statut = projet;
+    }
 
     
     //Les methodes 

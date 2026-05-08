@@ -1,5 +1,6 @@
-import java.util.Optional;
+package com.app.services;
 
+import java.util.Optional;
 import com.app.model.Client;
 
 public class ClientService {

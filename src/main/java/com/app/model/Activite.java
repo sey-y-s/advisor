@@ -1,7 +1,6 @@
 package com.app.model;
 
 import com.app.enums.Statut;
-import com.app.model.Etape;
 
 
 public class Activite{

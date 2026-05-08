@@ -1,14 +1,8 @@
 
 package com.app.model;
 import java.util.Date;
-
-public enum Statut {
-    Afaire, EnCours, Termine
-}
-
-public enum Satisfaction {
-    TresInsatisfait, Insatisfait, Neutre, Satisfait, TresSatisfait
-}
+import com.app.enums.Statut;
+import com.app.enums.Satisfaction;
 
 public class ProjetClient {
     private Integer id;
