@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         ClientService clientService= new ClientService(new ClientTable());
         Client client= new Client();
-        Scanner clavier= new Scanner(System.in);
+        Scanner clavier = new Scanner(System.in);
         System.out.println("Entrez votre nom: ");
         client.setNom(clavier.nextLine());
 
@@ -23,7 +23,7 @@ public class Main {
         client.setPrenom(clavier.nextLine());
        
         clientService.addClient(client);
-       
     }
-    
 }
+        
+
