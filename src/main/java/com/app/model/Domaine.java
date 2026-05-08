@@ -20,9 +20,17 @@ public class Domaine{
     public String getDomaine(){
         return domaine;
     }
+     public Integer getId() {
+        return id;
+    }
+
+   
     //setters
     public void setDomaine(String domaine){
         this.domaine=domaine;
+    }
+     public void setId(Integer id) {
+        this.id = id;
     }
     //les methodes
     
@@ -71,7 +79,7 @@ public class Domaine{
     
     public void SupprimerDomaine(){
         String sql="DELETE FROM Domaine WHERE id=?";
-        try(Connection cnn=DatabaseManager.getConnection();
+        try(Connection cnn=DatabaseManager.getConnection()
         PreparedStatement stml=cnn.prepareStatement(sql)){
             stml.setInt(1,id);
             int rows=stml.executeUpdate(sql);
