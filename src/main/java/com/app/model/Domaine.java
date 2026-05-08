@@ -1,8 +1,11 @@
 package com.app.model;
+
+import com.app.db.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 public class Domaine{
     private Integer id;
     private String domaine;
@@ -14,22 +17,30 @@ public class Domaine{
         this.domaine=domaine;
     }
     //getters
-    public getDomaine(String domaine){
-        return domaine
+    public String getDomaine(){
+        return domaine;
     }
+     public Integer getId() {
+        return id;
+    }
+
+   
     //setters
-    public setDomaine(String domaine){
-        this.domaine=domaine
+    public void setDomaine(String domaine){
+        this.domaine=domaine;
+    }
+     public void setId(Integer id) {
+        this.id = id;
     }
     //les methodes
     
-    public String AjouterDomaine(String domaine){
+    public void AjouterDomaine(String domaine){
         String sql="INSERT INTO Domaine (domaine) values(?)";
         try(Connection cnn=DatabaseManager.getConnection();
         PreparedStatement stml=cnn.prepareStatement(sql)){
-            stml.setString(1,domaine)
+            stml.setString(1,domaine);
             int rows=stml.executeUpdate();
-            System.out.println(rows + 'domaine ajouté avec sucess')
+            System.out.println(rows + "domaine ajouté avec sucess");
         }
         catch(Exception e){
             e.printStackTrace();
@@ -37,13 +48,13 @@ public class Domaine{
         }
     }
         
-    public String AfficherDomaine(){
+    public void AfficherDomaine(){
         String sql="SELECT * FROM Domaine";
         try( Connection cnn=DatabaseManager.getConnection();
         Statement stml=cnn.createStatement();
             ResultSet rs=stml.executeQuery(sql)){
                 while(rs.next()){
-                    System.out.println(rs.getInt("id")+" "+rs.getString('domaine'))
+                    System.out.println(rs.getInt("id")+" "+rs.getString("domaine"));
                 }
         }
         catch(Exception e){
@@ -51,7 +62,8 @@ public class Domaine{
 
         }
     }
-    public String ModifierDomaine(Integer id,String domaine){
+    
+    public void ModifierDomaine(Integer id,String domaine){
        String sql="Update domaine SET domaine=? where id=?";
        try(Connection cnn=DatabaseManager.getConnection();
        PreparedStatement stml=cnn.prepareStatement(sql)){
@@ -64,13 +76,14 @@ public class Domaine{
         e.printStackTrace();
        }
     }
-    public String SupprimerDomaine(){
+    
+    public void SupprimerDomaine(){
         String sql="DELETE FROM Domaine WHERE id=?";
         try(Connection cnn=DatabaseManager.getConnection()
         PreparedStatement stml=cnn.prepareStatement(sql)){
             stml.setInt(1,id);
             int rows=stml.executeUpdate(sql);
-             System.out.println(rows+'Domaine est supprimé avec succes');
+             System.out.println(rows+"Domaine est supprimé avec succes");
         }
         catch(Exception e){
             e.printStackTrace();

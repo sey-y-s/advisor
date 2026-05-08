@@ -1,8 +1,13 @@
 package com.app;
 
+import com.app.controllers.EtapeController;
 import com.app.db.DatabaseManager;
+import com.app.enums.Statut;
+import com.app.model.Etape;
+import com.app.model.Projet;
 import com.app.model.Utilisateur;
-import com.app.model.Domaine;
+import com.app.services.EtapeService;
+import com.app.tables.EtapeTable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +30,12 @@ public class Main {
                 ));
             }
 
-            users.forEach(u -> System.out.println("Utilisateur trouvé : " + u.nom()));
+            users.forEach(u -> System.out.println("Utilisateur trouvé : " + u.email()));
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-                Domaine.AjouterDomaine("ds");
 
+        
     }
 }
