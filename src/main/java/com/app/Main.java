@@ -19,7 +19,7 @@ public class Main {
         System.out.println("Entrez votre nom: ");
         client.setNom(clavier.nextLine());
 
-        System.out.println("ENtrez votre prenom: ");
+        System.out.println("Entrez votre prenom: ");
         client.setPrenom(clavier.nextLine());
        
         clientService.addClient(client);
