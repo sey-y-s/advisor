@@ -2,12 +2,11 @@ package com.app.model;
 
 import com.app.enums.Statut;
 
-
 public class Etape {
     private Integer idEtape;
     private String titre;
     private String description;
-    private Statut statut;  
+    private Statut statut;
     private Projet projet;
 
      //Le constructeur
@@ -17,11 +16,29 @@ public class Etape {
         this.statut = statut;
         this.projet = projet;
     }
-   
-    //Les getters
+
+    public Etape(Integer idEtape, String titre, String description, Statut statut, Projet projet) {
+        this.idEtape = idEtape;
+        this.titre = titre;
+        this.description = description;
+        this.statut = statut;
+        this.projet = projet;
+    }
+
+
+    // Getters et setters
     public Integer getIdEtape() {
         return idEtape;
-    }   
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+  
     public String getTitre() {
         return titre;
     }       
@@ -57,30 +74,15 @@ public class Etape {
         this.statut = projet;
     }
 
-    
-    //Les methodes 
-    public void AjouterEtape() {
-        System.out.println("Etape ajoutée avec succes");
+    // Méthode pour valider et créer une étape
+    @Override
+    public String toString() {
+        return "Etape{" +
+                "idEtape=" + idEtape +
+                ", titre='" + titre + '\'' +
+                ", description='" + description + '\'' +
+                ", statut=" + statut +
+                ", projet=" + (projet != null ? projet.getTitre() : "null") +
+                '}';
     }
-    
-    public void afficherEtape() {
-        System.out.println("");
-    }
-    
-    public void ModifierEtape() {
-        System.out.println("Etape modifiée avec succes");
-    }
-    
-    public void SupprimerEtape() {
-        System.out.println("Etape supprimée avec succes");
-    }
-    
-    public void suivreProgressionGlobale () {
-        System.out.println("");
-    }
-    
-    public void totalDepenseEtape () {
-        System.out.println("");
-    }
-
 }
