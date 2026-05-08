@@ -11,6 +11,6 @@ public interface DepenseRepository {
     Optional<Depense> getById(int id);
     List<Depense> getAll();
     void update (int id);
-    int delete(int id);
+    void delete(int id);
     
 }
