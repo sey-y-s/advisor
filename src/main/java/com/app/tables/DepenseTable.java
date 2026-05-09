@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.app.db.DatabaseManager;
+import com.app.model.Activite;
 import com.app.model.Depense;
 import com.app.repositories.DepenseRepository;
 
@@ -37,6 +38,18 @@ public class DepenseTable implements DepenseRepository {
 
     @Override
     public Optional<Depense> getById(int id) {
+        String sql ="select from Depense where(id=?)";
+        try(Connection conn = DatabaseManager.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1,id);
+            ps.executeUpdate();
+
+        }
+       catch (SQLException e){
+            System.out.println("Obtenir le depense par l'id : "+e.getMessage());
+            e.getMessage();
+
+        }
     
         return null;
         
@@ -57,11 +70,14 @@ public class DepenseTable implements DepenseRepository {
             depense.setMontant(rs.getDouble(sql));
             depense.setDescription(rs.getString(sql));
             depense.setDate(rs.getDate(sql));
+            depense.setActivite((Activite) rs.getObject("activite"));
             
         }
             
         } catch (Exception e) {
             // TODO: handle exception
+            System.err.println("Afficher une liste de tout les depense : "+e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
