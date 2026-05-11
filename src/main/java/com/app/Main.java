@@ -54,6 +54,29 @@ public class Main {
                 System.out.println("Vous devrez choisir entre 1 et 3 !!!!");
                 break;
         }
+                 // 1. Création du repository (DAO)
+        DomaineRepository repo = new DomaineRepository();
+
+        // 2. Injection dans le service
+        DomaineService service = new DomaineService(repo);
+
+        // 3. AJOUTER
+        service.ajouter("Informatique");
+        service.ajouter("Gestion");
+
+        // 4. AFFICHER
+        System.out.println("Liste des domaines :");
+
+        for (Domaine d : service.afficher()) {
+            System.out.println(d.getId() + " - " + d.getDomaine());
+        }
+
+        // 5. MODIFIER
+        service.modifier(1, "Développement");
+
+        // 6. SUPPRIMER
+        service.supprimer(2);
+
 
         
         

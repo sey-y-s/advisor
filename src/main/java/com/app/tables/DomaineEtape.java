@@ -19,7 +19,7 @@ public class DomaineEtape implements DomaineRepository{
         String sql="INSERT INTO Domaine(domaine) VALUES(?)";
         try(Connection cnn=DatabaseManager.getConnection();
         prepareStatement stml=cnn.prepareStatement(sql)){
-            stml.setString(1,domaine.getDomaine())
+            stml.setString(1,domaine.getDomaine());
             stml.executeUpdate();
             System.out.println("Domaine ajouté avec succès");
 
@@ -31,24 +31,29 @@ public class DomaineEtape implements DomaineRepository{
        
     }
     @Override 
-    public List<Domaine> AfficherDomaine(){
-        String sql="SELECT * FROM Domaine";
-        try(Connection cnn=DatabaseManager.getConnection();
-        PreparedStatement stml=cnn.prepareStatement(sql)){
-            ResultSet rs=stmt.executeQuery();
-              List<Domaine> listDomaine=ArrayList<>();
-              while(rs.next()){
-                Domaine domaine=createStatemen(rs);
-                listDomaine.add(domaine);
-              }
-            
+      // AFFICHER
+    public List<Domaine> AfficherDomaine() {
+        List<Domaine> list = new ArrayList<>();
+        String sql = "SELECT * FROM Domaine";
 
-        }
-        catch(Exception e){
+        try (Connection cnn = DatabaseManager.getConnection();
+             Statement st = cnn.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Domaine d = new Domaine(
+                    rs.getInt(1,"id"),
+                    rs.getString(2,"domaine")
+                );
+
+                list.add(d);
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
-        return new ArrayList<>();
+
+        return list;
     }
      @Override
      public void ModifierDomaine(Domaine domaine){
