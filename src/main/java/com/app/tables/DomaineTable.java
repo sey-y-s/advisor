@@ -13,7 +13,7 @@ import com.app.enums.Statut;
 import com.app.model.Domaine;
 import com.app.repositories.DomaineRepository;
 
-public class DomaineEtape implements DomaineRepository{
+public class DomaineTable implements DomaineRepository{
     @Override
     public void AjouterDomaine(Domaine domaine){
         String sql="INSERT INTO Domaine(domaine) VALUES(?)";
@@ -31,7 +31,7 @@ public class DomaineEtape implements DomaineRepository{
        
     }
     @Override 
-      // AFFICHER
+      
     public List<Domaine> AfficherDomaine() {
         List<Domaine> list = new ArrayList<>();
         String sql = "SELECT * FROM Domaine";
