@@ -1,41 +1,58 @@
 package com.app;
 
-import com.app.controllers.EtapeController;
-import com.app.db.DatabaseManager;
-import com.app.enums.Statut;
-import com.app.model.Domaine;
-import com.app.model.Etape;
-import com.app.model.Projet;
-import com.app.model.Utilisateur;
-import com.app.services.DomaineService;
-import com.app.services.EtapeService;
-import com.app.tables.EtapeTable;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+// import com.app.db.DatabaseManager;
+// import com.app.model.Utilisateur;
+import com.app.services.ClientService;
+import com.app.enums.Niveau;
+import com.app.model.Client;
+// import com.app.model.Domaine;
+// import java.sql.*;
+// import java.util.ArrayList;
+// import java.util.List;
+import java.util.Scanner;
+import com.app.tables.*;
 
 public class Main {
     public static void main(String[] args) {
-        List<Utilisateur> users = new ArrayList<>();
+        ClientService clientService= new ClientService(new ClientTable());
+        Client client= new Client();
 
-        System.out.println("Test");
+        Scanner clavier = new Scanner(System.in);
+        System.out.print("Entrez votre nom: ");
 
-        try (Connection conn = DatabaseManager.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM Utilisateur")) {
+        client.setNom(clavier.nextLine());
+        System.out.print("Entrez votre prenom: ");
 
-            while (rs.next()) {
-                users.add(new Utilisateur(
-                    rs.getInt("id"),
-                    rs.getString("nom"),
-                    rs.getString("email")
-                ));
-            }
+        client.setPrenom(clavier.nextLine());
 
-            users.forEach(u -> System.out.println("Utilisateur trouvé : " + u.email()));
+        System.out.print("Entrez votre email: ");
+        client.setEmail(clavier.nextLine());
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        System.out.print("Entrez votre téléphone: ");
+        client.setTelephone(clavier.nextInt());
+
+        System.out.println("Entrez votre mot de passe: ");
+        client.setMotDePasse(clavier.next());
+
+        System.out.print("Entrez votre budget: ");
+        client.setBudgetApporte(clavier.nextInt());
+        clavier.nextLine(); 
+
+        System.out.println("Choisissez un niveau: \n 1 = DEBUTANT \n 2 = INTERMEDIAIRE \n 3 = EXPERT");
+        int niveau= clavier.nextInt();
+        switch (niveau) {
+            case 1:
+                client.setNiveau(Niveau.DEBUTANT);
+                break;
+            case 2:
+                client.setNiveau(Niveau.INTERMEDIAIRE);
+                break;
+            case 3:
+                client.setNiveau(Niveau.EXPERT);
+                break;
+            default:
+                System.out.println("Vous devrez choisir entre 1 et 3 !!!!");
+                break;
         }
                  // 1. Création du repository (DAO)
         DomaineRepository repo = new DomaineRepository();
@@ -62,5 +79,14 @@ public class Main {
 
 
         
+        
+
+
+
+
+       
+        clientService.addClient(client);
     }
 }
+        
+

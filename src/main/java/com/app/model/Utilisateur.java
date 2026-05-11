@@ -4,7 +4,7 @@ import com.app.enums.Role;
 
 
 // CLASSE ABSTRAITE
-abstract class Utilisateur {
+public abstract class Utilisateur {
 
     protected Integer idUtilisateur;
     protected String nom;
@@ -12,7 +12,7 @@ abstract class Utilisateur {
     protected String email;
     protected String motDePasse;
     protected Integer telephone;
-    protected Role role;
+    protected Role role= Role.CLIENT;
 
     // LISTE PARTAGÉE
     protected static List<Utilisateur> utilisateurs = new ArrayList<>();

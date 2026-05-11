@@ -7,6 +7,10 @@ public class Admin extends Utilisateur {
         super(nom, prenom, email, motDePasse, telephone, role);
     }
 
+    public Admin() {
+
+    }
+
     //Methodes
     public void voirFeedback(){
         System.out.println("");

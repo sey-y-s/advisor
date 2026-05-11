@@ -1,6 +1,6 @@
 package com.app.model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +9,10 @@ public class Depense {
     private Integer idDepense;
     private double montant;
     private String description;
-    private LocalDate date;
+    private Date date;
     private Activite activite;
 
-    public Depense(Integer idDepense, double montant, String description, LocalDate date,Activite activite) {
+    public Depense(Integer idDepense, double montant, String description, Date date,Activite activite) {
         this.idDepense = idDepense;
         this.montant = montant;
         this.description = description;
@@ -32,7 +32,7 @@ public class Depense {
         return description;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
     public Activite getActivite(){
@@ -53,7 +53,7 @@ public class Depense {
     public void setActivite(Activite activite){
         this.activite=activite;
     }
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

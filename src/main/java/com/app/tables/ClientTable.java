@@ -1,34 +1,65 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+package com.app.tables;
+import java.sql.*;
+import java.util.*;
+
+import com.app.model.*;
+import com.app.repositories.ClientRepository;
+import com.app.db.DatabaseManager;
+import com.app.enums.Niveau;
+import com.app.enums.Role;
+
+
+
 
 public class ClientTable implements ClientRepository {
+    private LocaliteTable localiteTable;
 
-    String insert= "INSERT INTO client (nom, prenom, email, telephone, mot_de_passe, role, niveau budget_apporte, id_localite) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    String selectById= "SELECT * FROM client WHERE id = ?";
-
-    String selectAll= "SELECT * FROM client";
+    public ClientTable (){}
     
-    String update= "UPDATE client SET nom = ?, prenom = ?, email = ?, telephone = ?, mot_de_passe = ?, role = ?, niveau = ?, budget_apporte = ?, id_localite = ? WHERE id = ?";
+    public ClientTable(LocaliteTable localiteTable){
+        this.localiteTable= localiteTable;
+    }
 
-    String delete= "DELETE FROM client WHERE id = ?"; 
       
     @Override
     public void add(Client client) {
+        String insert= "INSERT INTO utilisateur (nom, prenom, email, telephone, mot_de_passe) VALUES (?, ?, ?, ?, ?)";
+        
         try(Connection conn= DatabaseManager.getConnection(); 
-            PreparedStatement stmt= conn.prepareStatement(insert)) {
+            PreparedStatement stmt= conn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS )) {
                 stmt.setString(1, client.getNom());
                 stmt.setString(2, client.getPrenom());
                 stmt.setString(3, client.getEmail());
-                stmt.setString(4, client.getTelephone());
+                stmt.setInt(4, client.getTelephone());
                 stmt.setString(5, client.getMotDePasse());
-                stmt.setString(6, client.getRole().name());
-                stmt.setString(7, client.getNiveau().name());
-                stmt.setDouble(8, client.getBudgetApporte());
-                stmt.setInt(9, client.getLocalite().getId());
-                int ligne= stmt.executeUpdate();
-                System.out.println("Client ajouté avec succès.!!!!!!!!!!");
+                //stmt.setString(6, client.getRole().name());
+                stmt.executeUpdate();
+                int idUSer;
+                ResultSet rs= stmt.getGeneratedKeys();
+                if(rs.next()){
+                    idUSer= rs.getInt(1);
+                    System.out.println("ID: "+ idUSer);
+                    String insert2= "INSERT INTO client(id, niveau, budgetapporte) VALUES (?, ?::niveau_client, ?)";
+                    try(Connection connection= DatabaseManager.getConnection(); 
+                    PreparedStatement ps= connection.prepareStatement(insert2 )) {
+                        
+                        
+                        ps.setInt(1, idUSer);
+                        ps.setString(2, client.getNiveau().name());
+                        ps.setDouble(3, client.getBudgetApporte());
+                       
+                        // ps.setInt(4, client.getLocalite().getId());
+                        ps.executeUpdate();
+                        System.out.println("Client ajouté avec succès.!!!!!!!!!!");
+                    
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("Erreur lors de l'ajout du client");
+                }
+                }
+                
+               
+            
             
         } catch (SQLException e) {
             System.out.println("Erreur lors de l'ajout du client : " + e.getMessage()); 
@@ -39,50 +70,55 @@ public class ClientTable implements ClientRepository {
 
     @Override
     public Optional<Client> getById(int id) {
-       try  (Connection conn= databaseManager.getConnection(); 
+        String selectById= "SELECT * FROM utilisateur u JOIN client c ON u.id= c.id WHERE u.id = ?";
+       try  (Connection conn= DatabaseManager.getConnection(); 
             PreparedStatement stmt= conn.prepareStatement(selectById)) {
                 stmt.setInt(1, id);
                 try (ResultSet rs= stmt.executeQuery()) {
+                    
                     if (rs.next()) {
+                        Localite localite= localiteTable.getById(rs.getInt("idLocalite"));
                         Client client = new Client();
-                        client.setId(rs.getInt("id"));
+                        client.setIdUtilisateur(rs.getInt("id"));
                         client.setNom(rs.getString("nom"));
                         client.setPrenom(rs.getString("prenom"));
                         client.setEmail(rs.getString("email"));
-                        client.setTelephone(rs.getString("telephone"));
+                        client.setTelephone(rs.getInt("telephone"));
                         client.setMotDePasse(rs.getString("mot_de_passe"));
                         client.setRole(Role.valueOf(rs.getString("role")));
                         client.setNiveau(Niveau.valueOf(rs.getString("niveau")));
                         client.setBudgetApporte(rs.getInt("budget_apporte"));
-                        client.setIdLocalite(rs.getLocalite().getInt("id_localite"));
+                        client.setLocalite(localite);
+
                         return Optional.of(client); 
                     }
                 }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-      
+        return Optional.empty();
     }
 
     @Override
     public List<Client> getAll() {
-        try(Connection conn= databaseManager.getConnection(); 
+        String selectAll= "SELECT * FROM utilisateur u JOIN client c ON u.id= c.id";
+        try(Connection conn= DatabaseManager.getConnection(); 
             PreparedStatement stmt= conn.prepareStatement(selectAll)) {
                 try (ResultSet rs= stmt.executeQuery()) {
                     List<Client> clients = new ArrayList<>();
                     while (rs.next()) {
+                        Localite localite= localiteTable.getById(rs.getInt("idLocalite"));
                         Client client = new Client();
-                        client.setId(rs.getInt("id"));
+                        client.setIdUtilisateur((rs.getInt("id")));
                         client.setNom(rs.getString("nom"));
                         client.setPrenom(rs.getString("prenom"));
                         client.setEmail(rs.getString("email"));
-                        client.setTelephone(rs.getString("telephone"));
+                        client.setTelephone(rs.getInt("telephone"));
                         client.setMotDePasse(rs.getString("mot_de_passe"));
                         client.setRole(Role.valueOf(rs.getString("role")));
                         client.setNiveau(Niveau.valueOf(rs.getString("niveau")));
                         client.setBudgetApporte(rs.getInt("budget_apporte"));
-                        client.setIdLocalite(rs.getInt("id_localite"));
+                        client.setLocalite(localite);
                         clients.add(client);
                     }
                     return clients; 
@@ -91,11 +127,13 @@ public class ClientTable implements ClientRepository {
         } catch (SQLException e) {
             e.printStackTrace();    
         } 
+        return null;
     }
 
     @Override
     public void update(int id) {
-        try(Connection conn= databaseManager.getConnection(); 
+         String update= "UPDATE client SET nom = ?, prenom = ?, email = ?, telephone = ?, mot_de_passe = ?, role = ?, niveau = ?, budget_apporte = ?, id_localite = ? WHERE id = ?";
+        try(Connection conn= DatabaseManager.getConnection(); 
             PreparedStatement stmt= conn.prepareStatement(update)) {
                 stmt.setInt(10, id);
                 int ligne= stmt.executeUpdate();
@@ -113,7 +151,8 @@ public class ClientTable implements ClientRepository {
 
     @Override
     public void delete(int id) {
-        try(Connection conn= databaseManager.getConnection(); 
+        String delete= "DELETE FROM client WHERE id = ?";
+        try(Connection conn= DatabaseManager.getConnection(); 
             PreparedStatement stmt= conn.prepareStatement(delete)) {
                 stmt.setInt(1, id);
                 int ligne= stmt.executeUpdate();
@@ -127,13 +166,12 @@ public class ClientTable implements ClientRepository {
             e.printStackTrace();
         }
         
-        
     }
 
     @Override
     public boolean existsByEmail(String email) {
-        String query = "SELECT COUNT(*) FROM client WHERE email = ?";
-        try (Connection conn = databaseManager.getConnection();
+        String query = "SELECT COUNT(*) FROM utilisateur WHERE email = ?";
+        try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, email);
             try (ResultSet rs = stmt.executeQuery()) {
