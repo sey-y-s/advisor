@@ -71,25 +71,4 @@ public class Activite{
     public void setEtape(Etape etape){
         this.etape = etape;
     }
-
-
-  
-    // Les methodes
-    
-    public void afficherActivite() {
-        System.out.println("id : " + id + " , Activité : " + titre + " , description : " + description + " , durée : " + duree + " jour.s"+ " , Statut : " + statut);
-        
-    }
-    
-    public void ajouterActivite() {
-        System.out.println("Activité ajoutée avec succès !");
-    }
-    
-    public void modifierActivite() {
-        System.out.println("Activité modifiée avec succès ! ");
-    }
-    
-    public void supprimerActivite() {
-        System.out.println("Activité supprimer avec succès !");
-    }
 }

@@ -4,7 +4,7 @@ import com.app.enums.Role;
 
 
 // CLASSE ABSTRAITE
-abstract class Utilisateur {
+public abstract class Utilisateur {
 
     protected Integer idUtilisateur;
     protected String nom;

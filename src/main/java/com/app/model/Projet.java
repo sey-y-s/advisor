@@ -53,10 +53,19 @@ public class Projet {
    }
    
    // GETTER
+    public Integer getIdProjet() {
+        return idProjet;
+    }
     public String getTitre() { 
         return titre; 
         
     } 
+    public String getDescription() {
+        return description;
+    }
+    public float getDuree() {
+        return duree;
+    }
     public int getBudget() { 
         return budget; 
         
@@ -78,6 +87,9 @@ public class Projet {
         
         // SETTER
         
+        public void setIdProjet(Integer idProjet) {
+            this.idProjet = idProjet;
+        }
         public void setTitre(String titre) { 
             this.titre = titre; 
             
@@ -96,5 +108,8 @@ public class Projet {
         }
         public void setClient(Client client) {
             this.client = client;
+        }
+        public void setDomaine(Domaine domaine) {
+            this.domaine = domaine;
         }
     }

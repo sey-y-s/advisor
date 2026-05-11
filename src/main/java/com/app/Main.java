@@ -1,41 +1,29 @@
 package com.app;
 
-import com.app.controllers.EtapeController;
-import com.app.db.DatabaseManager;
-import com.app.enums.Statut;
-import com.app.model.Etape;
-import com.app.model.Projet;
-import com.app.model.Utilisateur;
-import com.app.services.EtapeService;
-import com.app.tables.EtapeTable;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+// import com.app.db.DatabaseManager;
+// import com.app.model.Utilisateur;
+import com.app.services.ClientService;
+import com.app.model.Client;
+// import com.app.model.Domaine;
+// import java.sql.*;
+// import java.util.ArrayList;
+// import java.util.List;
+import java.util.Scanner;
+import com.app.tables.*;
 
 public class Main {
     public static void main(String[] args) {
-        List<Utilisateur> users = new ArrayList<>();
+        ClientService clientService= new ClientService(new ClientTable());
+        Client client= new Client();
+        Scanner clavier = new Scanner(System.in);
+        System.out.println("Entrez votre nom: ");
+        client.setNom(clavier.nextLine());
 
-        System.out.println("Test");
-
-        try (Connection conn = DatabaseManager.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM Utilisateur")) {
-
-            while (rs.next()) {
-                users.add(new Utilisateur(
-                    rs.getInt("id"),
-                    rs.getString("nom"),
-                    rs.getString("email")
-                ));
-            }
-
-            users.forEach(u -> System.out.println("Utilisateur trouvé : " + u.email()));
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        
+        System.out.println("Entrez votre prenom: ");
+        client.setPrenom(clavier.nextLine());
+       
+        clientService.addClient(client);
     }
 }
+        
+
