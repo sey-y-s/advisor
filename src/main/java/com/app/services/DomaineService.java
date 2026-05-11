@@ -1,34 +1,49 @@
 package com.app.services;
 
-import java.util.Optional;
+import java.util.List;
 import com.app.model.Domaine;
+import com.app.repositories.DomaineRepository;
 
-public class DomaineService{
+public class DomaineService {
+
     private final DomaineRepository domaineRepository;
-    public class Domaine(DomaineRepository domaineRepository){
-    this.domaineRepository=domaineRepository
-    // Ajouter
+
+   
+    public Domaine(DomaineRepository domaineRepository) {
+        this.domaineRepository = domaineRepository;
+    }
+
+    // AJOUTER
     public void ajouter(String nom) {
+
+        if (nom == null || nom.trim().isEmpty()) {
+            System.out.println("Nom obligatoire !");
+            return;
+        }
+
         Domaine d = new Domaine(null, nom);
         domaineRepository.ajouterDomaine(d);
     }
 
-    // Modifier
+   
     public void modifier(int id, String nom) {
+
+        if (id <= 0) {
+            System.out.println("ID invalide !");
+            return;
+        }
+
         Domaine d = new Domaine(id, nom);
         domaineRepository.modifierDomaine(d);
     }
 
-    // Supprimer
+  
     public void supprimer(int id) {
         domaineRepository.supprimerDomaine(id);
     }
 
-    // Afficher
+   
     public List<Domaine> afficher() {
         return domaineRepository.afficherDomaine();
-    }
-
-
     }
 }
