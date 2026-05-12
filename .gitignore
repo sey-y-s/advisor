@@ -1,3 +1,4 @@
+src/main/java/db/ConnexionBdd.java
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -9,7 +10,7 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
-.db/
+
 *.iws
 *.iml
 *.ipr
@@ -38,3 +39,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
+.ConnexionBdd
