@@ -1,9 +1,11 @@
-<project xmlns="http://maven.org" xmlns:xsi="http://w3.org"
-  xsi:schemaLocation="http://maven.org http://maven.org">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.apprenants</groupId>
-    <artifactId>projet-jdbc-pur</artifactId>
+    <groupId>org.advisor</groupId>
+    <artifactId>advisor</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -14,11 +16,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.7.11</version>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.7.0</version>
         </dependency>
     </dependencies>
-</project>
 
-<!-- Ce fichier sert uniquement à dire à Maven : "Va chercher le pilote PostgreSQL sur Internet et ajoute-le au projet" -->
+</project>
