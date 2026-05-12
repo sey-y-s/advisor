@@ -1,4 +1,6 @@
-package com.app.model;
+package models;
+
+import models.*;
 
 //DÉCLARATION DE LA CLASSE
 public class Projet {
