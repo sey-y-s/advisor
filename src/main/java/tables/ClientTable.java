@@ -3,7 +3,7 @@ package tables;
 import db.ConnexionBdd;
 import models.Client;
 import models.Localite;
-import models.enums.Niveau;
+import models.enums.*;
 import repositories.ClientRepository;
 
 import java.sql.*;

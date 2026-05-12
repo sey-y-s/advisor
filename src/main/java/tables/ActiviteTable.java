@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActiviteTable implements ActiviteRepository {
@@ -66,6 +67,27 @@ public class ActiviteTable implements ActiviteRepository {
 
     @Override
     public List<Activite> getAll() {
+        String sql = "SELECT * FROM Activite";
+        List<Activite> activites = new ArrayList<>();
+        try(Connection connection = ConnexionBdd.getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql)){
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Etape etape= new Etape();
+                etape.setTitre(rs.getString("titre"));
+                Activite activite = new Activite(
+                        rs.getInt("id"),
+                        rs.getString("titre"),
+                        rs.getString("description"),
+                        rs.getInt("duree"),
+                        StatutEtape.valueOf(rs.getString("statut")),
+                        rs.getString("etape")
+                );
+                activites.add(activite);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -80,3 +102,14 @@ public class ActiviteTable implements ActiviteRepository {
     }
 
 }
+
+
+"SELECT u.id AS user_id," +
+        " u.nom, u.prenom," +
+        " u.telephone," +
+        " u.role AS role," +
+        " u.email, c.niveau," +
+        " l.id AS id_localite, l.regionClient AS region " +
+    "FROM utilisateur u " +
+        "JOIN client c ON u.id= c.id " +
+        "JOIN localite l ON l.id=c.idlocalite";
