@@ -1,9 +1,13 @@
 package com.app.tables;
 
 import java.util.*;
+
+import com.app.enums.Statut;
 import com.app.model.*;
 import com.app.repositories.ActiviteRepository;
 import com.app.db.DatabaseManager;
+import com.app.repositories.EtapeRepository;
+
 import java.sql.*;
 
 public class ActiviteTable implements ActiviteRepository{
@@ -26,8 +30,38 @@ public class ActiviteTable implements ActiviteRepository{
 
     @Override
     public Activite getById(int id) {
-        
+        String sql = "SELECT * FROM activite WHERE id = ?";
+        try (Connection connection = DatabaseManager.getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try(ResultSet rs = ps.executeQuery()){
+                if(rs.next()){
+
+                    //int idEtape = rs.getInt("etape_id");
+                    //Etape etape = EtapeRepository.getIdEtape(idEtape);
+
+                    int idEtape = rs.getInt("etape_id");
+
+                    Etape etape = new Etape();
+                    etape.setIdEtape(idEtape);
+
+                    Activite activite = new Activite(
+                            rs.getInt("id"),
+                            rs.getString("titre"),
+                            rs.getString("description"),
+                            rs.getInt("duree"),
+                            Statut.valueOf(rs.getString("statut")),
+                            etape
+                    );
+                    return activite;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur " + e.getMessage());
+        }
+        return null;
     }
+
     @Override
     public List<Activite> getAll() {
         

@@ -14,7 +14,8 @@ public class Activite{
     
     // Le constructeur
 
-    public Activite(String titre, String description, int duree, Statut statut, Etape etape) {
+    public Activite(int id, String titre, String description, int duree, Statut statut, Etape etape) {
+        this.id = id;
         this.titre = titre;
         this.description = description;
         this.duree = duree;
