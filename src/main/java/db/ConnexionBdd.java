@@ -5,10 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnexionBdd {
-    public static Connection getConnection () throws SQLException {
-        String URL="jdbc:mysql://localhost:3306/advisor";
-         String USER="root";
-         String PASSWORD="diallacoul";
-        return DriverManager.getConnection(URL,USER,PASSWORD);
+    private static final String URL = "jdbc:mysql://localhost:3306/advisor";
+    private static final String HOST = "root";
+    private static final String PASSWORD = "root";
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, HOST, PASSWORD);
     }
+
 }
