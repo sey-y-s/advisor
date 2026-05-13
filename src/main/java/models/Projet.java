@@ -1,6 +1,4 @@
-package models;
-
-import models.*;
+package models;;
 
 //DÉCLARATION DE LA CLASSE
 public class Projet {
