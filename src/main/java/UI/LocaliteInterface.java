@@ -21,7 +21,7 @@ public class LocaliteInterface {
         }
         System.out.println("=========== Liste des localités ===========");
         for (int i=0; i<localites.size(); i++){
-            System.out.println(i+1 + " = "+ localites.get(i));
+            System.out.println(i+1 + " = "+ localites.get(i).getRegionClient());
         }
         int choix;
         System.out.println("Choisissez!!!!!!!");

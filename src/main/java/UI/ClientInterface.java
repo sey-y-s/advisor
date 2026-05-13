@@ -3,6 +3,7 @@ package UI;
 import models.Client;
 import models.Localite;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ClientInterface {
@@ -32,4 +33,6 @@ public class ClientInterface {
         client.setLocalite(localite);
         return  client;
     }
+
+
 }
