@@ -1,4 +1,4 @@
-package tables;
+package DAOimplementation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.util.Optional;
 import db.ConnexionBdd;
 import models.Activite;
 import models.Depense;
-import repositories.DepenseRepository;
+import DAO.DepenseRepository;
 
 
 public class DepenseTable implements DepenseRepository {
