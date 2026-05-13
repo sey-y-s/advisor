@@ -1,4 +1,4 @@
-package com.app.model;
+package models;;
 
 //DÉCLARATION DE LA CLASSE
 public class Projet {

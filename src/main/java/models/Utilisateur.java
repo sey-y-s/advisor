@@ -27,6 +27,10 @@ public class Utilisateur {
         this.role = role;
 
     }
+
+    public Utilisateur() {
+
+    }
     // les getters
 
     // GETTERS : Méthodes pour récupérer les valeurs des attributs privés.

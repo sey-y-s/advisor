@@ -1,9 +1,9 @@
 package DAOimplementation;
 
-import com.app.db.DatabaseManager;
-import com.app.enums.Role;
-import com.app.model.*;
-import com.app.repositories.AdminRepository;
+import db.ConnexionBdd;
+import models.enums.Role;
+import models.*;
+import DAO.AdminRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,13 +19,13 @@ public class AdminTable implements AdminRepository {
     public void add(Admin admin) {
         // TODO Auto-generated method stub
         String sql="insert into Admin(montant,description,date,activite) VALUES(?,?,?,?)";
-        try (Connection conn = DatabaseManager.getConnection();
+        try (Connection conn = ConnexionBdd.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);)
         {
             ps.setString(1,admin.getNom());
             ps.setString(2, admin.getPrenom());
             ps.setString(3, admin.getEmail());
-            ps.setInt(4, admin.getTelephone());
+            ps.setString(4, admin.getTelephone());
             ps.setString(3, admin.getMotDePasse());
             System.out.println("Admin ajoute");
 
@@ -39,7 +39,7 @@ public class AdminTable implements AdminRepository {
     @Override
     public Optional<Admin> getById(int id) {
         String sql ="select from Admin where(id=?)";
-        try(Connection conn = DatabaseManager.getConnection();
+        try(Connection conn = ConnexionBdd.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1,id);
             ps.executeUpdate();
@@ -60,7 +60,7 @@ public class AdminTable implements AdminRepository {
         String sql = "SELECT * FROM utilisateur u JOIN admin c ON u.id = c.id";
         List<Admin> admins = new ArrayList<>();
         try (
-                Connection conn = DatabaseManager.getConnection();
+                Connection conn = ConnexionBdd.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()
         ) {
@@ -70,7 +70,7 @@ public class AdminTable implements AdminRepository {
                 admin.setNom(rs.getString("nom"));
                 admin.setPrenom(rs.getString("prenom"));
                 admin.setEmail(rs.getString("email"));
-                admin.setTelephone(rs.getInt("telephone"));
+                admin.setTelephone(rs.getString("telephone"));
                 admin.setMotDePasse(rs.getString("motDePasse"));
                 admin.setRole(Role.valueOf(rs.getString("role")));
                 admins.add(admin);
@@ -88,7 +88,7 @@ public class AdminTable implements AdminRepository {
     public void update(int id) {
 
         String sql="update Admin set nom = ?, prenom = ?, email = ?, telephone = ?, motDePasse = ?, WHERE id = ?";
-        try(Connection conn = DatabaseManager.getConnection();
+        try(Connection conn = ConnexionBdd.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);)
         {
             ps.setInt(5, id);
@@ -109,7 +109,7 @@ public class AdminTable implements AdminRepository {
     @Override
     public void delete(int id) {
         String sql="delete from Admin WHERE(id=?)";
-        try(Connection conn = DatabaseManager.getConnection();
+        try(Connection conn = ConnexionBdd.getConnection();
             PreparedStatement ps = conn.prepareStatement(sql);)
         {
             ps.setInt(1, id);
