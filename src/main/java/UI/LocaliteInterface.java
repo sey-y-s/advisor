@@ -1,7 +1,8 @@
 package UI;
 
+import ServiceImplementation.LocaliteService;
 import models.Localite;
-import services.LocaliteService;
+
 import java.util.List;
 import java.util.Scanner;
 
