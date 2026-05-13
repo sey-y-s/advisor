@@ -93,16 +93,14 @@ public class ActiviteTable implements ActiviteRepository {
     }
 
     @Override
-    public void update(int id, Activite activite) {
-        String sql = "UPDATE activite SET titre=?, description=?, duree=? WHERE id=?";
+    public void update(int id, StatutEtape statut) {
+        String sql = "UPDATE activite SET statut=? WHERE id=?";
         try(Connection connection = ConnexionBdd.getConnection();
         PreparedStatement ps = connection.prepareStatement(sql)){
-            ps.setString(1, activite.getTitre());
-            ps.setString(2, activite.getDescription());
-            ps.setInt(3, activite.getDuree());
-            ps.setInt(4, activite.getId());
+            ps.setString(1, String.valueOf(statut));
+            ps.setInt(2, id);
             ps.executeUpdate();
-            System.out.println("Activite Ajoutée !");
+            System.out.println("Statut de l'activité modifié !");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
