@@ -1,8 +1,8 @@
 package DAOimplementation;
 
-import com.app.db.DatabaseManager;
-import com.app.model.Competence;
-import com.app.repositories.CompetenceRepository;
+
+
+import DAO.CompetenceRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -113,4 +113,5 @@ public class CompetenceTable implements CompetenceRepository {
             System.out.println("Erreur delete : " + e.getMessage());
         }
     }
+
 }

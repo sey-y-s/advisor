@@ -34,6 +34,8 @@ public class Projet {
         this.realisations = new ArrayList<>();
     }
 
+    public Projet(){}
+
     // 4. Vos Méthodes Métiers (UML)
     public void ajouterProjet() {
         // Logique métier pour enregistrer le projet
@@ -73,6 +75,12 @@ public class Projet {
 
     public float getDuree() { return duree; }
     public void setDuree(float duree) { this.duree = duree; }
+
+    public StatutProjet getProjetStatut(){ return projetStatut; }
+
+    public void setProjetStatut(StatutProjet statutProjet){
+        this.projetStatut = projetStatut;
+    }
 
     public double getBudgetMin() { return budgetMin; }
     public void setBudgetMin(double budgetMin) { this.budgetMin = budgetMin; }

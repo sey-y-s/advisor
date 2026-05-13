@@ -2,7 +2,7 @@ package DAOimplementation;
 
 import DAO.ProjetRepository;
 import models.Projet;
-import models.enums.StatutProjet;
+import models.enums.*;
 
 import java.sql.*;
 import java.util.ArrayList;
