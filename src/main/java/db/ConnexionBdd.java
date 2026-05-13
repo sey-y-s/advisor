@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class ConnexionBdd {
  private static final String URL = "jdbc:mysql://localhost:3306/advisor";
  private static final String HOST = "root";
- private static final String PASSWORD = "root";
+ private static final String PASSWORD = "diallacoul";
 
 
  public static Connection getConnection() throws SQLException {
