@@ -1,64 +1,65 @@
-package DAOimplementation;
+package tables;
 
 import db.ConnexionBdd;
 import models.Client;
 import models.Localite;
-import models.enums.Niveau;
-import DAO.ClientRepository;
+import models.enums.*;
+import repositories.ClientRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
 public class ClientTable implements ClientRepository {
 
     @Override
-    public void add(Client client) {
+    public boolean add(Client client) {
         try(Connection conn= ConnexionBdd.getConnection()) {
             conn.setAutoCommit(false);
-            String insert= "INSERT INTO utilisateur (nom, prenom, email, telephone, mot_de_passe) VALUES (?, ?, ?, ?, ?)";
+            String insert= "INSERT INTO utilisateur (nom, prenom, email, telephone, mot_de_passe, role) VALUES (?, ?, ?, ?, ?, ?)";
             try(PreparedStatement stmt= conn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS)){
                 stmt.setString(1, client.getNom());
                 stmt.setString(2, client.getPrenom());
                 stmt.setString(3, client.getEmail());
                 stmt.setString(4, client.getTelephone());
                 stmt.setString(5, client.getMotDePasse());
-                //stmt.setString(6, client.getRole().name());
-                stmt.executeUpdate();
+                stmt.setString(6, client.getRole().name());
+                int affected= stmt.executeUpdate();
+                if(affected==0){
+                    throw new SQLException("Enregistrement echoué!!");
+                }
                 int idUSer;
-
-                ResultSet rs= stmt.getGeneratedKeys();
-                if(rs.next()){
+                try(ResultSet rs= stmt.getGeneratedKeys()){
+                    if(!rs.next()){
+                        throw new SQLException("Aucun ID retrouvé!!");
+                    }
                     idUSer= rs.getInt(1);
-                    String insert2= "INSERT INTO client(id, niveau) VALUES (?, ?::niveau_client)";
+                    String insert2= "INSERT INTO client(id, niveau, idlocalite) VALUES (?, ?::niveau_client, ?)";
                     try(PreparedStatement ps= conn.prepareStatement(insert2)){
                         ps.setInt(1, idUSer);
                         ps.setString(2, client.getNiveau().name());
-
-                        // ps.setInt(4, client.getLocalite().getId());
-                        ps.executeUpdate();
+                        ps.setInt(3, client.getLocalite().getId());
+                        int row= ps.executeUpdate();
+                        conn.commit();
+                        return row>0;
                     }
-                    conn.commit();
-                    System.out.println("Client ajouté avec succès.!!!!!!!!!!");
                 }
             }
             catch (SQLException e) {
                 conn.rollback(); //Permet de tout annuler
-                System.out.println("Erreur lors de l'ajout du client : " + e.getMessage());
-
+                e.printStackTrace(System.out);
             }
-
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la connection a la base : " + e.getMessage());
-
+          e.printStackTrace(System.out);
         }
-
+        return false;
     }
 
     @Override
-    public void update(int id, String nom, String prenom, String email, String telephone, Niveau niveau, int idlocalite) {
-        String updateUser = "UPDATE utilisateur SET nom=?, prenom=?, email=?, telephone=? WHERE id=?";
+    public boolean update(int id, String nom, String prenom, String telephone, Niveau niveau, int idlocalite) {
+        String updateUser = "UPDATE utilisateur SET nom=?, prenom=?, telephone=? WHERE id=?";
 
         String updateClient = "UPDATE client SET niveau=?::niveau_client, idlocalite=? WHERE id=?";
         try (
@@ -69,32 +70,26 @@ public class ClientTable implements ClientRepository {
             conn.setAutoCommit(false);
             stmt.setString(1, nom);
             stmt.setString(2, prenom);
-            stmt.setString(3, email);
-            stmt.setString(4, telephone);
-            stmt.setInt(5, id);
+            stmt.setString(3, telephone);
+            stmt.setInt(4, id);
 
             int ligne = stmt.executeUpdate();
 
             if (ligne == 0) {
                 conn.rollback();
-                System.out.println("Aucun client trouvé.");
-                return;
+                throw  new SQLException("Aucun client retrouvé avec ce ID");
             }
             ps.setString(1, niveau.name());
             ps.setInt(2, idlocalite);
             ps.setInt(3, id);
 
-            ps.executeUpdate();
+            int row= ps.executeUpdate();
             conn.commit();
-
-            System.out.println("Client mis à jour avec succès.");
-
+            return row>0;
         } catch (SQLException e) {
             e.printStackTrace(System.out);
-            System.out.println("Erreur lors de la modification : " + e.getMessage()
-            );
         }
-
+        return false;
     }
 
     @Override
@@ -168,22 +163,17 @@ public class ClientTable implements ClientRepository {
     }
 
     @Override
-    public void delete(int id) {
+    public boolean delete(int id) {
         String delete= "DELETE FROM utilisateur WHERE id = ?";
         try(Connection conn= ConnexionBdd.getConnection();
             PreparedStatement stmt= conn.prepareStatement(delete)) {
             stmt.setInt(1, id);
             int ligne= stmt.executeUpdate();
-            if (ligne > 0) {
-                System.out.println("Client supprimé avec succès.");
-            } else {
-                System.out.println("Aucun client trouvé avec l'ID spécifié.");
-            }
-
+            return ligne>0;
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la suppression d'un client"+ e.getMessage());
+            e.printStackTrace(System.out);
         }
-
+        return false;
     }
 
     @Override
@@ -198,15 +188,11 @@ public class ClientTable implements ClientRepository {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la verification de l'email !!!!!" +e.getMessage());
+           e.printStackTrace(System.out);
         }
         return false;
 
     }
-
-
-
-
 
 
 }
