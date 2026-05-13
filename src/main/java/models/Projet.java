@@ -1,18 +1,20 @@
-package com.monprojet.model;
+package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import models.enums.StatutProjet;
 
 public class Projet {
-    // 1. Attributs Propres
+
     private int id;
     private String titre;
     private String description;
     private float duree;
     private double budgetMin;
     private double budgetMax;
+    private StatutProjet projetStatut;
 
-    // 2. Attributs d'Association (générés à partir du diagramme UML)
+    // 2. Attributs d'Association
     private List<Etape> etapes;            // Relation "Contenir" (1..*)
     private List<Commentaire> commentaires; // Relation "Concerner" (1..*)
     private List<ProjetClient> realisations; // Relation "Realiser" (1..*)

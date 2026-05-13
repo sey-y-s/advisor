@@ -1,7 +1,7 @@
-package services;
+package ServiceImplementation;
 import java.util.List;
 import models.Localite;
-import repositories.LocaliteRepository;
+import DAO.LocaliteRepository;
 
 public class LocaliteService {
 
@@ -37,16 +37,8 @@ public class LocaliteService {
             }
         }
 
-        public void getAllLocalites() {
-            List<Localite> localites = localiteRepository.getAll();
-            if (localites.size() == 0) {
-                System.out.println("Il n'y a pas de localités enregistrées !!!");
-                return;
-            }
-            for (Localite localite : localites) {
-                System.out.printf("ID: %d, Région: %s\n",
-                        localite.getId(), localite.getRegionClient());
-            }
+        public List<Localite> getAllLocalites() {
+            return localiteRepository.getAll();
         }
 
         public void updateLocalite(int id, String regionClient) {

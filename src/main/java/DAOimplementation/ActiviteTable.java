@@ -1,9 +1,9 @@
-package tables;
+package DAOimplementation;
 
 import db.ConnexionBdd;
 import models.*;
 import models.enums.StatutEtape;
-import repositories.ActiviteRepository;
+import DAO.ActiviteRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
