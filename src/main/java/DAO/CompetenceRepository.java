@@ -1,4 +1,4 @@
-package repositories;
+package DAO;
 
 import models.Competence;
 import java.util.List;
