@@ -15,8 +15,7 @@ public class Projet {
 
 
     // CONSTRUCTEUR
-    public Projet(String titre, String description,
-                  Domaine domaine, float duree, int budget, Client client) {
+    public Projet() {
         this.titre = titre;
         this.description = description;
         this.domaine = domaine;
