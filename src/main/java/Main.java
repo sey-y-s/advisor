@@ -1,7 +1,7 @@
 import models.Domaine;
-import repositories.DomaineRepository;
-import services.DomaineService;
-import tables.DomaineTable;
+import DAO.DomaineRepository;
+import ServiceImplementation.DomaineService;
+import DAOimplementation.DomaineTable;
 
 import java.util.List;
 import java.util.Scanner;
