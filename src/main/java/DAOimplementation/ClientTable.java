@@ -1,14 +1,13 @@
-package tables;
+package DAOimplementation;
 
 import db.ConnexionBdd;
 import models.Client;
 import models.Localite;
-import models.enums.*;
-import repositories.ClientRepository;
+import models.enums.Niveau;
+import DAO.ClientRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 

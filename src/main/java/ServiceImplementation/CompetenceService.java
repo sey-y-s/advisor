@@ -1,7 +1,7 @@
-package services;
+package ServiceImplementation;
 
 import models.Competence;
-import repositories.CompetenceRepository;
+import DAO.CompetenceRepository;
 import java.util.List;
 
 public class CompetenceService {

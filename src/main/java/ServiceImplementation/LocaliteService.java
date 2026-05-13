@@ -1,7 +1,7 @@
-package services;
+package ServiceImplementation;
 import java.util.List;
 import models.Localite;
-import repositories.LocaliteRepository;
+import DAO.LocaliteRepository;
 
 public class LocaliteService {
 

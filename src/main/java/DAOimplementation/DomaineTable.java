@@ -1,8 +1,8 @@
-package tables;
+package DAOimplementation;
 
 import db.ConnexionBdd;
 import models.Domaine;
-import repositories.DomaineRepository;
+import DAO.DomaineRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

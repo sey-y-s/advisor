@@ -68,7 +68,7 @@ public class Activite {
         return etape;
     }
 
-    public void setEtape(String etape){
+    public void setEtape(Etape etape){
         this.etape = etape;
     }
 }

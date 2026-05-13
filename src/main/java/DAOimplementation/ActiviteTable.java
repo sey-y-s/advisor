@@ -1,9 +1,9 @@
-package tables;
+package DAOimplementation;
 
 import db.ConnexionBdd;
 import models.*;
 import models.enums.StatutEtape;
-import repositories.ActiviteRepository;
+import DAO.ActiviteRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -67,13 +67,14 @@ public class ActiviteTable implements ActiviteRepository {
 
     @Override
     public List<Activite> getAll() {
-        String sql = "SELECT * FROM Activite";
+        String sql = "SELECT * FROM Activite JOIN Etape ON Activite.idEtape = Etape.idEtape";
         List<Activite> activites = new ArrayList<>();
         try(Connection connection = ConnexionBdd.getConnection();
-        PreparedStatement ps = connection.prepareStatement(sql)){
+            PreparedStatement ps = connection.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Etape etape= new Etape();
+                etape.setTitre(rs.getString("titre"));
                 etape.setTitre(rs.getString("titre"));
                 Activite activite = new Activite(
                         rs.getInt("id"),
@@ -81,10 +82,27 @@ public class ActiviteTable implements ActiviteRepository {
                         rs.getString("description"),
                         rs.getInt("duree"),
                         StatutEtape.valueOf(rs.getString("statut")),
-                        rs.getString("etape")
+                        etape
                 );
                 activites.add(activite);
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return activites;
+    }
+
+    @Override
+    public void update(int id, Activite activite) {
+        String sql = "UPDATE activite SET titre=?, description=?, duree=? WHERE id=?";
+        try(Connection connection = ConnexionBdd.getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setString(1, activite.getTitre());
+            ps.setString(2, activite.getDescription());
+            ps.setInt(3, activite.getDuree());
+            ps.setInt(4, activite.getId());
+            ps.executeUpdate();
+            System.out.println("Activite Ajoutée !");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -92,24 +110,18 @@ public class ActiviteTable implements ActiviteRepository {
     }
 
     @Override
-    public void update(int id, String activite) {
-
-    }
-
-    @Override
     public void delete(int id) {
+        String sql = "DELETE FROM activite WHERE id = ?";
+        try(Connection connection = ConnexionBdd.getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            System.out.println("Activité supprimée !");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
 }
-
-
-"SELECT u.id AS user_id," +
-        " u.nom, u.prenom," +
-        " u.telephone," +
-        " u.role AS role," +
-        " u.email, c.niveau," +
-        " l.id AS id_localite, l.regionClient AS region " +
-    "FROM utilisateur u " +
-        "JOIN client c ON u.id= c.id " +
-        "JOIN localite l ON l.id=c.idlocalite";
