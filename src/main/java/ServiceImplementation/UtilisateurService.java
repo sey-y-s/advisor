@@ -1,10 +1,9 @@
-package services;
+package ServiceImplementation;
 import java.util.Optional;
 import java.util.List;
 import models.Utilisateur;
 import models.enums.Role;
-import models.Utilisateur;
-import repositories.UtilisateurRepository;
+import DAO.UtilisateurRepository;
 
 
 // Il agit comme intermédiaire entre les contrôleurs (interface utilisateur) et les repositories (accès données).
