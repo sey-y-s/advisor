@@ -1,17 +1,16 @@
 package DAOimplementation;
 
+import DAO.CompetenceRepository;
+import models.Competence;
 import com.app.db.DatabaseManager;
-import com.app.model.Competence;
-import com.app.repositories.CompetenceRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class CompetenceTable implements CompetenceRepository {
 
-    // ✅ Création de la table
+    // 🔧 Création table
     public void creerTable() {
         String sql = """
                 CREATE TABLE IF NOT EXISTS competences (
@@ -19,98 +18,113 @@ public class CompetenceTable implements CompetenceRepository {
                     nom VARCHAR(100) NOT NULL
                 )
                 """;
+
         try (Connection conn = DatabaseManager.getConnection();
              Statement stmt = conn.createStatement()) {
+
             stmt.execute(sql);
-            System.out.println("Table 'competences' prête.");
         } catch (SQLException e) {
-            System.out.println("Erreur création table : " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
+    // ✅ CREATE
     @Override
-    public void add(Competence competence) {
-        String sql = "INSERT INTO competences (id_competence, nom) VALUES (?, ?)";
+    public void ajouterCompetence(Competence competence) {
+        String sql = "INSERT INTO competences (nom) VALUES (?)";
+
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, competence.getIdCompetence());
-            ps.setString(2, competence.getNom());
+
+            ps.setString(1, competence.getNom());
             ps.executeUpdate();
-            System.out.println("Compétence ajoutée.");
+
         } catch (SQLException e) {
-            System.out.println("Erreur add : " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
+    // ✅ READ ALL
     @Override
-    public Optional<Competence> getById(int id) {
-        String sql = "SELECT * FROM competences WHERE id_competence = ?";
-        try (Connection conn = DatabaseManager.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery(); // ✅ executeQuery pas executeUpdate
-            if (rs.next()) {
-                Competence competence = new Competence(
-                        rs.getInt("id_competence"),
-                        rs.getString("nom")
-                );
-                return Optional.of(competence);
-            }
-        } catch (SQLException e) {
-            System.out.println("Erreur getById : " + e.getMessage());
-        }
-        return Optional.empty(); // ✅ pas null
-    }
+    public List<Competence> afficherCompetences() {
+        List<Competence> list = new ArrayList<>();
+        String sql = "SELECT * FROM competences";
 
-    @Override
-    public List<Competence> getAll() {
-        String sql = "SELECT * FROM competences"; // ✅ SELECT * pas SELECT all
-        List<Competence> competences = new ArrayList<>();
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
+
             while (rs.next()) {
-                Competence competence = new Competence(
-                        rs.getInt("id_competence"),  // ✅ nom de colonne, pas variable sql
+                Competence c = new Competence(
+                        rs.getInt("id_competence"),
                         rs.getString("nom")
                 );
-                competences.add(competence); // ✅ ajout à la liste
+                list.add(c);
             }
+
         } catch (SQLException e) {
-            System.out.println("Erreur getAll : " + e.getMessage());
+            e.printStackTrace();
         }
-        return competences; // ✅ retourner la liste, pas null
+
+        return list;
     }
 
+    // ✅ READ BY ID
     @Override
-    public void update(Competence competence) { // ✅ objet complet, pas juste un String
+    public Competence getCompetenceById(int id) {
+        String sql = "SELECT * FROM competences WHERE id_competence = ?";
+
+        try (Connection conn = DatabaseManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Competence(
+                        rs.getInt("id_competence"),
+                        rs.getString("nom")
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // ✅ UPDATE
+    @Override
+    public void modifierCompetence(Competence competence) {
         String sql = "UPDATE competences SET nom = ? WHERE id_competence = ?";
-        // ✅ pas de virgule avant WHERE
+
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, competence.getNom());  // ✅ tous les paramètres définis
+
+            ps.setString(1, competence.getNom());
             ps.setInt(2, competence.getIdCompetence());
-            int line = ps.executeUpdate();
-            if (line > 0) {
-                System.out.println("Compétence modifiée avec succès.");
-            } else {
-                System.out.println("Compétence introuvable.");
-            }
+
+            ps.executeUpdate();
+
         } catch (SQLException e) {
-            System.out.println("Erreur update : " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
+    // ✅ DELETE
     @Override
-    public void delete(int id) {
+    public void supprimerCompetence(int id) {
         String sql = "DELETE FROM competences WHERE id_competence = ?";
+
         try (Connection conn = DatabaseManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setInt(1, id);
             ps.executeUpdate();
-            System.out.println("Compétence supprimée.");
+
         } catch (SQLException e) {
-            System.out.println("Erreur delete : " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

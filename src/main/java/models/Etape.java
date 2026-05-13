@@ -4,7 +4,7 @@ import models.enums.StatutEtape;
 import models.enums.StatutProjet;
 import models.Projet;
 
-public class Etape {
+public class gEtape {
     private Integer idEtape;
     private String titre;
     private String description;
