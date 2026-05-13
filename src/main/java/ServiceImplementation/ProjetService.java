@@ -1,10 +1,11 @@
-package com.app.services;
+package ServiceImplementation;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.app.model.Projet;
-import com.app.repositories.ProjetRepository;
+import DAO.ProjetRepository;
+import models.Projet; // Aligné sur votre package de modèle
+import models.ProjetClient;
 
 public class ProjetService {
     private final ProjetRepository projetRepository;
@@ -19,26 +20,33 @@ public class ProjetService {
                 System.out.println("Un projet avec ce titre existe déjà.");
                 return;
             }
-            else if(projet.getTitre() == null || projet.getTitre().trim().isEmpty() ||
+            if(projet.getTitre() == null || projet.getTitre().trim().isEmpty() ||
                     projet.getDescription() == null || projet.getDescription().trim().isEmpty()) {
                 System.out.println("Le titre et la description du projet sont obligatoires.");
                 return;
             }
-            else if(projet.getDuree() <= 0) {
+            if(projet.getDuree() <= 0) {
                 System.out.println("La durée du projet doit être supérieure à 0.");
                 return;
             }
-            else if(projet.getBudget() < 0) {
-                System.out.println("Le budget du projet ne peut pas être négatif.");
+            // Adaptation : Vérification sur budgetMin et budgetMax
+            if(projet.getBudgetMin() < 0 || projet.getBudgetMax() < 0) {
+                System.out.println("Les budgets du projet ne peuvent pas être négatifs.");
                 return;
             }
-            else if(projet.getClient() == null) {
-                System.out.println("Un client doit être associé au projet.");
+            if(projet.getBudgetMax() < projet.getBudgetMin()) {
+                System.out.println("Le budget maximum ne peut pas être inférieur au budget minimum.");
+                return;
+            }
+            // Adaptation : Vérification de l'existence d'une relation client (via la liste de liaisons)
+            if(projet.getRealisations() == null || projet.getRealisations().isEmpty()) {
+                System.out.println("Un client doit être associé au projet via une réalisation.");
                 return;
             }
         } catch (Exception e) {
             System.out.println("Erreur lors de la validation du projet : " + e.getMessage());
         }
+
         projetRepository.add(projet);
         System.out.println("Projet ajouté avec succès.");
     }
@@ -58,13 +66,20 @@ public class ProjetService {
 
     public void getAllProjets() {
         List<Projet> projets = projetRepository.getAll();
-        if(projets.size() == 0) {
+        if(projets.isEmpty()) {
             System.out.println("Il n'y a pas de projets enregistrés !!!");
             return;
         }
         for(Projet projet : projets) {
-            System.out.printf("Titre: %s, Durée: %.1f mois, Budget: %d FCSA, Client: %s\n",
-                    projet.getTitre(), projet.getDuree(), projet.getBudget(), projet.getClient().getNom());
+            // Adaptation : Lecture de budgetMin/budgetMax et extraction du nom du client via la classe d'association
+            String nomClient = "Inconnu";
+            if (!projet.getRealisations().isEmpty()) {
+                // On récupère le client lié à la première réalisation trouvée
+                nomClient = projet.getRealisations().get(0).getClient().getNom();
+            }
+
+            System.out.printf("Titre: %s, Durée: %.1f mois, Budget: [%.2f - %.2f] FCFA, Client: %s\n",
+                    projet.getTitre(), projet.getDuree(), projet.getBudgetMin(), projet.getBudgetMax(), nomClient);
         }
     }
 
@@ -82,14 +97,15 @@ public class ProjetService {
 
     public void getProjetsByClient(int clientId) {
         List<Projet> projets = projetRepository.getProjetsByClient(clientId);
-        if(projets.size() == 0) {
+        if(projets.isEmpty()) {
             System.out.println("Aucun projet trouvé pour ce client.");
             return;
         }
         System.out.println("Projets du client:");
         for(Projet projet : projets) {
-            System.out.printf("- %s (Durée: %.1f mois, Budget: %d FCFA)\n",
-                    projet.getTitre(), projet.getDuree(), projet.getBudget());
+            // Adaptation : Remplacement de getBudget() par la plage budgétaire
+            System.out.printf("- %s (Durée: %.1f mois, Budget: [%.2f - %.2f] FCFA)\n",
+                    projet.getTitre(), projet.getDuree(), projet.getBudgetMin(), projet.getBudgetMax());
         }
     }
 }
