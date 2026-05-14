@@ -2,9 +2,10 @@ package ServiceImplementation;
 
 import java.util.List;
 import java.util.Optional;
+
+import DAO.ProjetRepository;
 import models.Projet; // Aligné sur votre package de modèle
 import models.ProjetClient;
-import com.app.repositories.ProjetRepository;
 
 public class ProjetService {
     private final ProjetRepository projetRepository;

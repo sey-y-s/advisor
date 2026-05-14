@@ -5,7 +5,7 @@ import models.enums.StatutProjet;
 import models.Projet;
 
 public class Etape {
-    private Integer idEtape;
+    private int idEtape;
     private String titre;
     private String description;
     private StatutEtape etapeStatut;
@@ -15,7 +15,7 @@ public class Etape {
     public Etape() {}
 
 
-    public Etape(Integer idEtape, String titre, String description, StatutEtape etapeStatut, Projet projet) {
+    public Etape(int idEtape, String titre, String description, StatutEtape etapeStatut, Projet projet) {
         this.idEtape = idEtape;
         this.titre = titre;
         this.description = description;
@@ -25,11 +25,11 @@ public class Etape {
 
 
     // Getters et setters
-    public Integer getIdEtape(){
+    public int getIdEtape(){
         return idEtape;
     }
 
-    public void setIdEtape(Integer idEtape) {
+    public void setIdEtape(int idEtape) {
         this.idEtape = idEtape;
     }
     public String getTitre(){
