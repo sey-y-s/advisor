@@ -4,10 +4,7 @@ import DAOimplementation.ClientTable;
 import DAOimplementation.LocaliteTable;
 import ServiceImplementation.ClientService;
 import ServiceImplementation.LocaliteService;
-import UI.ClientInterface;
-import UI.DomaineInterface;
-import UI.LocaliteInterface;
-import UI.ProjetClientUI;
+import UI.*;
 import models.Client;
 import models.Domaine;
 import DAO.DomaineRepository;
@@ -39,6 +36,7 @@ public class Main {
         //projetClientUI.afficherProjetClient();
         //projetClientUI.afficherUnProjetClient(1);
         //DomaineInterface.Afficher();
+        ActiviteInterface.affichage();
 
 
     }
