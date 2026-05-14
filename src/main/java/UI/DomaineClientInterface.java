@@ -7,7 +7,7 @@ import models.Client;
 import models.DomaineClient;
 import models.Domaine;
 import ServiceImplementation.ClientService;
-import ServiceImplementation.DomaineClientService;
+import ServiceImplementation.DomaineClientServiceImpl;
 
 import java.lang.Integer;
 
@@ -25,9 +25,9 @@ public class DomaineClientInterface {
     private static final Scanner clavier = new Scanner(System.in);
 
     private final ClientService clientService;
-    private final DomaineClientService domaineClientService;
+    private final DomaineClientServiceImpl domaineClientService;
 
-    public DomaineClientInterface(ClientService clientService, DomaineClientService domaineClientService) {
+    public DomaineClientInterface(ClientService clientService, DomaineClientServiceImpl domaineClientService) {
         this.clientService = clientService;
         this.domaineClientService = domaineClientService;
     }
