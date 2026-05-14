@@ -7,6 +7,7 @@ public class Domaine {
         this.id=id;
         this.domaine=domaine;
     }
+    public Domaine(){}
     public  Domaine(String domaine){
         this.domaine=domaine;
 
