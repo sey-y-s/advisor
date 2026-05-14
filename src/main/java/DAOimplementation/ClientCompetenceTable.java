@@ -103,3 +103,4 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
             System.out.println("Erreur lors de la suppression");
         }
     }
+
