@@ -5,16 +5,12 @@ public class Competence {
     private int idCompetence;
     private String nom;
 
-
     public Competence() {
     }
 
     public Competence(int idCompetence, String nom) {
         this.idCompetence = idCompetence;
         this.nom = nom;
-    }
-    public Competence(){
-
     }
 
     public Competence(String nom) {
