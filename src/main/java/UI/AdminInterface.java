@@ -1,5 +1,6 @@
 package UI;
 
+import ServiceImplementation.AdminService;
 import models.Admin;
 
 import java.util.Scanner;
@@ -7,7 +8,10 @@ import java.util.Scanner;
 public class AdminInterface {
     static Scanner sc = new Scanner(System.in);
 
-    public Admin saisieAdmin () {
+    public AdminInterface(AdminService adminService) {
+    }
+
+    public static Admin saisieAdmin () {
 
         Admin admin = new Admin();
         System.out.println("Nom : ");
@@ -21,8 +25,10 @@ public class AdminInterface {
 
         return admin;
     }
-    public void afficher() {
+    public static void afficher(Admin admin) {
         Admin admin = saisieAdmin();
+        System.out.println("======= les informations de l'admin "+admin.getIdUtilisateur()+" =======");
+
         System.out.println("Nom : " + admin.getNom());
         System.out.println("Prenom : " + admin.getPrenom());
         System.out.println("Email : " + admin.getEmail());
