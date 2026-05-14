@@ -21,4 +21,10 @@ public class AdminInterface {
 
         return admin;
     }
+    public void afficher() {
+        Admin admin = saisieAdmin();
+        System.out.println("Nom : " + admin.getNom());
+        System.out.println("Prenom : " + admin.getPrenom());
+        System.out.println("Email : " + admin.getEmail());
+    }
 }
