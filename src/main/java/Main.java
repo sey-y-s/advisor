@@ -61,6 +61,7 @@ public class Main {
         //projetClientUI.afficherProjetClient();
         //projetClientUI.afficherUnProjetClient(1);
         //DomaineInterface.Afficher();
+        ActiviteInterface.affichage();
 
 
     }

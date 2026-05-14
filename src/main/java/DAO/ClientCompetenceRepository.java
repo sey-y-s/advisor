@@ -2,6 +2,7 @@ package DAO;
 
 import models.ClientCompetence;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ClientCompetenceRepository {
@@ -10,5 +11,6 @@ public interface ClientCompetenceRepository {
         List<ClientCompetence> getAll();
         void update(ClientCompetence clientCompetence);
         void delete(int id);
+        List<Integer> getSkillsByClient(int idClient) throws SQLException;
 
 }

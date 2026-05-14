@@ -9,19 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 public class DomaineInterface {
-private DomaineService domaineService;
-public DomaineInterface(DomaineService domaineService){
-    this.domaineService=domaineService;
+    static   Scanner scanner = new Scanner(System.in);
+    private DomaineService domaineService;
+    public DomaineInterface(DomaineService domaineService){
+        this.domaineService=domaineService;
 
-}
+    }
+
     public static void Afficher(){
+
+
 
 
         DomaineRepository dom = new DomaineTable();
 
         DomaineService service = new DomaineService(dom);
-
-        Scanner scanner = new Scanner(System.in);
 
         int choix;
 
@@ -32,6 +34,7 @@ public DomaineInterface(DomaineService domaineService){
             System.out.println("2. Modifier un domaine");
             System.out.println("3. Afficher les domaines");
             System.out.println("4. Supprimer un domaine");
+            System.out.println("5. Choisir un domaine");
             System.out.println("0. Quitter");
 
             System.out.print("Votre choix : ");
@@ -42,21 +45,10 @@ public DomaineInterface(DomaineService domaineService){
 
                 // ajout d'un domaine
                 case 1:
-                    List<Domaine> lstDomaine=service.afficher();
-                    System.out.println(
-                            "\n===== LISTE DES DOMAINES ====="
-                    );
-
-                    for (int i=0;i<lstDomaine.size();i++){
-                        System.out.println((i+1)+"-"+lstDomaine.get(i).getDomaine());
-                    }
-
-                    System.out.print("Entrer ton nom de domaine : ");
-                    int nom = scanner.nextInt();
-                    scanner.nextLine();
-
-                    service.ajouter(lstDomaine.get(nom-1).getDomaine());
-
+                     System.out.println("Entrer un domaine");
+                     String nom=scanner.nextLine();
+                     System.out.println("le domaine a été ajouter avec succes");
+                     service.ajouter(nom);
                     break;
 
                 // modification d'un domaine
@@ -97,6 +89,24 @@ public DomaineInterface(DomaineService domaineService){
                     service.supprimer(idSup);
 
                     break;
+                case 5:
+                    List<Domaine> lstDomaine=service.afficher();
+                    System.out.println(
+                            "\n===== LISTE DES DOMAINES ====="
+                    );
+
+                    for (int i=0; i<lstDomaine.size(); i++){
+                        System.out.println(i+1+'-'+lstDomaine.get(i).getDomaine());
+                    }
+
+                    System.out.print("Choisit ton domaine : ");
+                    int choixDomaine = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Le domaine choisi est:"+lstDomaine.get(choixDomaine-1).getDomaine());
+
+
+
+                    break;
 
                 case 0:
 
@@ -108,11 +118,14 @@ public DomaineInterface(DomaineService domaineService){
                     System.out.println("Choix invalide !");
             }
 
-        } while (choix != 0);
+        } while (choix != 0 );
 
         scanner.close();
 
 
     }
-}
 
+
+
+
+}
