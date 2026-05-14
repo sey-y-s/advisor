@@ -28,10 +28,10 @@ public class ActiviteService implements ActiviteServiceDao {
             System.out.println("Durée invalide, la durée de l'activité ne peut être négative !");
             return;
         }
-        if (activite.getEtape().getIdEtape() <= 0){
-            System.out.println("L'id de l'étape doit être supérieur à 0 !");
-            return;
-        }
+        //if (activite.getEtape().getIdEtape() <= 0){
+            //System.out.println("L'id de l'étape doit être supérieur à 0 !");
+            //return;
+        //}
         activiteRepository.add(activite);
         System.out.println("Activité ajoutée ! ");
 

@@ -79,10 +79,10 @@ public class CompetenceTable implements CompetenceRepository {
     }
 
     @Override
-    public void update(Competence competence) { //  objet complet, pas juste un String
+    public void modifierCompetence(Competence competence) { //  objet complet, pas juste un String
         String sql = "UPDATE competences SET nom = ? WHERE id_competence = ?";
         //  pas de virgule avant WHERE
-        try (Connection conn = DatabaseManager.getConnection();
+        try (Connection conn = ConnexionBdd.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, competence.getNom());  //  tous les paramètres définis
             ps.setInt(2, competence.getIdCompetence());
