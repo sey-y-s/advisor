@@ -3,8 +3,10 @@ package DAOimplementation;
 import DAO.ProjetClientRepository;
 import db.ConnexionBdd;
 import models.Client;
+import models.Localite;
 import models.Projet;
 import models.ProjetClient;
+import models.enums.Niveau;
 import models.enums.Satifaction;
 import models.enums.StatutProjet;
 
@@ -94,13 +96,12 @@ public class ClientProjetTable implements ProjetClientRepository {
     public Optional<ProjetClient> getById(int id) {
 
         String sql = """
-                SELECT u.id AS idUser, u.nom AS nom, u.prenom AS prenom, u.email AS email,
-                p.id AS idProjet, p.titre AS titre, 
-                pc.id AS idProjetClient, pc.debut AS debut, pc.statut AS statut, pc.satisfaction AS satisfaction
+                SELECT u.id AS idUser, u.nom AS nom, u.prenom AS prenom, u.email AS email, c.budgetApporte AS budget, c.niveau AS niveau, p.id AS idProjet, p.titre AS titre, pc.id AS idProjetClient, pc.debut AS debut, pc.statut AS statut, pc.satisfaction AS satisfaction, l.id AS idLocalite, l.regionClient AS region
                 FROM ProjetClient pc 
-                    JOIN client c ON c.id= pc.idClient
-                    JOIN projet p ON p.id=pc.idProjet
-                    JOIN utilisateur u ON u.id=c.id
+                JOIN client c ON c.id= pc.idClient
+                JOIN projet p ON p.id=pc.idProjet
+                JOIN utilisateur u ON u.id=c.id
+                JOIN localite l ON c.idLocalite=l.id
                 WHERE pc.id=?
                 """;
 
@@ -129,7 +130,14 @@ public class ClientProjetTable implements ProjetClientRepository {
     @Override
     public List<ProjetClient> getAll() {
 
-        String sql = "SELECT u.id AS idUser, u.nom AS nom, u.prenom AS prenom, u.email AS email, p.id AS idProjet, p.titre AS titre, pc.id AS idProjetClient, pc.debut AS debut, pc.statut AS statut, pc.satisfaction AS satisfaction FROM ProjetClient pc JOIN client c ON c.id= pc.idClient JOIN projet p ON p.id=pc.idProjet JOIN utilisateur u ON u.id=c.id";
+        String sql = """
+                SELECT u.id AS idUser, u.nom AS nom, u.prenom AS prenom, u.email AS email, c.budgetApporte AS budget, c.niveau AS niveau, p.id AS idProjet, p.titre AS titre, pc.id AS idProjetClient, pc.debut AS debut, pc.statut AS statut, pc.satisfaction AS satisfaction, l.id AS idLocalite, l.regionClient AS region
+                FROM ProjetClient pc 
+                JOIN client c ON c.id= pc.idClient
+                JOIN projet p ON p.id=pc.idProjet
+                JOIN utilisateur u ON u.id=c.id
+                JOIN localite l ON c.idLocalite=l.id
+                """;
 
         List<ProjetClient> projets = new ArrayList<>();
 
@@ -156,11 +164,18 @@ public class ClientProjetTable implements ProjetClientRepository {
         ProjetClient projetClient = new ProjetClient();
 
         Client client = new Client();
-
+        Localite localite = new Localite();
         client.setIdUtilisateur(rs.getInt("idUser"));
         client.setNom(rs.getString("nom"));
+
         client.setPrenom(rs.getString("prenom"));
+        //System.out.println("prenom "+ client.getPrenom());
         client.setEmail(rs.getString("email"));
+        client.setBudgetApporte(rs.getInt("budget"));
+        client.setNiveau(Niveau.valueOf(rs.getString("niveau")));
+        localite.setId(rs.getInt("idLocalite"));
+        localite.setRegionClient(rs.getString("region"));
+        client.setLocalite(localite);
         Projet projet = new Projet();
 
         projet.setId(rs.getInt("idProjet"));
@@ -175,8 +190,9 @@ public class ClientProjetTable implements ProjetClientRepository {
         projetClient.setStatut(StatutProjet.valueOf(rs.getString("statut").toUpperCase()));
         projetClient.setSatisfaction(Satifaction.valueOf(rs.getString("satisfaction").toUpperCase()));
 
-        projetClient.setClient(client);
+
         projetClient.setProjet(projet);
+        projetClient.setClient(client);
 
         return projetClient;
     }

@@ -20,15 +20,15 @@ public class LocaliteInterface {
         if(localites == null || localites.isEmpty()){
             System.out.println("Il n'y a aucune localité enregistré !!!");
         }
-        System.out.println("=========== Liste des localités ===========");
-        for (int i=0; i<localites.size(); i++){
-            System.out.println(i+1 + " = "+ localites.get(i).getRegionClient());
-        }
         int choix;
-        System.out.println("Choisissez!!!!!!!");
-        choix= clavier.nextInt();
         do {
-            System.out.println("Entrez le bon numéro");
+            System.out.println("=========== Liste des localités ===========");
+            for (int i=0; i<localites.size(); i++){
+                System.out.println(i+1 + " = "+ localites.get(i).getRegionClient());
+            }
+
+            System.out.println("Choisissez!!!!!!!");
+            choix= clavier.nextInt();
         } while (choix<1 || choix>localites.size());
 
         return localites.get(choix - 1);

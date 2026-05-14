@@ -19,15 +19,16 @@ public class ClientTable implements ClientRepository {
     public boolean add(Client client) {
         try(Connection conn= ConnexionBdd.getConnection()) {
             conn.setAutoCommit(false);
-            String insert= "INSERT INTO utilisateur (nom, prenom, email, telephone, mot_de_passe, role) VALUES (?, ?, ?, ?, ?, ?)";
+            String insert= "INSERT INTO utilisateur (nom, prenom, email, telephone, motDePasse, role) VALUES (?, ?, ?, ?, ?, ?)";
             try(PreparedStatement stmt= conn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS)){
                 stmt.setString(1, client.getNom());
                 stmt.setString(2, client.getPrenom());
                 stmt.setString(3, client.getEmail());
                 stmt.setString(4, client.getTelephone());
                 stmt.setString(5, client.getMotDePasse());
-                stmt.setString(6, client.getRole().name());
+                stmt.setString(6, Role.CLIENT.name());
                 int affected= stmt.executeUpdate();
+               // System.out.println("Utilisateur enregistré !!!!");
                 if(affected==0){
                     throw new SQLException("Enregistrement echoué!!");
                 }
@@ -37,11 +38,12 @@ public class ClientTable implements ClientRepository {
                         throw new SQLException("Aucun ID retrouvé!!");
                     }
                     idUSer= rs.getInt(1);
-                    String insert2= "INSERT INTO client(id, niveau, idlocalite) VALUES (?, ?::niveau_client, ?)";
+                    String insert2= "INSERT INTO client(id, niveau, idlocalite, budgetApporte) VALUES (?, ?, ?, ?)";
                     try(PreparedStatement ps= conn.prepareStatement(insert2)){
                         ps.setInt(1, idUSer);
                         ps.setString(2, client.getNiveau().name());
                         ps.setInt(3, client.getLocalite().getId());
+                        ps.setInt(4, client.getBudgetApporte());
                         int row= ps.executeUpdate();
                         conn.commit();
                         return row>0;
@@ -59,10 +61,10 @@ public class ClientTable implements ClientRepository {
     }
 
     @Override
-    public boolean update(int id, String nom, String prenom, String telephone, Niveau niveau, int idlocalite) {
+    public boolean update(int id, String nom, String prenom, String telephone, Niveau niveau, int idlocalite, int budget) {
         String updateUser = "UPDATE utilisateur SET nom=?, prenom=?, telephone=? WHERE id=?";
 
-        String updateClient = "UPDATE client SET niveau=?::niveau_client, idlocalite=? WHERE id=?";
+        String updateClient = "UPDATE client SET niveau=?, idlocalite=?, budgetApporte= ? WHERE id=?";
         try (
                 Connection conn = ConnexionBdd.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(updateUser);
@@ -82,7 +84,9 @@ public class ClientTable implements ClientRepository {
             }
             ps.setString(1, niveau.name());
             ps.setInt(2, idlocalite);
-            ps.setInt(3, id);
+
+            ps.setInt(3, budget);
+            ps.setInt(4, id);
 
             int row= ps.executeUpdate();
             conn.commit();
@@ -95,7 +99,7 @@ public class ClientTable implements ClientRepository {
 
     @Override
     public List<Client> getAll() {
-        String selectAll= "SELECT u.id AS user_id, u.nom, u.prenom, u.telephone, u.role AS role, u.email, c.niveau, l.id AS id_localite, l.regionClient AS region FROM utilisateur u JOIN client c ON u.id= c.id JOIN localite l ON l.id=c.idlocalite";
+        String selectAll= "SELECT u.id AS user_id, u.nom, u.prenom, u.telephone, u.role AS role, u.email, c.niveau, c.budgetApporte AS budget, l.id AS id_localite, l.regionClient AS region FROM utilisateur u JOIN client c ON u.id= c.id JOIN localite l ON l.id=c.idlocalite";
         List<Client> clients = new ArrayList<>();
         try(Connection conn= ConnexionBdd.getConnection();
             PreparedStatement stmt= conn.prepareStatement(selectAll)) {
@@ -110,6 +114,7 @@ public class ClientTable implements ClientRepository {
                     client.setNom(rs.getString("nom"));
                     client.setPrenom(rs.getString("prenom"));
                     client.setEmail(rs.getString("email"));
+                    client.setBudgetApporte(rs.getInt("budget"));
                     client.setTelephone(rs.getString("telephone"));
 //                        client.setMotDePasse(rs.getString("mot_de_passe"));
                     client.setRole(Role.valueOf(rs.getString("role").toUpperCase()));
@@ -131,7 +136,7 @@ public class ClientTable implements ClientRepository {
 
     @Override
     public Optional<Client> getById(int id) {
-        String selectById= "SELECT u.id AS user_id, u.nom, u.prenom, u.telephone, u.role AS role, u.email, c.niveau, l.id AS id_localite, l.regionClient AS region FROM utilisateur u JOIN client c ON u.id= c.id JOIN localite l ON l.id=c.idlocalite WHERE u.id = ?";
+        String selectById= "SELECT u.id AS user_id, u.nom, u.prenom, u.telephone,  u.role AS role, u.email, c.niveau, c.budgetApporte AS budget, l.id AS id_localite, l.regionClient AS region FROM utilisateur u JOIN client c ON u.id= c.id JOIN localite l ON l.id=c.idlocalite WHERE u.id = ?";
         try  (Connection conn= ConnexionBdd.getConnection();
               PreparedStatement stmt= conn.prepareStatement(selectById)) {
             stmt.setInt(1, id);
@@ -147,6 +152,7 @@ public class ClientTable implements ClientRepository {
                     client.setPrenom(rs.getString("prenom"));
                     client.setEmail(rs.getString("email"));
                     client.setTelephone(rs.getString("telephone"));
+                    client.setBudgetApporte(rs.getInt("budget"));
 //                        client.setMotDePasse(rs.getString("mot_de_passe"));
                     client.setRole(Role.valueOf(rs.getString("role").toUpperCase()));
                     client.setNiveau(Niveau.valueOf(rs.getString("niveau").toUpperCase()));

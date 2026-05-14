@@ -2,7 +2,10 @@ package DAOimplementation;
 
 import DAO.ClientCompetenceRepository;
 import db.ConnexionBdd;
+import models.Client;
 import models.ClientCompetence;
+import models.Competence;
+import models.Domaine;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,9 +21,9 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
         try (Connection cnn = ConnexionBdd.getConnection();
              PreparedStatement stml = cnn.prepareStatement(sql)) {
 
-            stml.setInt(1, clientCompetence.getClient().getId());
+            stml.setInt(1, clientCompetence.getClient().getIdUtilisateur());
 
-            stml.setInt(2, clientCompetence.getCompetence().getId());
+            stml.setInt(2, clientCompetence.getCompetence().getIdCompetence());
 
             stml.executeUpdate();
 
@@ -45,11 +48,18 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
 
             while (rs.next()) {
 
-                models.ClientCompetence cc = new models.ClientCompetence();
-
+                ClientCompetence cc = new ClientCompetence();
+                Client cl = new Client();
+                Competence c = new Competence();
                 cc.setId(rs.getInt("id"));
+                cl.setIdUtilisateur(rs.getInt("idClient"));
+                c.setIdCompetence(rs.getInt("idCompetence"));
+                cc.setClient(cl);
+                cc.setCompetence(c);
 
                 list.add(cc);
+
+
             }
 
         } catch (SQLException e) {
@@ -61,16 +71,16 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
     }
 
     @Override
-    public void update(ClientCompetence clientCompetence){
+    public void update(ClientCompetence clientCompetence) {
         String sql = "UPDATE ClientCompetence " +
                 "SET idClient = ?, idCompetence = ? " +
                 "WHERE id = ?";
         try (Connection cnn = ConnexionBdd.getConnection();
              PreparedStatement stml = cnn.prepareStatement(sql)) {
 
-            stml.setInt(1, clientCompetence.getClient().getId());
+            stml.setInt(1, clientCompetence.getClient().getIdUtilisateur());
 
-            stml.setInt(2, clientCompetence.getCompetence().getId());
+            stml.setInt(2, clientCompetence.getCompetence().getIdCompetence());
 
             stml.setInt(3, clientCompetence.getId());
 
@@ -82,7 +92,9 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
 
             System.out.println("Erreur lors de la modification");
         }
-    };
+    }
+
+    ;
 
     @Override
     public void delete(int id) {
@@ -103,3 +115,4 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
             System.out.println("Erreur lors de la suppression");
         }
     }
+}

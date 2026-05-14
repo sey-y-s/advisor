@@ -6,7 +6,7 @@ import models.enums.Role;
 import DAO.UtilisateurRepository;
 
 
-// Il agit comme intermédiaire entre les contrôleurs (interface utilisateur) et les repositories (accès données).
+// Il agit comme intermédiaire entre les contrôleurs (interface utilisateur) et les repositories (accès donnees").
     public class UtilisateurService {
 
         // DÉPENDANCE : Le service utilise un repository pour accéder aux données.
@@ -154,7 +154,7 @@ import DAO.UtilisateurRepository;
          */
         public boolean authentifierUtilisateur(String email, String motDePasse) {
             try {
-                // VALIDATION : Vérifier que email et mot de passe sont fournis.
+                // VALIDATION : Vérifier qu'email et mot de passe sont fournis.
                 if(email == null || email.trim().isEmpty() || motDePasse == null || motDePasse.trim().isEmpty()) {
                     System.out.println("Email et mot de passe sont obligatoires.");
                     return false;
@@ -185,7 +185,7 @@ import DAO.UtilisateurRepository;
         /**
          * METTRE À JOUR : Modifie les informations d'un utilisateur existant.
          */
-        public void updateUtilisateur(int id, String nom, String prenom, String email, Integer telephone) {
+        public void updateUtilisateur(int id, String nom, String prenom, String email, String telephone) {
             try {
                 // VÉRIFICATION : S'assurer que l'utilisateur existe.
                 Optional<Utilisateur> utilisateurOpt = utilisateurRepository.getById(id);
@@ -215,7 +215,7 @@ import DAO.UtilisateurRepository;
                 }
 
                 // MISE À JOUR : Appeler le repository.
-                utilisateurRepository.update(id, nom, prenom, email, telephone);
+                //utilisateurRepository.update(id, nom, prenom, email, telephone);
                 System.out.println("Utilisateur mis à jour avec succès.");
             } catch (Exception e) {
                 System.out.println("Erreur lors de la mise à jour de l'utilisateur : " + e.getMessage());
