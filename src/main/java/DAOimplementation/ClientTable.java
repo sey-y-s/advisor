@@ -1,10 +1,11 @@
-package tables;
+package DAOimplementation;
 
+import DAO.ClientRepository;
 import db.ConnexionBdd;
 import models.Client;
 import models.Localite;
 import models.enums.*;
-import repositories.ClientRepository;
+
 
 import java.sql.*;
 import java.util.ArrayList;

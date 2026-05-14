@@ -1,12 +1,12 @@
-package services;
+package ServiceImplementation;
 import java.util.List;
 import java.util.Optional;
 
+import DAO.ClientRepository;
 import models.Client;
 import models.Localite;
 import models.enums.Niveau;
-import repositories.ClientRepository;
-import repositories.LocaliteRepository;
+
 
 public class ClientService {
     private final ClientRepository clientRepository;

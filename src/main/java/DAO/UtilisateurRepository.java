@@ -25,7 +25,7 @@ import models.enums.Role;
         List<Utilisateur> getByRole(Role role);
 
         // METTRE À JOUR : Modifie les informations d'un utilisateur existant.
-        void update(int id, String nom, String prenom, String email, Integer telephone);
+        void update(int id, String nom, String prenom, String email, String telephone);
 
         // METTRE À JOUR MOT DE PASSE : Change le mot de passe d'un utilisateur.
         void updateMotDePasse(int id, String nouveauMotDePasse);

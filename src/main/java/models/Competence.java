@@ -13,6 +13,9 @@ public class Competence {
         this.idCompetence = idCompetence;
         this.nom = nom;
     }
+    public Competence(){
+
+    }
 
     public Competence(String nom) {
         this.nom = nom;

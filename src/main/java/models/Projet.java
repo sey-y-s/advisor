@@ -1,115 +1,100 @@
-package models;;
+package models;
 
-//DÉCLARATION DE LA CLASSE
+import java.util.ArrayList;
+import java.util.List;
+import models.enums.StatutProjet;
+
 public class Projet {
-    private Integer idProjet;
+
+    private int id;
     private String titre;
     private String description;
-    private Domaine domaine;
     private float duree;
-    private int budget;
+    private double budgetMin;
+    private double budgetMax;
+    private StatutProjet projetStatut;
 
-    //RELATIONS AVEC AUTRES CLASSES
-    private Client client;
-    // private List<Etape> etapes = new ArrayList<>();
+    // 2. Attributs d'Association
+    private List<Etape> etapes;            // Relation "Contenir" (1..*)
+    private List<Commentaire> commentaires; // Relation "Concerner" (1..*)
+    private List<ProjetClient> realisations; // Relation "Realiser" (1..*)
 
-
-    // CONSTRUCTEUR
-    public Projet(String titre, String description,
-                  Domaine domaine, float duree, int budget, Client client) {
+    // 3. Constructeur complet
+    public Projet(int id, String titre, String description, float duree, double budgetMin, double budgetMax) {
+        this.id = id;
         this.titre = titre;
         this.description = description;
-        this.domaine = domaine;
         this.duree = duree;
-        this.budget = budget;
-        this.client = client;
+        this.budgetMin = budgetMin;
+        this.budgetMax = budgetMax;
+
+        // Initialisation des listes pour éviter les NullPointerException
+        this.etapes = new ArrayList<>();
+        this.commentaires = new ArrayList<>();
+        this.realisations = new ArrayList<>();
     }
 
-    // public void ajouterEtape(Etape etape) {
-    //     this.etapes.add(etape);
-    // }
+    public Projet(){}
 
-    // AFFICHER LE PROJET
+    // 4. Vos Méthodes Métiers (UML)
+    public void ajouterProjet() {
+        // Logique métier pour enregistrer le projet
+        System.out.println("Projet \"" + this.titre + "\" ajouté au modèle.");
+    }
+
     public void afficherProjet() {
-        System.out.println("ID Projet : " + idProjet);
-        System.out.println("Titre : " + titre);
-        System.out.println("Description : " + description);
-        System.out.println("Durée : " + duree + " mois");
-        System.out.println("Budget : " + budget + " FCFA");
+        System.out.println("Projet ID: " + this.id + " | Titre: " + this.titre);
+        System.out.println("Description: " + this.description);
+        System.out.println("Nombre d'étapes associées : " + this.etapes.size());
     }
 
-    //MODIFIER LE PROJET
-    public void modifierProjet(String titre, String description, float duree, int budget) {
+    public void modifierProjet(String titre, String description, float duree, double budgetMin, double budgetMax) {
         this.titre = titre;
         this.description = description;
         this.duree = duree;
-        this.budget = budget;
+        this.budgetMin = budgetMin;
+        this.budgetMax = budgetMax;
     }
 
-    //SUPPRIMER LE PROJET
     public void supprimerProjet() {
-        System.out.println("Projet supprimé : " + titre);
-
+        // Logique de suppression (et nettoyage des associations si nécessaire)
+        this.etapes.clear();
+        this.commentaires.clear();
+        System.out.println("Le projet ID " + this.id + " a été supprimé.");
     }
 
-    // GETTER
-    public Integer getIdProjet() {
-        return idProjet;
-    }
-    public String getTitre() {
-        return titre;
+    // 5. Getters et Setters pour les attributs et les relations
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    }
-    public String getDescription() {
-        return description;
-    }
-    public float getDuree() {
-        return duree;
-    }
-    public int getBudget() {
-        return budget;
+    public String getTitre() { return titre; }
+    public void setTitre(String titre) { this.titre = titre; }
 
-    }
-    public Client getClient() {
-        return client;
-    }
-    public Domaine getDomaine() {
-        return domaine;
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public float getDuree() { return duree; }
+    public void setDuree(float duree) { this.duree = duree; }
+
+    public StatutProjet getProjetStatut(){ return projetStatut; }
+
+    public void setProjetStatut(StatutProjet statutProjet){
+        this.projetStatut = projetStatut;
     }
 
-    // public void afficherEtapes() {
-    //     for (Etape etape : etapes) {
+    public double getBudgetMin() { return budgetMin; }
+    public void setBudgetMin(double budgetMin) { this.budgetMin = budgetMin; }
 
-    //         etape.afficherEtapes();
+    public double getBudgetMax() { return budgetMax; }
+    public void setBudgetMax(double budgetMax) { this.budgetMax = budgetMax; }
 
-    //     }
-    // }
+    // Getters et Setters pour manipuler les associations
+    public List<Etape> getEtapes() { return etapes; }
+    public void setEtapes(List<Etape> etapes) { this.etapes = etapes; }
 
-    // SETTER
+    public List<Commentaire> getCommentaires() { return commentaires; }
+    public void setCommentaires(List<Commentaire> commentaires) { this.commentaires = commentaires; }
 
-    public void setIdProjet(Integer idProjet) {
-        this.idProjet = idProjet;
-    }
-    public void setTitre(String titre) {
-        this.titre = titre;
-
-    }
-    public void setDescription(String description) {
-        this.description = description;
-
-    }
-    public void setDuree(float duree) {
-        this.duree = duree;
-
-    }
-    public void setBudget(int budget) {
-        this.budget = budget;
-
-    }
-    public void setClient(Client client) {
-        this.client = client;
-    }
-    public void setDomaine(Domaine domaine) {
-        this.domaine = domaine;
-    }
+    public List<ProjetClient> getRealisations() { return realisations; }
+    public void setRealisations(List<ProjetClient> realisations) { this.realisations = realisations; }
 }
