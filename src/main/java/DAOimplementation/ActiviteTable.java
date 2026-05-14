@@ -16,7 +16,7 @@ public class ActiviteTable implements ActiviteRepository {
 
     @Override
     public void add(Activite activite){
-        String sql = "INSERT INTO activite(titre, description, duree, etape) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO activite(titre, description, duree, idEtape) VALUES(?, ?, ?, ?)";
         try(Connection connection = ConnexionBdd.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setString(1, activite.getTitre());
@@ -25,8 +25,8 @@ public class ActiviteTable implements ActiviteRepository {
             ps.setInt(4, activite.getEtape().getIdEtape());
             ps.executeUpdate();
             System.out.println("Activité ajoutée avec succès !");
-        } catch (SQLException e) {
-            System.out.println("Erreur lors de l'ajout de l'activité !");
+        } catch (SQLException e){
+            throw new RuntimeException(e);
         }
     }
 

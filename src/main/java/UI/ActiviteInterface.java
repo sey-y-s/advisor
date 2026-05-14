@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ActiviteInterface {
+
     public static void affichage(){
         ActiviteRepository activiteRepository = new ActiviteTable();
         ActiviteService activiteService = new ActiviteService(activiteRepository);
@@ -45,7 +46,8 @@ public class ActiviteInterface {
                     scanner.nextLine();
 
                     Etape etape = new Etape();
-                    etape.setIdEtape(etape.getIdEtape());
+                    etape.setIdEtape(idEtape);
+                    activite.setEtape(etape);
 
                     activiteService.ajouterActivite(activite);
                     break;
