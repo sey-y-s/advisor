@@ -13,6 +13,7 @@ public class ClientCompetence {
         this.competence = competence;
         this.client = client;
     }
+    public ClientCompetence(){}
 
 
     // Getters et Setters
