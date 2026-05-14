@@ -5,12 +5,17 @@ import DAOimplementation.DomaineTable;
 import ServiceImplementation.DomaineService;
 import models.Domaine;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 public class DomaineInterface {
+private DomaineService domaineService;
+public DomaineInterface(DomaineService domaineService){
+    this.domaineService=domaineService;
 
+}
     public static void Afficher(){
+
 
         DomaineRepository dom = new DomaineTable();
 
@@ -37,11 +42,20 @@ public class DomaineInterface {
 
                 // ajout d'un domaine
                 case 1:
+                    List<Domaine> lstDomaine=service.afficher();
+                    System.out.println(
+                            "\n===== LISTE DES DOMAINES ====="
+                    );
 
-                    System.out.print("Entrer le nom du domaine : ");
-                    String nom = scanner.nextLine();
+                    for (int i=0;i<lstDomaine.size();i++){
+                        System.out.println(i+1+'-'+lstDomaine.get(i).getDomaine());
+                    }
 
-                    service.ajouter(nom);
+                    System.out.print("Entrer ton nom de domaine : ");
+                    int nom = scanner.nextInt();
+                    scanner.nextLine();
+
+                    service.ajouter(lstDomaine.get(nom-1).getDomaine());
 
                     break;
 
@@ -101,3 +115,4 @@ public class DomaineInterface {
 
     }
 }
+
