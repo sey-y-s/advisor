@@ -1,4 +1,4 @@
-package DAOimplementation;
+ package DAOimplementation;
 
 import DAO.CompetenceRepository;
 import db.ConnexionBdd;
@@ -109,4 +109,6 @@ public class CompetenceTable implements CompetenceRepository {
             System.out.println("Erreur supprimerCompetence : " + e.getMessage());
         }
     }
+
 }
+

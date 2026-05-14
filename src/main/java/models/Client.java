@@ -4,6 +4,7 @@ import models.enums.*;
 public class Client extends Utilisateur{
     private Niveau niveau = Niveau.DEBUTANT;
     private Localite localite;
+    private int  budgetApporte;
 
     public Client() {
 
@@ -24,6 +25,13 @@ public class Client extends Utilisateur{
 
     public void setNiveau(Niveau niveau) {
         this.niveau = niveau;
+    }
+    public int getBudgetApporte() {
+        return budgetApporte;
+    }
+
+    public void setBudgetApporte(int budget) {
+        this.budgetApporte = budget;
     }
 
 

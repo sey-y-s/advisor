@@ -215,7 +215,7 @@ import DAO.UtilisateurRepository;
                 }
 
                 // MISE À JOUR : Appeler le repository.
-                utilisateurRepository.update(id, nom, prenom, email, telephone);
+                //utilisateurRepository.update(id, nom, prenom, email, telephone);
                 System.out.println("Utilisateur mis à jour avec succès.");
             } catch (Exception e) {
                 System.out.println("Erreur lors de la mise à jour de l'utilisateur : " + e.getMessage());
