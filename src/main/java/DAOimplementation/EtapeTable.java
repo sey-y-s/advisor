@@ -56,7 +56,7 @@ public class EtapeTable implements EtapeRepository {
                     etape.setEtapeStatut(StatutEtape.valueOf(statut));
                 }
                 Projet projet = new Projet();
-                projet.setIdProjet(rs.getInt("projet"));
+                projet.setId(rs.getInt("projet"));
                 etape.setProjet(projet);
 
                 return Optional.of(etape);
@@ -88,7 +88,7 @@ public class EtapeTable implements EtapeRepository {
                     e.setEtapeStatut(StatutEtape.valueOf(statut));
                 }
                 Projet projet = new Projet();
-                projet.setIdProjet(rs.getInt("projet"));
+                projet.setId(rs.getInt("projet"));
                 e.setProjet(projet);
 
                 etapeList.add(e);
@@ -166,3 +166,4 @@ public class EtapeTable implements EtapeRepository {
         }
     }
 }
+

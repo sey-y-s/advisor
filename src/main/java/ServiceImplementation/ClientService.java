@@ -44,12 +44,15 @@ public class ClientService {
         return  clientRepository.getAll();
     }
 
-    public boolean updateClient(int id, String nom, String prenom, String telephone, Niveau niveau , int idlocalite) {
+    public boolean updateClient(int id, String nom, String prenom, String telephone, Niveau niveau , int idlocalite, int budget) {
         if(nom.isEmpty() ||  prenom.isEmpty()  ||  telephone.isEmpty() ||  niveau.name().isEmpty() ){
             System.out.println("Remplissez correctement les champs!!!");
             return false;
         }
-        return clientRepository.update(id, nom, prenom, telephone, niveau, idlocalite);
+        if(budget<100000){
+            System.out.println("Le budget ne pas peut être inferieur a 100.000 F");
+        }
+        return clientRepository.update(id, nom, prenom, telephone, niveau, idlocalite, budget);
     }
 
     public boolean deleteClient(int id) {

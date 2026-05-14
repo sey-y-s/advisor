@@ -3,7 +3,7 @@ package models;
 public class Domaine {
     private int id;
     private  String domaine;
-    public  Domaine(int id,String domaine){
+    public  Domaine(Integer id, String domaine){
         this.id=id;
         this.domaine=domaine;
     }

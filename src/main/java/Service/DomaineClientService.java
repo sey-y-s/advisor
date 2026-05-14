@@ -1,9 +1,11 @@
-package ServiceImplementation;
+package Service;
 
 import java.util.List;
 import java.util.Optional;
+
 import models.DomaineClient;
 import DAO.DomaineClientRepository;
+
 
 public class DomaineClientService {
 
@@ -12,6 +14,7 @@ public class DomaineClientService {
     public DomaineClientService(DomaineClientRepository domaineClientRepository) {
         this.domaineClientRepository = domaineClientRepository;
     }
+
 
     public void add(DomaineClient domaineClient) {
         if (domaineClient == null) {
@@ -27,6 +30,7 @@ public class DomaineClientService {
             return;
         }
 
+
         if (domaineClientRepository.exists(domaineClient.getIdClient(), domaineClient.getIdDomaine())) {
             System.out.println("Ce domaine est déjà associé à ce client.");
             return;
@@ -36,6 +40,9 @@ public class DomaineClientService {
         System.out.println("Association DomaineClient ajoutée avec succès.");
     }
 
+    /**
+     * Récupère une association par l'id de la ligne.
+     */
     public Optional<DomaineClient> getById(int id) {
         if (id <= 0) {
             System.out.println("ID invalide.");
@@ -44,10 +51,16 @@ public class DomaineClientService {
         return domaineClientRepository.getById(id);
     }
 
+    /**
+     * Récupère toutes les associations.
+     */
     public List<DomaineClient> getAll() {
         return domaineClientRepository.getAll();
     }
 
+    /**
+     * Supprime une association par l'id de la ligne.
+     */
     public void delete(int id) {
         if (id <= 0) {
             System.out.println("ID invalide.");
@@ -57,9 +70,6 @@ public class DomaineClientService {
         System.out.println("Association DomaineClient supprimée (si existante)." );
     }
 }
-
-
-
 
 
 

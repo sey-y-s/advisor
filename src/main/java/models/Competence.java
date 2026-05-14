@@ -1,15 +1,16 @@
 package models;
 
 public class Competence {
+
     private int idCompetence;
     private String nom;
+
+    public Competence() {
+    }
 
     public Competence(int idCompetence, String nom) {
         this.idCompetence = idCompetence;
         this.nom = nom;
-    }
-    public Competence(){
-
     }
 
     public Competence(String nom) {
@@ -29,6 +30,17 @@ public class Competence {
     }
 
     public void setNom(String nom) {
+        if (nom == null || nom.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nom invalide");
+        }
         this.nom = nom;
+    }
+
+    @Override
+    public String toString() {
+        return "Competence{" +
+                "idCompetence=" + idCompetence +
+                ", nom='" + nom + '\'' +
+                '}';
     }
 }
