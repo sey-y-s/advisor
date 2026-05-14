@@ -9,4 +9,5 @@ public interface DomaineServiceDao {
     public void modifier(int id , String domaine);
     public  void supprimer(int id);
     public List<Domaine> afficher();
+
 }
