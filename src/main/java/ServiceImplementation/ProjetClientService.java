@@ -10,6 +10,7 @@ import models.ProjetClient;
 import models.enums.StatutProjet;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProjetClientService implements ProjetClientInterface {
     private ProjetClientRepository projetClientRepository= new ClientProjetTable();
@@ -37,7 +38,7 @@ public class ProjetClientService implements ProjetClientInterface {
     }
 
     @Override
-    public ProjetClient getById(int id) {
+    public Optional<ProjetClient> getById(int id) {
         return projetClientRepository.getById(id);
     }
 }
