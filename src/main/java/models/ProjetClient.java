@@ -47,7 +47,7 @@ public class ProjetClient {
         return client;
     }
 
-    public void setClient(Client Client) {
+    public void setClient(Client client) {
         this.client = client;
     }
 

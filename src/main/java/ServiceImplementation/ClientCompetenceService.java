@@ -1,11 +1,12 @@
 package ServiceImplementation;
 
 import DAO.ClientCompetenceRepository;
+import Service.ClientCompetenceInterface;
 import models.ClientCompetence;
 
 import java.util.List;
 
-public class ClientCompetenceService {
+public class ClientCompetenceService implements ClientCompetenceInterface {
 
     private final ClientCompetenceRepository clientCompetenceRepository;
 
