@@ -48,7 +48,7 @@ public DomaineInterface(DomaineService domaineService){
                     );
 
                     for (int i=0;i<lstDomaine.size();i++){
-                        System.out.println(i+1+'-'+lstDomaine.get(i).getDomaine());
+                        System.out.println((i+1)+"-"+lstDomaine.get(i).getDomaine());
                     }
 
                     System.out.print("Entrer ton nom de domaine : ");

@@ -4,7 +4,7 @@ import DAO.CompetenceRepository;
 import db.ConnexionBdd;
 import models.Competence;
 
-import java.sql.*;
+/*import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,3 +112,4 @@ public class CompetenceTable implements CompetenceRepository {
 
 }
 
+*/
