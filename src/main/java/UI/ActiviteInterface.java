@@ -55,7 +55,7 @@ public class ActiviteInterface {
 
                     List<Activite> activites = activiteService.afficherActivite();
                     for (Activite a : activites) {
-                        System.out.println("ID : " + a.getId() + "Titre : " + a.getTitre() + "Description : " + a.getDescription() + "Durée : " + a.getDuree() + "Statut : " + a.getStatut());
+                        System.out.println("ID : " + a.getId() + " Titre : " + a.getTitre() + " Description : " + a.getDescription() + " Durée : " + a.getDuree() + " Statut : " + a.getStatut());
                     }
                     break;
 

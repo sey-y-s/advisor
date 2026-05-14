@@ -16,14 +16,13 @@ public class ActiviteTable implements ActiviteRepository {
 
     @Override
     public void add(Activite activite){
-        String sql = "INSERT INTO activite(titre, description, duree, statut, etape) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO activite(titre, description, duree, etape) VALUES(?, ?, ?, ?)";
         try(Connection connection = ConnexionBdd.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql)){
             ps.setString(1, activite.getTitre());
             ps.setString(2, activite.getDescription());
             ps.setInt(3, activite.getDuree());
-            ps.setString(4, activite.getStatut().name());
-            ps.setInt(5, activite.getEtape().getIdEtape());
+            ps.setInt(4, activite.getEtape().getIdEtape());
             ps.executeUpdate();
             System.out.println("Activité ajoutée avec succès !");
         } catch (SQLException e) {
@@ -67,7 +66,7 @@ public class ActiviteTable implements ActiviteRepository {
 
     @Override
     public List<Activite> getAll() {
-        String sql = "SELECT * FROM Activite JOIN Etape ON Activite.idEtape = Etape.idEtape";
+        String sql = "SELECT * FROM Activite JOIN Etape ON Activite.id = Etape.id";
         List<Activite> activites = new ArrayList<>();
         try(Connection connection = ConnexionBdd.getConnection();
             PreparedStatement ps = connection.prepareStatement(sql)){
