@@ -48,9 +48,9 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
 
             while (rs.next()) {
 
-                ClientCompetence cc=new ClientCompetence();
-                Client cl=new Client();
-                Competence c=new Competence();
+                ClientCompetence cc = new ClientCompetence();
+                Client cl = new Client();
+                Competence c = new Competence();
                 cc.setId(rs.getInt("id"));
                 cl.setIdUtilisateur(rs.getInt("idClient"));
                 c.setIdCompetence(rs.getInt("idCompetence"));
