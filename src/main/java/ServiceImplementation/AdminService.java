@@ -1,9 +1,13 @@
 package ServiceImplementation;
 
 import DAO.AdminRepository;
+import Service.AdminServiceDao;
 import models.Admin;
 
-public class AdminService {
+import java.util.List;
+import java.util.Optional;
+
+public class AdminService implements AdminServiceDao {
     private final AdminRepository adminRepository ;
 
     public AdminService(AdminRepository adminRepository){
@@ -33,19 +37,37 @@ public class AdminService {
         }
         adminRepository.add(admin);
     }
-    public void delete(Admin admin){
-        if(admin.getIdUtilisateur() < 0) {
+
+    @Override
+    public Optional<Admin> getById(int id) {
+        if(id < 0){
             System.out.println("Le id est obligatoire.");
-            return;
         }
-        adminRepository.delete(admin.getIdUtilisateur());
+        adminRepository.getById(id);
+        return Optional.empty();
     }
-    public void update(Admin admin){
-        if(admin.getIdUtilisateur() < 0) {
+
+    @Override
+    public List<Admin> getAll() {
+        return adminRepository.getAll();
+    }
+
+    @Override
+    public void update(int id) {
+        if(id < 0) {
             System.out.println("Le id est obligatoire.");
             return;
         }
-        adminRepository.update(admin.getIdUtilisateur());
+        adminRepository.update(id);
+    }
+
+    @Override
+    public void delete(int id) {
+        if(id < 0) {
+            System.out.println("Le id est obligatoire.");
+            return;
+        }
+        adminRepository.delete(id);
     }
 
 
