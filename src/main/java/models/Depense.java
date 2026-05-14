@@ -17,8 +17,9 @@ public class Depense {
         this.montant = montant;
         this.description = description;
         this.date = date;
-        this.activite=activite;
+        this.activite = activite;
     }
+    public Depense() {}
 
     public Integer getIdDepense() {
         return idDepense;
@@ -68,7 +69,7 @@ public class Depense {
 
 
     // TODO : Implémenter ces méthodes dans les services
-
+/*
     private List<Depense> listeDeDepense = new ArrayList<>();
 
     public void ajouterDepense(Depense d) {
@@ -91,5 +92,5 @@ public class Depense {
         }
 
         System.out.println("depense non trouvee");
-    }
+    }*/
 }
