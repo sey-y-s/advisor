@@ -47,7 +47,7 @@ public class Main {
             }
 
         }
-
+        CompetenceInterface.Afficher();
 
 
         //Client client= clientInterface.saisir();
