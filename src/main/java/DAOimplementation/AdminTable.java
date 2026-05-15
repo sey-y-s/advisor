@@ -5,10 +5,7 @@ import models.enums.Role;
 import models.*;
 import DAO.AdminRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,24 +13,36 @@ import java.util.Optional;
 public class AdminTable implements AdminRepository {
 
     @Override
-    public void add(Admin admin) {
+    public boolean add(Admin admin) {
         // TODO Auto-generated method stub
-        String sql="insert into Admin(montant,description,date,activite) VALUES(?,?,?,?)";
-        try (Connection conn = ConnexionBdd.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);)
-        {
-            ps.setString(1,admin.getNom());
-            ps.setString(2, admin.getPrenom());
-            ps.setString(3, admin.getEmail());
-            ps.setString(4, admin.getTelephone());
-            ps.setString(3, admin.getMotDePasse());
-            System.out.println("Admin ajoute");
+        String sql="INSERT INTO utilisateur (nom, prenom, email, telephone, motDePasse, role) VALUES (?, ?, ?, ?, ?, ?)";
+        try( Connection conn=ConnexionBdd.getConnection();
+             PreparedStatement stmt= conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+            stmt.setString(1, admin.getNom());
+            stmt.setString(2, admin.getPrenom());
+            stmt.setString(3, admin.getEmail());
+            stmt.setString(4, admin.getTelephone());
+            stmt.setString(5, admin.getMotDePasse());
+            stmt.setString(6, Role.ADMIN.name());
+            int affected= stmt.executeUpdate();
+            // System.out.println("Utilisateur enregistré !!!!");
+            if(affected==0){
+                throw new SQLException("Enregistrement echoué!!");
+            }
+            int idUSer;
+            try(ResultSet rs= stmt.getGeneratedKeys()){
+                if(!rs.next()){
+                    throw new SQLException("Aucun ID retrouvé!!");
+                }
+                idUSer= rs.getInt(1);
+                admin.setIdUtilisateur(idUSer);
+            }
 
-        } catch (SQLException e) {
-            // TODO: handle exception
-            System.out.println("Erreur lors de l'ajout de l'admin : " + e.getMessage());
-            e.printStackTrace();
-        }
+    } catch (SQLException e) {
+        e.printStackTrace(System.out);
+    }
+
+        return false;
     }
 
     @Override
