@@ -1,10 +1,9 @@
 package Service;
 
-import java.util.List;
 import java.util.Optional;
 
-import models.enums.Role;
-import models.Utilisateur;
+import Models.enums.Role;
+import Models.Utilisateur;
 
 public interface ServiceUtilisateur {
     void addUtilisateur(Utilisateur utilisateur);

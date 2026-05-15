@@ -2,7 +2,7 @@ package Service;
 
 import java.util.List;
 import java.util.Optional;
-import models.Commentaire;
+import Models.Commentaire;
 
 public interface InterfaceCommentaire {
 

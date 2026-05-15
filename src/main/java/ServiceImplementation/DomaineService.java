@@ -1,7 +1,7 @@
 package ServiceImplementation;
 
 import Service.DomaineServiceDao;
-import models.Domaine;
+import Models.Domaine;
 import DAO.DomaineRepository;
 
 import java.util.List;

@@ -2,7 +2,7 @@ package DAO;
 
 import java.util.List;
 import java.util.Optional;
-import models.Projet; // Corrigé : Importation du modèle depuis le bon package
+import Models.Projet; // Corrigé : Importation du modèle depuis le bon package
 
 public interface ProjetRepository {
     void add(Projet projet);

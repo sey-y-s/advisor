@@ -3,9 +3,9 @@ package UI;
 import DAO.ClientRepository;
 import DAOimplementation.ClientTable;
 import ServiceImplementation.ClientService;
-import models.Client;
-import models.Localite;
-import models.enums.Niveau;
+import Models.Client;
+import Models.Localite;
+import Models.enums.Niveau;
 
 import java.util.List;
 import java.util.Optional;

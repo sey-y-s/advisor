@@ -1,8 +1,8 @@
 package DAOimplementation;
 
 import DAO.CompetenceProjetRepository;
-import db.ConnexionBdd;
-import models.CompetenceProjet;
+import BD.ConnexionBdd;
+import Models.CompetenceProjet;
 
 import java.sql.*;
 import java.util.ArrayList;

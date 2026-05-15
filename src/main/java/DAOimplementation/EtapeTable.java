@@ -1,10 +1,10 @@
 package DAOimplementation;
 
 import DAO.EtapeRepository;
-import db.ConnexionBdd;
-import models.Etape;
-import models.Projet;
-import models.enums.StatutEtape;
+import BD.ConnexionBdd;
+import Models.Etape;
+import Models.Projet;
+import Models.enums.StatutEtape;
 
 import java.sql.*;
 import java.util.ArrayList;

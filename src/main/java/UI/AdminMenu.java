@@ -1,8 +1,11 @@
 package UI;
 
+<<<<<<< HEAD
+=======
 import Service.ProjetClientInterface;
 import models.Client;
 
+>>>>>>> 5088945f31ae76a6dd545d9d84d5ceb7804e82f0
 import java.util.Scanner;
 
 public class AdminMenu {

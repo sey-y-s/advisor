@@ -1,5 +1,5 @@
-package models;
-import models.enums.*;
+package Models;
+import Models.enums.*;
 
 public class Client extends Utilisateur{
     private Niveau niveau = Niveau.DEBUTANT;

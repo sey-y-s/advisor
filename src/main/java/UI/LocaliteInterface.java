@@ -3,7 +3,7 @@ package UI;
 import DAO.LocaliteRepository;
 import DAOimplementation.LocaliteTable;
 import ServiceImplementation.LocaliteService;
-import models.Localite;
+import Models.Localite;
 
 import java.util.List;
 import java.util.Scanner;

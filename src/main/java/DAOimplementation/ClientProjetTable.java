@@ -1,14 +1,14 @@
 package DAOimplementation;
 
 import DAO.ProjetClientRepository;
-import db.ConnexionBdd;
-import models.Client;
-import models.Localite;
-import models.Projet;
-import models.ProjetClient;
-import models.enums.Niveau;
-import models.enums.Satifaction;
-import models.enums.StatutProjet;
+import BD.ConnexionBdd;
+import Models.Client;
+import Models.Localite;
+import Models.Projet;
+import Models.ProjetClient;
+import Models.enums.Niveau;
+import Models.enums.Satifaction;
+import Models.enums.StatutProjet;
 
 import java.sql.*;
 import java.util.ArrayList;

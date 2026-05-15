@@ -3,9 +3,8 @@ package UI;
 import DAO.DomaineRepository;
 import DAOimplementation.DomaineTable;
 import ServiceImplementation.DomaineService;
-import models.Domaine;
+import Models.Domaine;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 public class DomaineInterface {

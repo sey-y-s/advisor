@@ -1,7 +1,7 @@
 package DAO;
 
-import models.*;
-import models.enums.StatutEtape;
+import Models.*;
+import Models.enums.StatutEtape;
 
 import java.util.List;
 

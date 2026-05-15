@@ -1,10 +1,10 @@
 package DAOimplementation;
 
 import DAO.ClientRepository;
-import db.ConnexionBdd;
-import models.Client;
-import models.Localite;
-import models.enums.*;
+import BD.ConnexionBdd;
+import Models.Client;
+import Models.Localite;
+import Models.enums.*;
 
 
 import java.sql.*;

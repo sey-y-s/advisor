@@ -2,9 +2,11 @@ import DAO.*;
 import DAOimplementation.*;
 import ServiceImplementation.*;
 import UI.*;
+<<<<<<< HEAD
+=======
 import models.*;
+>>>>>>> 5088945f31ae76a6dd545d9d84d5ceb7804e82f0
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -56,6 +58,10 @@ public class Main {
         //projetClientUI.afficherUnProjetClient(1);
         //DomaineInterface.Afficher();
         //ActiviteInterface.affichage();
+<<<<<<< HEAD
+        ClientCompetenceInterface.executeMenu();
+=======
+>>>>>>> 5088945f31ae76a6dd545d9d84d5ceb7804e82f0
 
        /* AdminRepository adminRepository= new AdminTable();
         AdminService adminService= new AdminService(adminRepository);

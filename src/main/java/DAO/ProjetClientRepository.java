@@ -1,7 +1,7 @@
 package DAO;
 
-import models.ProjetClient;
-import models.enums.StatutProjet;
+import Models.ProjetClient;
+import Models.enums.StatutProjet;
 
 import java.util.List;
 import java.util.Optional;

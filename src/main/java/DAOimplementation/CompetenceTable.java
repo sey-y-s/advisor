@@ -1,10 +1,14 @@
  package DAOimplementation;
 
+<<<<<<< HEAD
+/*import java.sql.*;
+=======
 import DAO.CompetenceRepository;
 import db.ConnexionBdd;
 import models.Competence;
 
 import java.sql.*;
+>>>>>>> 5088945f31ae76a6dd545d9d84d5ceb7804e82f0
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,7 +2,7 @@ package ServiceImplementation;
 
 import DAO.AdminRepository;
 import Service.AdminServiceDao;
-import models.Admin;
+import Models.Admin;
 
 import java.util.List;
 import java.util.Optional;
