@@ -14,6 +14,8 @@ public class ActiviteInterface {
     public static void affichage(){
         ActiviteRepository activiteRepository = new ActiviteTable();
         ActiviteService activiteService = new ActiviteService(activiteRepository);
+
+
         Scanner scanner = new Scanner(System.in);
         int choix;
         do {
@@ -41,10 +43,10 @@ public class ActiviteInterface {
                     System.out.print("Entrer la durée : ");
                     activite.setDuree(scanner.nextInt());
 
-                    System.out.print("Entrer l'id de l'étape : ");
+                    EtapeInterface.afficherEtapes();
+                    System.out.print("Choisissez l'id de l'étape : ");
                     int idEtape = scanner.nextInt();
                     scanner.nextLine();
-
                     Etape etape = new Etape();
                     etape.setIdEtape(idEtape);
                     activite.setEtape(etape);
