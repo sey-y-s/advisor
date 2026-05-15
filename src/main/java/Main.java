@@ -1,16 +1,8 @@
-import DAO.ClientRepository;
-import DAO.LocaliteRepository;
-import DAOimplementation.ClientTable;
-import DAOimplementation.LocaliteTable;
-import ServiceImplementation.ClientService;
-import ServiceImplementation.LocaliteService;
+import DAO.*;
+import DAOimplementation.*;
+import ServiceImplementation.*;
 import UI.*;
-import models.Client;
-import models.Domaine;
-import DAO.DomaineRepository;
-import ServiceImplementation.DomaineService;
-import DAOimplementation.DomaineTable;
-import models.Localite;
+import models.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -53,7 +45,7 @@ public class Main {
             }
 
         }
-
+        CompetenceInterface.Afficher();
 
 
         //Client client= clientInterface.saisir();
@@ -64,8 +56,19 @@ public class Main {
         //projetClientUI.afficherUnProjetClient(1);
         //DomaineInterface.Afficher();
         //ActiviteInterface.affichage();
-        //localiteInterface.choisirLocalite();
 
+       /* AdminRepository adminRepository= new AdminTable();
+        AdminService adminService= new AdminService(adminRepository);
+        AdminInterface adminInterface= new AdminInterface(adminService);
+        Admin admin = adminInterface.saisieAdmin();
+        adminInterface.afficher(admin);
+
+        DepenseRepository depenseRepository= new DepenseTable();
+        DepenseService depenseService= new DepenseService(depenseRepository);
+        DepenseInterface depenseInterface= new DepenseInterface(depenseService);
+        Depense depense = depenseInterface.saisieDepense();
+        depenseInterface.AfficherDepense(depense);*/
+        //
 
     }
 }

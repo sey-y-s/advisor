@@ -45,9 +45,8 @@ public class DomaineInterface {
 
                 // ajout d'un domaine
                 case 1:
-                     System.out.println("Entrer un domaine");
+                     System.out.println("Entrer un domaine:");
                      String nom=scanner.nextLine();
-                     System.out.println("le domaine a été ajouter avec succes");
                      service.ajouter(nom);
                     break;
 
@@ -96,7 +95,7 @@ public class DomaineInterface {
                     );
 
                     for (int i=0; i<lstDomaine.size(); i++){
-                        System.out.println(i+1+'-'+lstDomaine.get(i).getDomaine());
+                        System.out.println((i+1)+"-"+lstDomaine.get(i).getDomaine());
                     }
 
                     System.out.print("Choisit ton domaine : ");
