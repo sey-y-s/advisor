@@ -1,6 +1,6 @@
-package models;
+package Models;
 
-import models.enums.StatutEtape;
+import Models.enums.StatutEtape;
 
 public class Activite {
     // Les Attributs

@@ -1,6 +1,6 @@
 package DAOimplementation;
-import db.ConnexionBdd;
-import models.Localite;
+import BD.ConnexionBdd;
+import Models.Localite;
 import org.jetbrains.annotations.NotNull;
 import DAO.LocaliteRepository;
 import java.sql.*;

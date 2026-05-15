@@ -2,7 +2,7 @@ package ServiceImplementation;
 
 import DAO.DepenseRepository;
 import Service.DepenseServiceDao;
-import models.Depense;
+import Models.Depense;
 
 import java.util.List;
 import java.util.Optional;

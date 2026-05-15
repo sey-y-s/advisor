@@ -1,20 +1,10 @@
 package UI;
 
 import DAO.ClientCompetenceRepository;
-import DAO.ClientRepository;
-import DAO.CompetenceRepository;
 import DAOimplementation.ClientCompetenceTable;
-import DAOimplementation.ClientProjetTable;
-import DAOimplementation.ClientTable;
 import DAOimplementation.CompetenceTable;
-import Service.ProjetClientInterface;
 import ServiceImplementation.ClientCompetenceService;
-import ServiceImplementation.ClientService;
-import ServiceImplementation.CompetenceServiceImpl;
-import ServiceImplementation.ProjetClientService;
-import models.Client;
-import models.ClientCompetence;
-import models.Competence;
+import Models.ClientCompetence;
 
 import java.util.List;
 import java.util.Scanner;

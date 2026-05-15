@@ -1,7 +1,5 @@
 package UI;
 
-import models.Client;
-
 import java.util.Scanner;
 
 public class AdminMenu {

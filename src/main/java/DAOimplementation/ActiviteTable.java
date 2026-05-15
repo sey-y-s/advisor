@@ -1,8 +1,8 @@
 package DAOimplementation;
 
-import db.ConnexionBdd;
-import models.*;
-import models.enums.StatutEtape;
+import BD.ConnexionBdd;
+import Models.*;
+import Models.enums.StatutEtape;
 import DAO.ActiviteRepository;
 
 import java.sql.Connection;

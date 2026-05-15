@@ -1,8 +1,6 @@
-package models;
+package Models;
 
-import models.enums.StatutEtape;
-import models.enums.StatutProjet;
-import models.Projet;
+import Models.enums.StatutEtape;
 
 public class Etape {
     private int idEtape;

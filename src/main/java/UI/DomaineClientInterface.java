@@ -3,9 +3,9 @@ package UI;
 import java.util.List;
 import java.util.Scanner;
 
-import models.Client;
-import models.DomaineClient;
-import models.Domaine;
+import Models.Client;
+import Models.DomaineClient;
+import Models.Domaine;
 import ServiceImplementation.ClientService;
 import ServiceImplementation.DomaineClientService;
 

@@ -1,6 +1,6 @@
 package Service;
 
-import models.ClientCompetence;
+import Models.ClientCompetence;
 
 import java.util.List;
 

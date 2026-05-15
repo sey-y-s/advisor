@@ -2,12 +2,7 @@ import DAO.*;
 import DAOimplementation.*;
 import ServiceImplementation.*;
 import UI.*;
-import models.Admin;
-import models.Client;
-import models.Depense;
-import models.Domaine;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {

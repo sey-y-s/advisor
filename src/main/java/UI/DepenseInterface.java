@@ -1,7 +1,7 @@
 package UI;
 
 import ServiceImplementation.DepenseService;
-import models.Depense;
+import Models.Depense;
 import java.util.Date;
 import java.util.Scanner;
 

@@ -3,7 +3,7 @@ package ServiceImplementation;
 import java.util.List;
 import java.util.Optional;
 import Service.InterfaceCommentaire;
-import models.Commentaire;
+import Models.Commentaire;
 
 
 //Service pour gérer les opérations liées aux commentaires

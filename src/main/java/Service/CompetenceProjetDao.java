@@ -1,6 +1,6 @@
 package Service;
 
-import models.CompetenceProjet;
+import Models.CompetenceProjet;
 import java.util.List;
 import java.util.Optional;
 

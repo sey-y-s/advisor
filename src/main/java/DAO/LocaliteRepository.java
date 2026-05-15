@@ -1,6 +1,6 @@
 package DAO;
 import java.util.List;
-import models.Localite;
+import Models.Localite;
 
 public interface LocaliteRepository {
         void add(Localite localite);

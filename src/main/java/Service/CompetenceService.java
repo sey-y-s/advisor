@@ -1,6 +1,6 @@
 package Service;
 
-import models.Competence;
+import Models.Competence;
 import java.util.List;
 
 public interface CompetenceService {

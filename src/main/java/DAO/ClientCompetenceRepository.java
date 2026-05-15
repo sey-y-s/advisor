@@ -1,6 +1,6 @@
 package DAO;
 
-import models.ClientCompetence;
+import Models.ClientCompetence;
 
 import java.sql.SQLException;
 import java.util.List;

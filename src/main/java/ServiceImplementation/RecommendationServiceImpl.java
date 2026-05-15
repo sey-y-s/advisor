@@ -3,8 +3,8 @@ package ServiceImplementation;
 import DAOimplementation.CompetenceProjetTable;
 import DAOimplementation.ClientCompetenceTable;
 import DAOimplementation.ProjetTable;
-import models.Projet;
-import models.Client;
+import Models.Projet;
+import Models.Client;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,11 +1,9 @@
 package UI;
 
-import DAO.ProjetClientRepository;
-import DAO.ProjetRepository;
 import DAOimplementation.ClientProjetTable;
 import Service.ProjetClientInterface;
 import ServiceImplementation.ProjetClientService;
-import models.ProjetClient;
+import Models.ProjetClient;
 
 import java.util.List;
 import java.util.Optional;

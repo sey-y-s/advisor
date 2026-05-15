@@ -1,8 +1,8 @@
-package models;
+package Models;
 
 import java.util.ArrayList;
 import java.util.List;
-import models.enums.StatutProjet;
+import Models.enums.StatutProjet;
 
 public class Projet {
 

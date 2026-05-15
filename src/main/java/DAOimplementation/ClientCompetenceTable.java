@@ -1,11 +1,10 @@
 package DAOimplementation;
 
 import DAO.ClientCompetenceRepository;
-import db.ConnexionBdd;
-import models.Client;
-import models.ClientCompetence;
-import models.Competence;
-import models.Domaine;
+import BD.ConnexionBdd;
+import Models.Client;
+import Models.ClientCompetence;
+import Models.Competence;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
     @Override
     public List<ClientCompetence> getAll() {
 
-        List<models.ClientCompetence> list = new ArrayList<>();
+        List<Models.ClientCompetence> list = new ArrayList<>();
 
         String sql = "SELECT * FROM ClientCompetence";
 

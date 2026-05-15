@@ -2,10 +2,7 @@ package ServiceImplementation;
 
 import DAO.ClientCompetenceRepository;
 import Service.ClientCompetenceInterface;
-import models.Client;
-import models.ClientCompetence;
-import models.Competence;
-import models.Domaine;
+import Models.ClientCompetence;
 
 import java.util.List;
 

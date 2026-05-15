@@ -1,6 +1,6 @@
 package DAO;
 
-import models.Competence;
+import Models.Competence;
 import java.util.List;
 
 public interface CompetenceRepository {

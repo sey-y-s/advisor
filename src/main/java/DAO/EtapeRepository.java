@@ -2,7 +2,7 @@ package DAO;
 
 import java.util.List;
 import java.util.Optional;
-import models.Etape;
+import Models.Etape;
 
 //Interface
 public interface EtapeRepository {

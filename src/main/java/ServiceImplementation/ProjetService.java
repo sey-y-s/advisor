@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import DAO.ProjetRepository;
-import models.Projet; // Aligné sur votre package de modèle
-import models.ProjetClient;
+import Models.Projet; // Aligné sur votre package de modèle
+
 
 public class ProjetService {
     private final ProjetRepository projetRepository;
