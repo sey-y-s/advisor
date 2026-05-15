@@ -14,7 +14,7 @@ import java.util.List;
 public class ClientCompetenceTable implements ClientCompetenceRepository {
 
     @Override
-    public void add(models.ClientCompetence clientCompetence) {
+    public void add(ClientCompetence clientCompetence) {
 
         String sql = "INSERT INTO ClientCompetence (idClient, idCompetence) VALUES (?, ?)";
 
@@ -31,7 +31,7 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
 
         } catch (SQLException e) {
 
-            System.out.println("Erreur lors de l'ajout");
+            System.out.println("Erreur lors de l'ajout ClientCompetence");
         }
     }
 
@@ -56,7 +56,6 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
                 c.setIdCompetence(rs.getInt("idCompetence"));
                 cc.setClient(cl);
                 cc.setCompetence(c);
-
                 list.add(cc);
 
 

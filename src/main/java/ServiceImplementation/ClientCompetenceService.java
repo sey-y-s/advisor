@@ -2,7 +2,10 @@ package ServiceImplementation;
 
 import DAO.ClientCompetenceRepository;
 import Service.ClientCompetenceInterface;
+import models.Client;
 import models.ClientCompetence;
+import models.Competence;
+import models.Domaine;
 
 import java.util.List;
 
@@ -16,11 +19,10 @@ public class ClientCompetenceService implements ClientCompetenceInterface {
 
     public void add(ClientCompetence clientCompetence) {
 
-        if (clientCompetence == null) {
+        if (clientCompetence.getCompetence() == null || clientCompetence.getClient()==null ) {
             System.out.println("Erreur : objet ClientCompetence null");
             return;
         }
-
         clientCompetenceRepository.add(clientCompetence);
     }
 

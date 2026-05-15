@@ -13,3 +13,4 @@ public interface ClientRepository {
     boolean existsByEmail(String email);
 
 }
+
