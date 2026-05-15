@@ -44,7 +44,7 @@ public class Main {
         DepenseInterface depenseInterface= new DepenseInterface(depenseService);
         Depense depense = depenseInterface.saisieDepense();
         depenseInterface.AfficherDepense(depense);*/
-
+        //
 
     }
 }
