@@ -8,7 +8,7 @@ import models.Etape;
 
 public class EtapeService implements InterfaceEtape {
 
-    private final InterfaceEtape etapeService;   // Injection de l'interface
+    private final InterfaceEtape etapeService;
 
     public EtapeService(InterfaceEtape etapeService) {
         this.etapeService = etapeService;

@@ -22,6 +22,9 @@ public class Activite {
         this.etape = etape;
     }
 
+    // Constructeur vide
+    public Activite(){}
+
     // Les getters et setters
 
     public int getId() {
