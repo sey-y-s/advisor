@@ -10,7 +10,7 @@ import models.Domaine;
 import DAO.DomaineRepository;
 import ServiceImplementation.DomaineService;
 import DAOimplementation.DomaineTable;
-
+import UI.CompetenceInterface;
 import java.util.List;
 import java.util.Scanner;
 
@@ -51,7 +51,7 @@ public class Main {
             }
 
         }
-
+        CompetenceInterface.Afficher();
 
 
         //Client client= clientInterface.saisir();
