@@ -93,7 +93,26 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
         }
     }
 
-    ;
+    @Override
+    public List<Integer> getSkillsByClient(int idClient) throws SQLException {
+        List<Integer> skillIds = new ArrayList<>();
+        String sql = "SELECT idCompetence FROM ClientCompetence WHERE idClient = ?";
+
+        try (Connection conn = ConnexionBdd.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, idClient);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    skillIds.add(rs.getInt("idCompetence"));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur : " + e.getMessage());
+            throw e;
+        }
+        return skillIds;
+    }
 
     @Override
     public void delete(int id) {

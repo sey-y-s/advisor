@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Scanner;
 public class DomaineInterface {
     static   Scanner scanner = new Scanner(System.in);
-private DomaineService domaineService;
-public DomaineInterface(DomaineService domaineService){
-    this.domaineService=domaineService;
+    private DomaineService domaineService;
+    public DomaineInterface(DomaineService domaineService){
+        this.domaineService=domaineService;
 
-}
+    }
 
     public static void Afficher(){
 
@@ -45,7 +45,10 @@ public DomaineInterface(DomaineService domaineService){
 
                 // ajout d'un domaine
                 case 1:
-
+                     System.out.println("Entrer un domaine");
+                     String nom=scanner.nextLine();
+                     System.out.println("le domaine a été ajouter avec succes");
+                     service.ajouter(nom);
                     break;
 
                 // modification d'un domaine
@@ -126,4 +129,3 @@ public DomaineInterface(DomaineService domaineService){
 
 
 }
-
