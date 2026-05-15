@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import DAO.EtapeRepository;
 
 public class EtapeTable implements EtapeRepository {
 

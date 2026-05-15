@@ -1,8 +1,14 @@
 package ServiceImplementation;
 import java.util.Optional;
 import java.util.List;
+<<<<<<< HEAD
 import Models.Utilisateur;
 import Models.enums.Role;
+=======
+
+import models.Utilisateur;
+import models.enums.Role;
+>>>>>>> 5088945f31ae76a6dd545d9d84d5ceb7804e82f0
 import DAO.UtilisateurRepository;
 
 
@@ -152,7 +158,7 @@ import DAO.UtilisateurRepository;
          * AUTHENTIFIER : Vérifie les identifiants et authentifie un utilisateur.
          * Retourne true si l'authentification réussit.
          */
-        public boolean authentifierUtilisateur(String email, String motDePasse) {
+        public Object authentifierUtilisateur(String email, String motDePasse) {
             try {
                 // VALIDATION : Vérifier qu'email et mot de passe sont fournis.
                 if(email == null || email.trim().isEmpty() || motDePasse == null || motDePasse.trim().isEmpty()) {
@@ -171,7 +177,7 @@ import DAO.UtilisateurRepository;
                 Utilisateur utilisateur = utilisateurOpt.get();
                 if(utilisateur.seConnecter(email, motDePasse)) {
                     System.out.println("Authentification réussie pour : " + utilisateur.getNom() + " " + utilisateur.getPrenom());
-                    return true;
+                    return utilisateur;
                 } else {
                     System.out.println("Email ou mot de passe incorrect.");
                     return false;

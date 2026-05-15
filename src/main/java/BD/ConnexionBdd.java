@@ -10,6 +10,7 @@ public class ConnexionBdd {
  private static final String HOST = "root";
  private static final String PASSWORD = "root";
 
+
  public static Connection getConnection() throws SQLException {
      return DriverManager.getConnection(URL, HOST, PASSWORD);
  }

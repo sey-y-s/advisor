@@ -7,6 +7,7 @@ import Models.Etape;
 //Interface
 public interface EtapeRepository {
 
+
     void ajout_etape(Etape etape);
     Optional<Etape> rech_etape(int idEtape);
     List<Etape> Liste_etape();

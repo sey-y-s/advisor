@@ -1,6 +1,14 @@
  package DAOimplementation;
 
+<<<<<<< HEAD
 /*import java.sql.*;
+=======
+import DAO.CompetenceRepository;
+import db.ConnexionBdd;
+import models.Competence;
+
+import java.sql.*;
+>>>>>>> 5088945f31ae76a6dd545d9d84d5ceb7804e82f0
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +16,7 @@ public class CompetenceTable implements CompetenceRepository {
 
     public void creerTable() {
         String sql = """
-                CREATE TABLE IF NOT EXISTS competences (
+                CREATE TABLE IF NOT EXISTS competence (
                     id_competence INT PRIMARY KEY AUTO_INCREMENT,
                     nom VARCHAR(100) NOT NULL
                 )
@@ -24,7 +32,7 @@ public class CompetenceTable implements CompetenceRepository {
 
     @Override
     public void ajouterCompetence(Competence competence) {
-        String sql = "INSERT INTO competences (nom) VALUES (?)";
+        String sql = "INSERT INTO competence (nom) VALUES (?)";
         try (Connection conn = ConnexionBdd.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, competence.getNom());
@@ -37,7 +45,7 @@ public class CompetenceTable implements CompetenceRepository {
 
     @Override
     public Competence getCompetenceById(int id) {
-        String sql = "SELECT * FROM competences WHERE id_competence = ?";
+        String sql = "SELECT * FROM competence WHERE id_competence = ?";
         try (Connection conn = ConnexionBdd.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
@@ -56,7 +64,7 @@ public class CompetenceTable implements CompetenceRepository {
 
     @Override
     public List<Competence> afficherCompetences() {
-        String sql = "SELECT * FROM competences";
+        String sql = "SELECT * FROM competence";
         List<Competence> competences = new ArrayList<>();
         try (Connection conn = ConnexionBdd.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -76,7 +84,7 @@ public class CompetenceTable implements CompetenceRepository {
 
     @Override
     public void modifierCompetence(Competence competence) { //  objet complet, pas juste un String
-        String sql = "UPDATE competences SET nom = ? WHERE id_competence = ?";
+        String sql = "UPDATE competence SET nom = ? WHERE id_competence = ?";
         //  pas de virgule avant WHERE
         try (Connection conn = ConnexionBdd.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -95,7 +103,7 @@ public class CompetenceTable implements CompetenceRepository {
 
     @Override
     public void supprimerCompetence(int id) {
-        String sql = "DELETE FROM competences WHERE id_competence = ?";
+        String sql = "DELETE FROM competence WHERE id_competence = ?";
         try (Connection conn = ConnexionBdd.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
@@ -108,4 +116,3 @@ public class CompetenceTable implements CompetenceRepository {
 
 }
 
-*/

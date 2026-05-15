@@ -2,6 +2,10 @@ import DAO.*;
 import DAOimplementation.*;
 import ServiceImplementation.*;
 import UI.*;
+<<<<<<< HEAD
+=======
+import models.*;
+>>>>>>> 5088945f31ae76a6dd545d9d84d5ceb7804e82f0
 
 import java.util.Scanner;
 
@@ -18,18 +22,19 @@ public class Main {
         ClientRepository clientRepository= new ClientTable();
         ClientService clientService= new ClientService(clientRepository);
 
-        ProjetClientUI projetClientUI= new ProjetClientUI();
+        AuthentificationUI authentificationUI= new AuthentificationUI();
+
+       ProjetClientUI projetClientUI= new ProjetClientUI();
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║         Bienvenue sur ADVISOR        ║");
         System.out.println("╚══════════════════════════════════════╝");
         System.out.println("║ 1 ➜ SE CONNECTER                     ║");
-        System.out.println("║ 2 ➜ COMPTE CLIENT                    ║");
-        System.out.println("║ 3 ➜ COMPTE ADMIN                     ║");
+        System.out.println("║ 2 ➜ S'INSCRIRE                       ║");
         System.out.println("╚══════════════════════════════════════╝");
         int choix= clavier.nextInt();
         switch (choix){
             case 1 -> {
-                System.out.println("pas encore fait");
+                authentificationUI.seConncecter();
                 break;
             }
             case 2 -> {
@@ -42,7 +47,7 @@ public class Main {
             }
 
         }
-
+        CompetenceInterface.Afficher();
 
 
         //Client client= clientInterface.saisir();
@@ -53,7 +58,10 @@ public class Main {
         //projetClientUI.afficherUnProjetClient(1);
         //DomaineInterface.Afficher();
         //ActiviteInterface.affichage();
+<<<<<<< HEAD
         ClientCompetenceInterface.executeMenu();
+=======
+>>>>>>> 5088945f31ae76a6dd545d9d84d5ceb7804e82f0
 
        /* AdminRepository adminRepository= new AdminTable();
         AdminService adminService= new AdminService(adminRepository);

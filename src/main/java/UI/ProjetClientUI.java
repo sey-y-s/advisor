@@ -10,9 +10,9 @@ import java.util.Optional;
 
 public class ProjetClientUI {
    // ProjetClientRepository projetClientRepository= new ClientProjetTable();
-    private ProjetClientInterface projetClientInterface= new ProjetClientService(new ClientProjetTable());
+    private static ProjetClientInterface projetClientInterface= new ProjetClientService(new ClientProjetTable());
 
-    public void afficherProjetClient() {
+    public static void afficherProjetClient() {
         List<ProjetClient> projetClients = projetClientInterface.getAll();
         if (projetClients.isEmpty()) {
             System.out.println("Aucun client ne travaille sur un projet !!!");
