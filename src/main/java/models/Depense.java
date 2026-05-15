@@ -52,7 +52,7 @@ public class Depense {
     public void setActivite(Activite activite){
         this.activite=activite;
     }
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
 

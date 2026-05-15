@@ -97,4 +97,6 @@ public class Projet {
 
     public List<ProjetClient> getRealisations() { return realisations; }
     public void setRealisations(List<ProjetClient> realisations) { this.realisations = realisations; }
+
+
 }

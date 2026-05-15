@@ -4,6 +4,8 @@ import models.enums.StatutEtape;
 import models.enums.StatutProjet;
 import models.Projet;
 
+import java.util.List;
+
 public class Etape {
     private int idEtape;
     private String titre;
@@ -66,5 +68,9 @@ public class Etape {
                 ", titre='" + titre + '\'' +
                 ", description='" + description + '\'' +
                 ", statut=" + etapeStatut + '}';
+    }
+
+    public List<Activite> getActivites() {
+        return null;
     }
 }
