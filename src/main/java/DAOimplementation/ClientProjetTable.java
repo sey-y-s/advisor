@@ -159,6 +159,41 @@ public class ClientProjetTable implements ProjetClientRepository {
         return projets;
     }
 
+    @Override
+    public List<ProjetClient> getByClient(int idClient) {
+
+        String sql = """
+                SELECT u.id AS idUser, u.nom AS nom, u.prenom AS prenom, u.email AS email, c.budgetApporte AS budget, c.niveau AS niveau, p.id AS idProjet, p.titre AS titre, pc.id AS idProjetClient, pc.debut AS debut, pc.statut AS statut, pc.satisfaction AS satisfaction, l.id AS idLocalite, l.regionClient AS region
+                FROM ProjetClient pc 
+                JOIN client c ON c.id= pc.idClient
+                JOIN projet p ON p.id=pc.idProjet
+                JOIN utilisateur u ON u.id=c.id
+                JOIN localite l ON c.idLocalite=l.id
+                WHERE pc.idClient=?
+                """;
+
+        List<ProjetClient> projets = new ArrayList<>();
+
+        try (
+                Connection conn = ConnexionBdd.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+        ) {
+
+            stmt.setInt(1, idClient);
+            try (ResultSet rs = stmt.executeQuery();){
+                while (rs.next()) {
+                    projets.add(mapProjetClient(rs));
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(
+                    "Erreur récupération projets", e);
+        }
+
+        return projets;
+    }
+
     private ProjetClient mapProjetClient(ResultSet rs) throws SQLException {
 
         ProjetClient projetClient = new ProjetClient();

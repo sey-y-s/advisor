@@ -28,6 +28,17 @@ public class Utilisateur {
 
     }
 
+    public Utilisateur(Integer id, String nom, String prenom, String email, String motDePasse, String telephone, Role role) {
+        this.idUtilisateur = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.motDePasse = motDePasse;
+        this.telephone = telephone;
+        this.role = role;
+
+    }
+
     public Utilisateur() {
 
     }

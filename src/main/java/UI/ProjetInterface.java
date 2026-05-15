@@ -1,7 +1,11 @@
 package UI;
 
-import ServiceImplementation.ActiviteService;
-import ServiceImplementation.ProjetService;
+import DAO.ProjetRepository;
+import DAOimplementation.*;
+import Service.RecommandationService;
+import ServiceImplementation.*;
+import models.Client;
+import models.Projet;
 
 import java.sql.Date;
 import java.util.List;
@@ -13,20 +17,32 @@ public class ProjetInterface {
     private final EtapeService etapeService;
     private final ActiviteService activiteService;
     private final DepenseService depenseService;
-    private final RecommandationService recommandationService;
+    // private final RecommandationService recommandationService;
     private Client currentClient;
+    private ProjetRepository projetRepository;
 
     public ProjetInterface(Client client) {
         this.currentClient = client;
         this.scanner = new Scanner(System.in);
         // Initialisation des services avec leurs repositories (implémentations table)
-        this.projetService = new ProjetService(new ProjetTable());
+        this.projetService = new ProjetService(projetRepository);
         this.etapeService = new EtapeService(new EtapeTable());
         this.activiteService = new ActiviteService(new ActiviteTable());
         this.depenseService = new DepenseService(new DepenseTable());
-        this.recommandationService = new RecommandationService();
+        // this.recommandationService = new RecommandationService();
     }
 
+    public static void afficherProjet(Projet p, int x) {
+        System.out.println();
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.printf(" ║               Projet %d              ║", x);
+        System.out.println("╚══════════════════════════════════════╝");
+        System.out.println("Titre: "+ p.getTitre());
+        System.out.println("===========================");
+        System.out.println("Description: "+p.getDescription());
+    }
+
+    /*
     public void afficherMenuPrincipal() {
         int choix;
         do {
@@ -221,4 +237,5 @@ public class ProjetInterface {
         }
         return scanner.nextDouble();
     }
+    */
 }

@@ -33,9 +33,9 @@ public class AuthentificationUI {
             System.out.println("║   ✔ CONNEXION REUSSIE AVEC SUCCÈS    ║");
             System.out.println("╚══════════════════════════════════════╝");
             if(utilisateur.getRole()==Role.ADMIN){
-                AdminMenu.menuAdmin();
+                AdminMenu.menuAdmin(utilisateur.getIdUtilisateur());
             }
-            else clientInterface.menuCLient();
+            else clientInterface.menuCLient(utilisateur.getIdUtilisateur());
         }
 
 

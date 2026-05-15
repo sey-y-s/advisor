@@ -121,7 +121,7 @@ public class CompetenceProjetTable implements CompetenceProjetRepository{
     @Override
     public List<Integer> getSkillsByProjet(int idProjet) {
         List<Integer> skillIds = new ArrayList<>();
-        String sql = "SELECT idProjet FROM ProjetCompetence WHERE idProjet = ?";
+        String sql = "SELECT idCompetence FROM ProjetCompetence WHERE idProjet = ?";
 
         try (Connection conn = ConnexionBdd.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

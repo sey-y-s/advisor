@@ -1,7 +1,9 @@
 package UI;
 
 import Service.ProjetClientInterface;
+import models.Admin;
 import models.Client;
+import models.Utilisateur;
 
 import java.util.Scanner;
 
@@ -9,7 +11,7 @@ public class AdminMenu {
     static Scanner clavier= new Scanner(System.in);
     static ClientInterface clientInterface= new ClientInterface();
 
-    public static void menuAdmin(){
+    public static void menuAdmin(int idAdmin){
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║            COMPTE ADMIN              ║");
         System.out.println("╚══════════════════════════════════════╝");

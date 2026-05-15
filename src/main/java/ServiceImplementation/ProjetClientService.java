@@ -37,6 +37,12 @@ public class ProjetClientService implements ProjetClientInterface {
         return projetClientRepository.getAll();
     }
 
+
+    @Override
+    public List<ProjetClient> getByClient(int idClient) {
+        return projetClientRepository.getByClient(idClient);
+    }
+
     @Override
     public Optional<ProjetClient> getById(int id) {
         return projetClientRepository.getById(id);

@@ -1,6 +1,7 @@
 package DAOimplementation;
 
 import DAO.ProjetRepository;
+import db.ConnexionBdd;
 import models.Projet;
 import models.enums.*;
 
@@ -12,16 +13,18 @@ import java.util.Optional;
 public class ProjetTable implements ProjetRepository {
 
     // Connexion à la base de données (généralement fournie par une classe DatabaseConnection)
-    private final Connection connection;
+   // private Connection connection;
 
-    public ProjetTable(Connection connection) {
+    /*public ProjetTable(Connection connection) {
         this.connection = connection;
-    }
+    }*/
+
+    public ProjetTable() {}
 
     @Override
     public void add(Projet projet) {
         String query = "INSERT INTO projets (titre, description, duree, budget_min, budget_max, statut) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection connection= ConnexionBdd.getConnection();PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, projet.getTitre());
             statement.setString(2, projet.getDescription());
             statement.setFloat(3, projet.getDuree());
@@ -45,7 +48,7 @@ public class ProjetTable implements ProjetRepository {
     @Override
     public Optional<Projet> getById(int id) {
         String query = "SELECT * FROM projets WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection= ConnexionBdd.getConnection();PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
@@ -59,11 +62,12 @@ public class ProjetTable implements ProjetRepository {
         return Optional.empty();
     }
 
+
     @Override
     public List<Projet> getAll() {
         List<Projet> projets = new ArrayList<>();
         String query = "SELECT * FROM projets";
-        try (Statement statement = connection.createStatement();
+        try (Connection connection= ConnexionBdd.getConnection();Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
             while (resultSet.next()) {
                 projets.add(mapResultSetToProjet(resultSet));
@@ -79,7 +83,7 @@ public class ProjetTable implements ProjetRepository {
         // Note : En JDBC pur, pour faire un update avec uniquement l'ID, on applique une logique fixe
         // Idéalement, il faudrait passer l'objet Projet entier. Exemple ici de passage au statut TERMINE par l'ID :
         String query = "UPDATE projets SET statut = ? WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection= ConnexionBdd.getConnection(); PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, StatutProjet.TERMINE.name());
             statement.setInt(2, id);
             statement.executeUpdate();
@@ -92,7 +96,7 @@ public class ProjetTable implements ProjetRepository {
     @Override
     public int delete(int id) {
         String query = "DELETE FROM projets WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection= ConnexionBdd.getConnection();PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             return statement.executeUpdate(); // Retourne le nombre de lignes supprimées (1 si succès, 0 si aucun)
         } catch (SQLException e) {
@@ -104,7 +108,7 @@ public class ProjetTable implements ProjetRepository {
     @Override
     public boolean existsByTitre(String titre) {
         String query = "SELECT COUNT(*) FROM projets WHERE titre = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection= ConnexionBdd.getConnection();PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, titre);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
@@ -117,6 +121,7 @@ public class ProjetTable implements ProjetRepository {
         return false;
     }
 
+
     @Override
     public List<Projet> getProjetsByClient(int clientId) {
         List<Projet> projets = new ArrayList<>();
@@ -124,7 +129,7 @@ public class ProjetTable implements ProjetRepository {
         String query = "SELECT p.* FROM projets p " +
                 "JOIN projets_clients pc ON p.id = pc.projet_id " +
                 "WHERE pc.client_id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection= ConnexionBdd.getConnection();PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, clientId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {

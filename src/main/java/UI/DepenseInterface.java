@@ -19,14 +19,14 @@ public class DepenseInterface {
         depense.setMontant(sc.nextDouble());
         System.out.println("Description : ");
         depense.setDescription(sc.next());
-        System.out.println("Date (AAAA-MM-JJ) : ");
-        depense.setDate(Date.parse(sc.nextLine()));
+        //System.out.println("Date (AAAA-MM-JJ) : ");
+        //depense.setDate(Date.parse(sc.nextLine()));
 
 
         return depense;
     }
     public void AfficherDepense (Depense depense){
-        Depense depense = new Depense();
+
         System.out.println("===== les info du Depense N°"+depense.getIdDepense()+" =====");
         System.out.println("Montant : "+depense.getMontant());
         System.out.println("Description : "+depense.getDescription());
