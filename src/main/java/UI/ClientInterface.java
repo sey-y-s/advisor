@@ -20,6 +20,7 @@ public class ClientInterface {
     public ClientInterface(LocaliteInterface localiteInterface){
         this.localiteInterface= localiteInterface;
     }
+    public ClientInterface(){}
 
     public Client saisir() {
 
@@ -111,7 +112,9 @@ public class ClientInterface {
             System.out.println("║   ✔ CLIENT ENREGISTRÉ AVEC SUCCÈS    ║");
             System.out.println("╚══════════════════════════════════════╝");
         }
+
         else {
+
             System.out.println("Erreur lors de l'inscription du client!!!!");
         }
     }
@@ -164,18 +167,18 @@ public class ClientInterface {
     }
 
 
-    public void menuCLient(){
+    public  void menuCLient(){
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║            COMPTE CLIENT             ║");
         System.out.println("╚══════════════════════════════════════╝");
-        System.out.println("║ 1 ➜ S'INSCRIRE                       ║");
-        System.out.println("║ 2 ➜ MODIFIER MON PROFIL              ║");
-        System.out.println("║ 3 ➜ OBTENIR DES RECOMMANDATIONS      ║");
-        System.out.println("║ 4 ➜ VOIR MES PROJETS                 ║");
+        System.out.println("║ 1 ➜ MODIFIER MON PROFIL              ║");
+        System.out.println("║ 2 ➜ OBTENIR DES RECOMMANDATIONS      ║");
+        System.out.println("║ 3 ➜ VOIR MES PROJETS                 ║");
         System.out.println("╚══════════════════════════════════════╝");
         System.out.println("Choisis !!!");
 
         int choix= clavier.nextInt();
+        clavier.nextLine();
         switch (choix){
 
             case 1 -> {

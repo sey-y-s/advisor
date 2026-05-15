@@ -20,6 +20,7 @@ public class LocaliteInterface {
         if(localites == null || localites.isEmpty()){
             System.out.println("Il n'y a aucune localité enregistré !!!");
         }
+
         int choix;
         do {
             System.out.println("=========== Liste des localités ===========");

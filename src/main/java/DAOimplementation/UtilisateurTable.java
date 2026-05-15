@@ -25,7 +25,7 @@ public class UtilisateurTable implements UtilisateurRepository {
 
         String sql = """
                 INSERT INTO utilisateur
-                (nom, prenom, email, mot_de_passe, telephone, role)
+                (nom, prenom, email, motDePasse, telephone, role)
                 VALUES (?, ?, ?, ?, ?, ?)
                 """;
 
@@ -73,7 +73,7 @@ public class UtilisateurTable implements UtilisateurRepository {
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("email"),
-                        rs.getString("mot_de_passe"),
+                        rs.getString("motDePasse"),
                         rs.getString("telephone"),
                         Role.valueOf(rs.getString("role"))
                 );
@@ -111,7 +111,7 @@ public class UtilisateurTable implements UtilisateurRepository {
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("email"),
-                        rs.getString("mot_de_passe"),
+                        rs.getString("motDePasse"),
                         rs.getString("telephone"),
                         Role.valueOf(rs.getString("role"))
                 );
@@ -149,7 +149,7 @@ public class UtilisateurTable implements UtilisateurRepository {
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("email"),
-                        rs.getString("mot_de_passe"),
+                        rs.getString("motDePasse"),
                         rs.getString("telephone"),
                         Role.valueOf(rs.getString("role"))
                 );
@@ -189,7 +189,7 @@ public class UtilisateurTable implements UtilisateurRepository {
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("email"),
-                        rs.getString("mot_de_passe"),
+                        rs.getString("motDePasse"),
                         rs.getString("telephone"),
                         Role.valueOf(rs.getString("role"))
                 );
@@ -249,7 +249,7 @@ public class UtilisateurTable implements UtilisateurRepository {
 
         String sql = """
                 UPDATE utilisateur
-                SET mot_de_passe = ?
+                SET motDePasse = ?
                 WHERE id = ?
                 """;
 
