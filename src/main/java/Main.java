@@ -35,8 +35,8 @@ public class Main {
        // clientInterface.AfficherCLient(10);
         //projetClientUI.afficherProjetClient();
         //projetClientUI.afficherUnProjetClient(1);
-        //DomaineInterface.Afficher();
-        ActiviteInterface.affichage();
+        DomaineInterface.Afficher();
+        //ActiviteInterface.affichage();
 
 
     }
