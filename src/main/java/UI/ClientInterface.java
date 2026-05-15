@@ -1,12 +1,18 @@
 package UI;
 
+import DAO.ClientCompetenceRepository;
 import DAO.ClientRepository;
+import DAO.CompetenceProjetRepository;
+import DAO.ProjetRepository;
+import DAOimplementation.ClientCompetenceTable;
 import DAOimplementation.ClientTable;
+import DAOimplementation.CompetenceProjetTable;
+import DAOimplementation.ProjetTable;
 import ServiceImplementation.ClientService;
-import Models.Client;
-import Models.Localite;
-import Models.enums.Niveau;
+import ServiceImplementation.RecommendationServiceImpl;
+import models.*;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -16,6 +22,11 @@ public class ClientInterface {
     private LocaliteInterface localiteInterface;
      ClientRepository clientRepository= new ClientTable();
      ClientService clientService= new ClientService(clientRepository);
+
+     ProjetRepository pr = new ProjetTable();
+     CompetenceProjetRepository cpr = new CompetenceProjetTable();
+     ClientCompetenceRepository ccr = new ClientCompetenceTable();
+     RecommendationServiceImpl reco = new RecommendationServiceImpl(pr, cpr, ccr);
 
     public ClientInterface(LocaliteInterface localiteInterface){
         this.localiteInterface= localiteInterface;
@@ -130,15 +141,15 @@ public class ClientInterface {
 
         clients.forEach(client -> {
 
-            System.out.println("┌────────────────────────────────────────────────────────────────────┐");
-            System.out.printf ("│ Nom        : %-23s │%n", client.getNom()   + "                     │");
-            System.out.printf ("│ Prénom     : %-23s │%n", client.getPrenom()+ "                     │");
-            System.out.printf ("│ Localité   : %-23s │%n", client.getLocalite().getRegionClient()+ " │");
-            System.out.printf ("│ Téléphone  : %-23s │%n", client.getTelephone()+ "                  │");
-            System.out.printf ("│ Email      : %-23s │%n", client.getEmail() + "                     │");
-            System.out.printf ("│ Niveau     : %-23s │%n", client.getNiveau()+ "                     │");
-            System.out.printf ("│ Budget     : %-23s │%n", client.getBudgetApporte() + " F CFA       │");
-            System.out.println("└────────────────────────────────────────────────────────────────────┘");
+            System.out.println("┌──────────────────────────────────────┐");
+            System.out.printf ("│ Nom        : %-23s │%n", client.getNom());
+            System.out.printf ("│ Prénom     : %-23s │%n", client.getPrenom());
+            System.out.printf ("│ Localité   : %-23s │%n", client.getLocalite().getRegionClient());
+            System.out.printf ("│ Téléphone  : %-23s │%n", client.getTelephone());
+            System.out.printf ("│ Email      : %-23s │%n", client.getEmail());
+            System.out.printf ("│ Niveau     : %-23s │%n", client.getNiveau());
+            System.out.printf ("│ Budget     : %-23s │%n", client.getBudgetApporte() + " F CFA");
+            System.out.println("└──────────────────────────────────────┘");
         });
     }
 
@@ -153,21 +164,48 @@ public class ClientInterface {
         System.out.println("╚══════════════════════════════════════╝");
 
 
-        System.out.println("┌────────────────────────────────────────────────────────────────────┐");
-        System.out.printf ("│ Nom        : %-23s │%n", client.getNom()+ "                        │");
-        System.out.printf ("│ Prénom     : %-23s │%n", client.getPrenom()+ "                     │");
-        System.out.printf ("│ Localité   : %-23s │%n", client.getLocalite().getRegionClient()+ " │");
-        System.out.printf ("│ Téléphone  : %-23s │%n", client.getTelephone()+ "                  │");
-        System.out.printf ("│ Email      : %-23s │%n", client.getEmail()+ "                      │");
-        System.out.printf ("│ Niveau     : %-23s │%n", client.getNiveau()+ "                     │");
-        System.out.printf ("│ Budget     : %-23s │%n", client.getBudgetApporte() + " F CFA+      │");
-        System.out.println("└────────────────────────────────────────────────────────────────────┘");
+        System.out.println("┌──────────────────────────────────────┐");
+        System.out.printf ("│ Nom        : %-23s │%n", client.getNom());
+        System.out.printf ("│ Prénom     : %-23s │%n", client.getPrenom());
+        System.out.printf ("│ Localité   : %-23s │%n", client.getLocalite().getRegionClient());
+        System.out.printf ("│ Téléphone  : %-23s │%n", client.getTelephone());
+        System.out.printf ("│ Email      : %-23s │%n", client.getEmail());
+        System.out.printf ("│ Niveau     : %-23s │%n", client.getNiveau());
+        System.out.printf ("│ Budget     : %-23s │%n", client.getBudgetApporte() + " F CFA");
+        System.out.println("└──────────────────────────────────────┘");
 
 
     }
 
+    public void ObtenirRecommandations(Client client) {
 
-    public  void menuCLient(){
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║         PROJETS INTERESSANTS         ║");
+        System.out.println("╚══════════════════════════════════════╝");
+
+        try {
+            List<Projet> recommandations = reco.suggererProjets(client);
+            recommandations.forEach(recommandation -> {
+                ProjetInterface.afficherProjet(recommandation, recommandation.getId());
+            } );
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        }
+
+
+
+
+    public  void menuCLient(int idClient){
+
+        Optional<Client> clientOpt= clientService.getClientById(idClient);
+        if (clientOpt.isEmpty()) {
+            System.out.println("Client non existant.");
+        }
+        Client client = clientOpt.get();
+
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║            COMPTE CLIENT             ║");
         System.out.println("╚══════════════════════════════════════╝");
@@ -179,13 +217,21 @@ public class ClientInterface {
 
         int choix= clavier.nextInt();
         clavier.nextLine();
+
+
+
         switch (choix){
 
             case 1 -> {
-                Client client= saisir();
-                inscrireClient(client);
+                System.out.println("Fonctionnalité à compléter!!!");
             }
-            case 2 -> System.out.println("Non fait");
+            case 2 -> {
+                ObtenirRecommandations(client);
+
+            }
+            case 3 -> {
+                ProjetClientUI.afficherProjetClient(client.getIdUtilisateur());
+            }
 
         }
     }

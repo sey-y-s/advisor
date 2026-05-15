@@ -11,4 +11,5 @@ public interface ProjetClientInterface {
     void changerStatut(int id, StatutProjet statutProjet);
     Optional<ProjetClient> getById(int id);
     List<ProjetClient> getAll();
+    List<ProjetClient> getByClient(int idClient);
 }

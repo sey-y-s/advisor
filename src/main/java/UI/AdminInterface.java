@@ -26,7 +26,7 @@ public class AdminInterface {
         return admin;
     }
     public static void afficher(Admin admin) {
-        Admin admin = saisieAdmin();
+        //Admin admin = saisieAdmin();
         System.out.println("======= les informations de l'admin "+admin.getIdUtilisateur()+" =======");
 
         System.out.println("Nom : " + admin.getNom());

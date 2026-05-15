@@ -49,4 +49,21 @@ public class ProjetClientUI {
             System.out.println("======================================");
 
     }
+
+
+    public static void afficherProjetClient(int idClient) {
+        List<ProjetClient> projetClients = projetClientInterface.getByClient(idClient);
+        if (projetClients.isEmpty()) {
+            System.out.println("Aucun client ne travaille sur un projet !!!");
+        }
+        System.out.println("==========Liste des affectations===============");
+        projetClients.forEach(projetClient -> {
+            System.out.println("Localité: " + projetClient.getClient().getLocalite().getRegionClient());
+            System.out.println("Titre du projet: " + projetClient.getProjet().getTitre());
+            System.out.println("Date de début: " + projetClient.getDebut());
+            System.out.println("Statut du projet: " + projetClient.getStatut());
+
+            System.out.println("======================================");
+        });
+    }
 }

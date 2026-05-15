@@ -3,7 +3,9 @@ package UI;
 <<<<<<< HEAD
 =======
 import Service.ProjetClientInterface;
+import models.Admin;
 import models.Client;
+import models.Utilisateur;
 
 >>>>>>> 5088945f31ae76a6dd545d9d84d5ceb7804e82f0
 import java.util.Scanner;
@@ -12,7 +14,7 @@ public class AdminMenu {
     static Scanner clavier= new Scanner(System.in);
     static ClientInterface clientInterface= new ClientInterface();
 
-    public static void menuAdmin(){
+    public static void menuAdmin(int idAdmin){
         System.out.println("╔══════════════════════════════════════╗");
         System.out.println("║            COMPTE ADMIN              ║");
         System.out.println("╚══════════════════════════════════════╝");

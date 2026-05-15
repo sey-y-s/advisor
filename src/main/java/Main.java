@@ -38,13 +38,12 @@ public class Main {
                 break;
             }
             case 2 -> {
-                clientInterface.menuCLient();
+                Client client= clientInterface.saisir();
+                clientInterface.inscrireClient(client);
                 break;
 
             }
-            case 3 -> {
-                AdminMenu.menuAdmin();
-            }
+
 
         }
         CompetenceInterface.Afficher();
