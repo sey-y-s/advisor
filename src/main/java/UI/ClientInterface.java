@@ -11,7 +11,6 @@ import DAOimplementation.ProjetTable;
 import ServiceImplementation.ClientService;
 import ServiceImplementation.RecommendationServiceImpl;
 import models.*;
-import models.enums.Niveau;
 
 import java.sql.SQLException;
 import java.util.List;
