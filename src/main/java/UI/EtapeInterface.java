@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class EtapeInterface {
 
-    // Injection comme dans ActiviteInterface
+    // Injection
     static EtapeRepository etapeRepository = new EtapeTable();
     static EtapeService etapeService = new EtapeService(etapeRepository);
 
@@ -31,7 +31,7 @@ public class EtapeInterface {
             System.out.println("0. Quitter");
             System.out.print("Entrez votre choix : ");
             choix = scanner.nextInt();
-            scanner.nextLine(); // Consommer le \n
+            scanner.nextLine();
 
             switch (choix) {
                 case 1: // Ajouter une étape
@@ -79,10 +79,9 @@ public class EtapeInterface {
         System.out.print("Entrer la description : ");
         etape.setDescription(scanner.nextLine());
 
-        // Statut obligatoire selon le service
-        System.out.print("Entrer le statut (ex: EN_COURS, TERMINEE, EN_ATTENTE) : ");
+        // Statut obligatoire selon l'étape
+        System.out.print("Entrer le statut (Ex : A_FAIRE, EN_COURS, TERMINE): ");
         String statutStr = scanner.nextLine();
-        // Adaptez selon l'énumération que vous utilisez
         try {
             etape.setEtapeStatut(models.enums.StatutEtape.valueOf(statutStr.toUpperCase()));
         } catch (IllegalArgumentException e) {
@@ -116,7 +115,6 @@ public class EtapeInterface {
         Optional<Etape> existe = etapeService.etape(idRecherche);
         if (existe.isPresent()) {
             System.out.println("L'étape avec l'ID " + idRecherche + " existe.");
-            // Tu peux ajouter l'affichage détaillé si besoin
         } else {
             System.out.println("Aucune étape trouvée avec cet ID.");
         }
