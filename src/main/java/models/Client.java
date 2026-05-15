@@ -1,4 +1,47 @@
 package models;
+import models.enums.*;
 
-public class Client {
+public class Client extends Utilisateur{
+    private Niveau niveau = Niveau.DEBUTANT;
+    private Localite localite;
+    private int  budgetApporte;
+
+    public Client() {
+
+    }
+
+    public Client(String nom, String prenom, String email, String motDePasse, Niveau niveau,
+                  Localite localite, String telephone, Role role) {
+        super(nom, prenom, email, motDePasse, telephone, role);
+        this.niveau = niveau;
+
+        this.localite = localite;
+
+    }
+
+    public Niveau getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(Niveau niveau) {
+        this.niveau = niveau;
+    }
+    public int getBudgetApporte() {
+        return budgetApporte;
+    }
+
+    public void setBudgetApporte(int budget) {
+        this.budgetApporte = budget;
+    }
+
+
+
+    public Localite getLocalite() {
+        return localite;
+    }
+
+    public void setLocalite(Localite localite) {
+        this.localite = localite;
+    }
+
 }
