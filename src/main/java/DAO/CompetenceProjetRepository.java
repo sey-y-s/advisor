@@ -1,9 +1,7 @@
 package DAO;
 
-import Service.CompetenceProjetDao;
-import models.CompetenceProjet;
+import Models.CompetenceProjet;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 

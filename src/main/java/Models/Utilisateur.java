@@ -1,5 +1,5 @@
-package models;
-import models.enums.Role;
+package Models;
+import Models.enums.Role;
 import java.util.ArrayList;
 import java.util.List;
 

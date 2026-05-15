@@ -2,8 +2,8 @@ package ServiceImplementation;
 
 import DAO.ActiviteRepository;
 import Service.ActiviteServiceDao;
-import models.Activite;
-import models.enums.StatutEtape;
+import Models.Activite;
+import Models.enums.StatutEtape;
 
 import java.util.List;
 

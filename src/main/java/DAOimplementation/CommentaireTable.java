@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import db.ConnexionBdd;
-import models.Commentaire;
+import BD.ConnexionBdd;
+import Models.Commentaire;
 import DAO.CommentaireRepository;
 
 public class CommentaireTable implements CommentaireRepository {

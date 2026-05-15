@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import db.ConnexionBdd;
-import models.DomaineClient;
+import BD.ConnexionBdd;
+import Models.DomaineClient;
 import DAO.DomaineClientRepository;
 
 public class DomaineClientTable implements DomaineClientRepository {

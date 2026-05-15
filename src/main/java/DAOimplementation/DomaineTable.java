@@ -1,7 +1,7 @@
 package DAOimplementation;
 
-import db.ConnexionBdd;
-import models.Domaine;
+import BD.ConnexionBdd;
+import Models.Domaine;
 import DAO.DomaineRepository;
 
 import java.sql.Connection;

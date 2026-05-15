@@ -1,8 +1,8 @@
-package models;
+package Models;
 
-import models.enums.StatutEtape;
-import models.enums.StatutProjet;
-import models.Projet;
+import Models.enums.StatutEtape;
+
+import java.util.List;
 
 public class Etape {
     private int idEtape;
@@ -66,5 +66,9 @@ public class Etape {
                 ", titre='" + titre + '\'' +
                 ", description='" + description + '\'' +
                 ", statut=" + etapeStatut + '}';
+    }
+
+    public List<Activite> getActivites() {
+        return null;
     }
 }

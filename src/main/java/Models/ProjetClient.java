@@ -1,8 +1,8 @@
-package models;
+package Models;
 
 
 
-import models.enums.*;
+import Models.enums.*;
 
 
 import java.time.LocalDateTime;

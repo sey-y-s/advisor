@@ -3,8 +3,8 @@ package UI;
 import DAO.ActiviteRepository;
 import DAOimplementation.ActiviteTable;
 import ServiceImplementation.ActiviteService;
-import models.Activite;
-import models.Etape;
+import Models.Activite;
+import Models.Etape;
 
 import java.util.List;
 import java.util.Scanner;

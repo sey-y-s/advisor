@@ -1,7 +1,7 @@
 package Service;
 
-import models.Client;
-import models.Projet;
+import Models.Client;
+import Models.Projet;
 
 import java.sql.SQLException;
 import java.util.List;

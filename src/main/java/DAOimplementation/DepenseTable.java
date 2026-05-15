@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import db.ConnexionBdd;
-import models.Activite;
-import models.Depense;
+import BD.ConnexionBdd;
+import Models.Activite;
+import Models.Depense;
 import DAO.DepenseRepository;
 
 

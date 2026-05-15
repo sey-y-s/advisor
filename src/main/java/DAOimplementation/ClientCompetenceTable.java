@@ -1,11 +1,10 @@
 package DAOimplementation;
 
 import DAO.ClientCompetenceRepository;
-import db.ConnexionBdd;
-import models.Client;
-import models.ClientCompetence;
-import models.Competence;
-import models.Domaine;
+import BD.ConnexionBdd;
+import Models.Client;
+import Models.ClientCompetence;
+import Models.Competence;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.List;
 public class ClientCompetenceTable implements ClientCompetenceRepository {
 
     @Override
-    public void add(models.ClientCompetence clientCompetence) {
+    public void add(ClientCompetence clientCompetence) {
 
         String sql = "INSERT INTO ClientCompetence (idClient, idCompetence) VALUES (?, ?)";
 
@@ -31,14 +30,14 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
 
         } catch (SQLException e) {
 
-            System.out.println("Erreur lors de l'ajout");
+            System.out.println("Erreur lors de l'ajout ClientCompetence");
         }
     }
 
     @Override
     public List<ClientCompetence> getAll() {
 
-        List<models.ClientCompetence> list = new ArrayList<>();
+        List<Models.ClientCompetence> list = new ArrayList<>();
 
         String sql = "SELECT * FROM ClientCompetence";
 
@@ -56,7 +55,6 @@ public class ClientCompetenceTable implements ClientCompetenceRepository {
                 c.setIdCompetence(rs.getInt("idCompetence"));
                 cc.setClient(cl);
                 cc.setCompetence(c);
-
                 list.add(cc);
 
 

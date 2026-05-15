@@ -1,6 +1,6 @@
 package Service;
 
-import models.Activite;
+import Models.Activite;
 
 import java.util.List;
 

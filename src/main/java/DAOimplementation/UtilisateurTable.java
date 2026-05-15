@@ -1,10 +1,10 @@
 package DAOimplementation;
 
 import DAO.UtilisateurRepository;
-import db.ConnexionBdd;
+import BD.ConnexionBdd;
 
-import models.Utilisateur;
-import models.enums.Role;
+import Models.Utilisateur;
+import Models.enums.Role;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

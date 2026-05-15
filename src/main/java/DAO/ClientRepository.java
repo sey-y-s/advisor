@@ -1,8 +1,8 @@
 package DAO;
 import java.util.List;
 import java.util.Optional;
-import models.enums.*;
-import models.Client;
+import Models.enums.*;
+import Models.Client;
 
 public interface ClientRepository {
     boolean add(Client client);
@@ -13,3 +13,4 @@ public interface ClientRepository {
     boolean existsByEmail(String email);
 
 }
+

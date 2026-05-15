@@ -1,6 +1,6 @@
 package Service;
 
-import models.Admin;
+import Models.Admin;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,8 +1,8 @@
-package models;
+package Models;
 
 import java.util.ArrayList;
 import java.util.List;
-import models.enums.StatutProjet;
+import Models.enums.StatutProjet;
 
 public class Projet {
 
@@ -97,4 +97,6 @@ public class Projet {
 
     public List<ProjetClient> getRealisations() { return realisations; }
     public void setRealisations(List<ProjetClient> realisations) { this.realisations = realisations; }
+
+
 }

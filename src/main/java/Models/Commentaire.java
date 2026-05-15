@@ -1,6 +1,4 @@
-package models;
-
-import java.util.PrimitiveIterator;
+package Models;
 
 public class Commentaire {
     private Integer id;

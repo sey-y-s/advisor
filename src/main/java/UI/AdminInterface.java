@@ -1,7 +1,7 @@
 package UI;
 
 import ServiceImplementation.AdminService;
-import models.Admin;
+import Models.Admin;
 
 import java.util.Scanner;
 

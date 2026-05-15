@@ -1,13 +1,10 @@
 package ServiceImplementation;
 
-import DAO.ClientRepository;
 import DAO.ProjetClientRepository;
-import DAO.ProjetRepository;
 import DAOimplementation.ClientProjetTable;
-import DAOimplementation.ClientTable;
 import Service.ProjetClientInterface;
-import models.ProjetClient;
-import models.enums.StatutProjet;
+import Models.ProjetClient;
+import Models.enums.StatutProjet;
 
 import java.util.List;
 import java.util.Optional;

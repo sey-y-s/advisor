@@ -3,9 +3,8 @@ import java.util.List;
 import java.util.Optional;
 
 import DAO.ClientRepository;
-import models.Client;
-import models.Localite;
-import models.enums.Niveau;
+import Models.Client;
+import Models.enums.Niveau;
 
 
 public class ClientService {
