@@ -130,15 +130,15 @@ public class ClientInterface {
 
         clients.forEach(client -> {
 
-            System.out.println("┌──────────────────────────────────────┐");
-            System.out.printf ("│ Nom        : %-23s │%n", client.getNom());
-            System.out.printf ("│ Prénom     : %-23s │%n", client.getPrenom());
-            System.out.printf ("│ Localité   : %-23s │%n", client.getLocalite().getRegionClient());
-            System.out.printf ("│ Téléphone  : %-23s │%n", client.getTelephone());
-            System.out.printf ("│ Email      : %-23s │%n", client.getEmail());
-            System.out.printf ("│ Niveau     : %-23s │%n", client.getNiveau());
-            System.out.printf ("│ Budget     : %-23s │%n", client.getBudgetApporte() + " F CFA");
-            System.out.println("└──────────────────────────────────────┘");
+            System.out.println("┌────────────────────────────────────────────────────────────────────┐");
+            System.out.printf ("│ Nom        : %-23s │%n", client.getNom()   + "                     │");
+            System.out.printf ("│ Prénom     : %-23s │%n", client.getPrenom()+ "                     │");
+            System.out.printf ("│ Localité   : %-23s │%n", client.getLocalite().getRegionClient()+ " │");
+            System.out.printf ("│ Téléphone  : %-23s │%n", client.getTelephone()+ "                  │");
+            System.out.printf ("│ Email      : %-23s │%n", client.getEmail() + "                     │");
+            System.out.printf ("│ Niveau     : %-23s │%n", client.getNiveau()+ "                     │");
+            System.out.printf ("│ Budget     : %-23s │%n", client.getBudgetApporte() + " F CFA       │");
+            System.out.println("└────────────────────────────────────────────────────────────────────┘");
         });
     }
 
@@ -153,15 +153,15 @@ public class ClientInterface {
         System.out.println("╚══════════════════════════════════════╝");
 
 
-        System.out.println("┌──────────────────────────────────────┐");
-        System.out.printf ("│ Nom        : %-23s │%n", client.getNom());
-        System.out.printf ("│ Prénom     : %-23s │%n", client.getPrenom());
-        System.out.printf ("│ Localité   : %-23s │%n", client.getLocalite().getRegionClient());
-        System.out.printf ("│ Téléphone  : %-23s │%n", client.getTelephone());
-        System.out.printf ("│ Email      : %-23s │%n", client.getEmail());
-        System.out.printf ("│ Niveau     : %-23s │%n", client.getNiveau());
-        System.out.printf ("│ Budget     : %-23s │%n", client.getBudgetApporte() + " F CFA");
-        System.out.println("└──────────────────────────────────────┘");
+        System.out.println("┌────────────────────────────────────────────────────────────────────┐");
+        System.out.printf ("│ Nom        : %-23s │%n", client.getNom()+ "                        │");
+        System.out.printf ("│ Prénom     : %-23s │%n", client.getPrenom()+ "                     │");
+        System.out.printf ("│ Localité   : %-23s │%n", client.getLocalite().getRegionClient()+ " │");
+        System.out.printf ("│ Téléphone  : %-23s │%n", client.getTelephone()+ "                  │");
+        System.out.printf ("│ Email      : %-23s │%n", client.getEmail()+ "                      │");
+        System.out.printf ("│ Niveau     : %-23s │%n", client.getNiveau()+ "                     │");
+        System.out.printf ("│ Budget     : %-23s │%n", client.getBudgetApporte() + " F CFA+      │");
+        System.out.println("└────────────────────────────────────────────────────────────────────┘");
 
 
     }

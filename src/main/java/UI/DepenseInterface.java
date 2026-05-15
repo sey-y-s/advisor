@@ -23,22 +23,18 @@ public class DepenseInterface {
             System.out.println("Aucun projet client disponible.");
             return null;
         }
-
         System.out.println("===== LISTE DES PROJETS =====");
         for (int i = 0; i < projetClients.size(); i++) {
             ProjetClient pc = projetClients.get(i);
             System.out.println((i + 1) + " - " + pc.getProjet().getTitre());
         }
-
         System.out.print("Choisir un projet : ");
         int choixProjet = sc.nextInt();
         sc.nextLine();
-
         if (choixProjet < 1 || choixProjet > projetClients.size()) {
             System.out.println("Choix invalide.");
             return null;
         }
-
         ProjetClient projetClient = projetClients.get(choixProjet - 1);
 
         if (projetClient.getStatut() != StatutProjet.ENCOURS) {
@@ -73,7 +69,6 @@ public class DepenseInterface {
         List<Activite> activites = etapeActive.getActivites();
 
         if (activites.isEmpty()) {
-
             System.out.println("Aucune activité dans cette étape.");
             return null;
         }
@@ -81,15 +76,10 @@ public class DepenseInterface {
         System.out.println("===== ACTIVITES =====");
 
         for (int i = 0; i < activites.size(); i++) {
-
             Activite a = activites.get(i);
 
-            System.out.println(
-                    (i + 1) + " - " +
-                            a.getTitre()
-            );
+            System.out.println((i + 1) + " - " + a.getTitre());
         }
-
         System.out.print("Choisir une activité : ");
 
         int choixActivite = sc.nextInt();
@@ -128,7 +118,6 @@ public class DepenseInterface {
         System.out.println("Montant : "+ depense.getMontant());
         System.out.println("Description : "+ depense.getDescription());
         System.out.println("Date : " + depense.getDate());
-
         if (depense.getActivite() != null) {
             System.out.println("Activité : "+ depense.getActivite().getTitre());
         }
