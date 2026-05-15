@@ -1,8 +1,6 @@
 package models;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Depense {
 
@@ -17,8 +15,9 @@ public class Depense {
         this.montant = montant;
         this.description = description;
         this.date = date;
-        this.activite=activite;
+        this.activite = activite;
     }
+    public Depense() {}
 
     public Integer getIdDepense() {
         return idDepense;
@@ -58,38 +57,14 @@ public class Depense {
     }
 
 
-    public void afficherDepense() {
+   /* public void afficherDepense() {
 
         System.out.println("ID : " + idDepense);
         System.out.println("Montant : " + montant);
         System.out.println("Description : " + description);
         System.out.println("Date : " + date);
-    }
+    }*/
 
 
-    // TODO : Implémenter ces méthodes dans les services
 
-    private List<Depense> listeDeDepense = new ArrayList<>();
-
-    public void ajouterDepense(Depense d) {
-        this.listeDeDepense.add(d);
-        System.out.println("la depense a ete ajoutee");
-    }
-
-    public void supprimerDepense(Integer idRecherche) {
-
-        for (int i = 0; i < listeDeDepense.size(); i++) {
-
-            Depense d = listeDeDepense.get(i);
-
-            if (d.getIdDepense().equals(idRecherche)) {
-
-                listeDeDepense.remove(i);
-                System.out.println("la depense " + idRecherche + " a bien ete supprimee");
-                return;
-            }
-        }
-
-        System.out.println("depense non trouvee");
-    }
 }

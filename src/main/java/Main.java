@@ -1,15 +1,11 @@
-import DAO.ClientRepository;
-import DAO.LocaliteRepository;
-import DAOimplementation.ClientTable;
-import DAOimplementation.LocaliteTable;
-import ServiceImplementation.ClientService;
-import ServiceImplementation.LocaliteService;
+import DAO.*;
+import DAOimplementation.*;
+import ServiceImplementation.*;
 import UI.*;
+import models.Admin;
 import models.Client;
+import models.Depense;
 import models.Domaine;
-import DAO.DomaineRepository;
-import ServiceImplementation.DomaineService;
-import DAOimplementation.DomaineTable;
 
 import java.util.List;
 import java.util.Scanner;
@@ -17,6 +13,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        Scanner clavier= new Scanner(System.in);
         LocaliteRepository localiteRepository= new LocaliteTable();
         LocaliteService localiteService= new LocaliteService(localiteRepository);
 
@@ -27,6 +24,30 @@ public class Main {
         ClientService clientService= new ClientService(clientRepository);
 
         ProjetClientUI projetClientUI= new ProjetClientUI();
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║         Bienvenue sur ADVISOR        ║");
+        System.out.println("╚══════════════════════════════════════╝");
+        System.out.println("║ 1 ➜ SE CONNECTER                     ║");
+        System.out.println("║ 2 ➜ COMPTE CLIENT                    ║");
+        System.out.println("║ 3 ➜ COMPTE ADMIN                     ║");
+        System.out.println("╚══════════════════════════════════════╝");
+        int choix= clavier.nextInt();
+        switch (choix){
+            case 1 -> {
+                System.out.println("pas encore fait");
+                break;
+            }
+            case 2 -> {
+                clientInterface.menuCLient();
+                break;
+
+            }
+            case 3 -> {
+                AdminMenu.menuAdmin();
+            }
+
+        }
+        CompetenceInterface.Afficher();
 
 
         //Client client= clientInterface.saisir();
@@ -35,9 +56,21 @@ public class Main {
        // clientInterface.AfficherCLient(10);
         //projetClientUI.afficherProjetClient();
         //projetClientUI.afficherUnProjetClient(1);
-        //DomaineInterface.Afficher();
-        ActiviteInterface.affichage();
+        DomaineInterface.Afficher();
+        //ActiviteInterface.affichage();
 
+       /* AdminRepository adminRepository= new AdminTable();
+        AdminService adminService= new AdminService(adminRepository);
+        AdminInterface adminInterface= new AdminInterface(adminService);
+        Admin admin = adminInterface.saisieAdmin();
+        adminInterface.afficher(admin);
+
+        DepenseRepository depenseRepository= new DepenseTable();
+        DepenseService depenseService= new DepenseService(depenseRepository);
+        DepenseInterface depenseInterface= new DepenseInterface(depenseService);
+        Depense depense = depenseInterface.saisieDepense();
+        depenseInterface.AfficherDepense(depense);*/
+        //
 
     }
 }
