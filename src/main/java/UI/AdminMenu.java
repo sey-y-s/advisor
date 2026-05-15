@@ -26,6 +26,7 @@ public class AdminMenu {
                 DomaineInterface.Afficher();
             }
             case 2 -> System.out.println("Non fait");
+            case 3 -> LocaliteInterface.Afficher();
 
         }
     }
