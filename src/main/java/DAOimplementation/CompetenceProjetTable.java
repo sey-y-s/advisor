@@ -118,6 +118,27 @@ public class CompetenceProjetTable implements CompetenceProjetRepository{
     }
 
 
+    @Override
+    public List<Integer> getSkillsByProjet(int idProjet) {
+        List<Integer> skillIds = new ArrayList<>();
+        String sql = "SELECT idProjet FROM ProjetCompetence WHERE idProjet = ?";
+
+        try (Connection conn = ConnexionBdd.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, idProjet);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    skillIds.add(rs.getInt("idCompetence"));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur de récupération des Compétences du projet : " + e.getMessage());
+        }
+        return skillIds;
+    }
+
+
     // Verification
     @Override
     public boolean verifier_existance(int id) {

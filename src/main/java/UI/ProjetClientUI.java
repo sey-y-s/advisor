@@ -23,6 +23,8 @@ public class ProjetClientUI {
         projetClients.forEach(projetClient -> {
 
 
+
+
             System.out.println("Client: " + projetClient.getClient().getPrenom() + " " + projetClient.getClient().getNom());
             System.out.println("Localité: " + projetClient.getClient().getLocalite().getRegionClient());
             System.out.println("Titre du projet: " + projetClient.getProjet().getTitre());
