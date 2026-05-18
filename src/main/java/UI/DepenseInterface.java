@@ -1,12 +1,16 @@
 package UI;
 
-import ServiceImplementation.DepenseService;
+import Models.Activite;
 import Models.Depense;
-import models.*;
-import models.enums.StatutEtape;
-import models.enums.StatutProjet;
+import Models.Etape;
+import Models.ProjetClient;
+import Models.enums.StatutEtape;
+import Models.enums.StatutProjet;
 
-import java.util.Date;
+
+
+
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -98,7 +102,7 @@ public class DepenseInterface {
         System.out.print("Description : ");
         depense.setDescription(sc.nextLine());
         System.out.print("Date (AAAA-MM-JJ) : ");
-        depense.setDate(Date.parse(sc.nextLine()));
+       // depense.setDate(Date.parse(sc.nextLine()));
         depense.setActivite(activiteChoisie);
         System.out.println("Dépense enregistrée avec succès.");
         return depense;

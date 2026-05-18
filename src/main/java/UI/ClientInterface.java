@@ -8,9 +8,13 @@ import DAOimplementation.ClientCompetenceTable;
 import DAOimplementation.ClientTable;
 import DAOimplementation.CompetenceProjetTable;
 import DAOimplementation.ProjetTable;
+import Models.Client;
+import Models.Localite;
+import Models.Projet;
+import Models.enums.Niveau;
 import ServiceImplementation.ClientService;
 import ServiceImplementation.RecommendationServiceImpl;
-import models.*;
+
 
 import java.sql.SQLException;
 import java.util.List;
@@ -184,10 +188,17 @@ public class ClientInterface {
         System.out.println("╚══════════════════════════════════════╝");
 
         try {
-            List<Projet> recommandations = reco.suggererProjets(client);
+            List<Projet> recommandations= reco.suggererProjets(client);
+            if(recommandations.isEmpty()){
+                System.out.println("╔════════════════════════════════════===══╗");
+                System.out.println("║ Pas de projets pour ces criteres║");
+                System.out.println("╚══════════════════════════════════════===╝");
+            }
             recommandations.forEach(recommandation -> {
                 ProjetInterface.afficherProjet(recommandation, recommandation.getId());
             } );
+            
+            
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

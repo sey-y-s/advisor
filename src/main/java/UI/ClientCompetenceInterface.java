@@ -1,8 +1,8 @@
 package UI;
 
 import DAO.ClientCompetenceRepository;
-import DAOimplementation.ClientCompetenceTable;
-import DAOimplementation.CompetenceTable;
+import DAOimplementation.*;
+
 import ServiceImplementation.ClientCompetenceService;
 import Models.ClientCompetence;
 

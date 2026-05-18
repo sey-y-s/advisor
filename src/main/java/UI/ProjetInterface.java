@@ -2,10 +2,11 @@ package UI;
 
 import DAO.ProjetRepository;
 import DAOimplementation.*;
+import Models.Client;
+import Models.Projet;
 import Service.RecommandationService;
 import ServiceImplementation.*;
-import models.Client;
-import models.Projet;
+
 
 import java.sql.Date;
 import java.util.List;

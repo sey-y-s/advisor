@@ -2,9 +2,9 @@ package UI;
 
 import DAO.UtilisateurRepository;
 import DAOimplementation.UtilisateurTable;
+import Models.Utilisateur;
+import Models.enums.Role;
 import ServiceImplementation.UtilisateurService;
-import models.Utilisateur;
-import models.enums.Role;
 
 import java.util.Scanner;
 
