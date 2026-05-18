@@ -24,10 +24,10 @@ public class Main {
 
        ProjetClientUI projetClientUI= new ProjetClientUI();
         System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║         Bienvenue sur ADVISOR║");
+        System.out.println("║         Bienvenue sur ADVISOR        ║");
         System.out.println("╚══════════════════════════════════════╝");
-        System.out.println("║ 1 ➜ SE CONNECTER             ║");
-        System.out.println("║ 2 ➜ S'INSCRIRE               ║");
+        System.out.println("║ 1 ➜ SE CONNECTER                     ║");
+        System.out.println("║ 2 ➜ S'INSCRIRE                       ║");
         System.out.println("╚══════════════════════════════════════╝");
         int choix= clavier.nextInt();
         switch (choix){

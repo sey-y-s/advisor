@@ -191,7 +191,7 @@ public class ClientInterface {
             List<Projet> recommandations= reco.suggererProjets(client);
             if(recommandations.isEmpty()){
                 System.out.println("╔════════════════════════════════════===══╗");
-                System.out.println("║ Pas de projets pour ces criteres║");
+                System.out.println("║ Pas de projets pour ces criteres        ║");
                 System.out.println("╚══════════════════════════════════════===╝");
             }
             recommandations.forEach(recommandation -> {
