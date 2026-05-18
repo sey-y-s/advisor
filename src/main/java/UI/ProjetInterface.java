@@ -35,11 +35,9 @@ public class ProjetInterface {
 
     public static void afficherProjet(Projet p, int x) {
         System.out.println();
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.printf(" ║               Projet %d              ║", x);
-        System.out.println("╚══════════════════════════════════════╝");
+
+        System.out.printf("Projet %d: ", x);
         System.out.println("Titre: "+ p.getTitre());
-        System.out.println("===========================");
         System.out.println("Description: "+p.getDescription());
     }
 
