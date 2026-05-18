@@ -1,9 +1,12 @@
 package DAOimplementation;
 
+import BD.ConnexionBdd;
 import DAO.ProjetRepository;
-import db.ConnexionBdd;
-import models.Projet;
-import models.enums.*;
+import Models.Projet;
+
+
+
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,14 +26,14 @@ public class ProjetTable implements ProjetRepository {
 
     @Override
     public void add(Projet projet) {
-        String query = "INSERT INTO projets (titre, description, duree, budget_min, budget_max, statut) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO projets (titre, description, duree, budgetMin, budgetMax) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection= ConnexionBdd.getConnection();PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, projet.getTitre());
             statement.setString(2, projet.getDescription());
             statement.setFloat(3, projet.getDuree());
             statement.setDouble(4, projet.getBudgetMin());
             statement.setDouble(5, projet.getBudgetMax());
-            statement.setString(6, projet.getProjetStatut().name()); // Stocke l'enum sous forme de texte (EN_COURS, TERMINE)
+            //statement.setString(6, projet.getProjetStatut().name()); // Stocke l'enum sous forme de texte (EN_COURS, TERMINE)
 
             statement.executeUpdate();
 
@@ -66,7 +69,7 @@ public class ProjetTable implements ProjetRepository {
     @Override
     public List<Projet> getAll() {
         List<Projet> projets = new ArrayList<>();
-        String query = "SELECT * FROM projets";
+        String query = "SELECT * FROM projet";
         try (Connection connection= ConnexionBdd.getConnection();Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
             while (resultSet.next()) {
@@ -84,7 +87,7 @@ public class ProjetTable implements ProjetRepository {
         // Idéalement, il faudrait passer l'objet Projet entier. Exemple ici de passage au statut TERMINE par l'ID :
         String query = "UPDATE projets SET statut = ? WHERE id = ?";
         try (Connection connection= ConnexionBdd.getConnection(); PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, StatutProjet.TERMINE.name());
+            //statement.setString(1, StatutProjet.Termine.name());
             statement.setInt(2, id);
             statement.executeUpdate();
             System.out.println("Projet ID " + id + " mis à jour (Statut: TERMINE).");
@@ -149,14 +152,14 @@ public class ProjetTable implements ProjetRepository {
         projet.setTitre(resultSet.getString("titre"));
         projet.setDescription(resultSet.getString("description"));
         projet.setDuree(resultSet.getFloat("duree"));
-        projet.setBudgetMin(resultSet.getDouble("budget_min"));
-        projet.setBudgetMax(resultSet.getDouble("budget_max"));
+        projet.setBudgetMin(resultSet.getDouble("budgetMin"));
+        projet.setBudgetMax(resultSet.getDouble("budgetMax"));
 
         // Conversion de la chaîne de caractères SQL en Enum Java
-        String statutStr = resultSet.getString("statut");
-        if (statutStr != null) {
-            projet.setProjetStatut(StatutProjet.valueOf(statutStr));
-        }
+        //String statutStr = resultSet.getString("statut");
+        //if (statutStr != null) {
+            //projet.setProjetStatut(StatutProjet.valueOf(statutStr));
+        //}
 
         return projet;
     }

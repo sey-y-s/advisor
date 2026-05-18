@@ -1,16 +1,16 @@
 package UI;
 
-import DAOimplementation.CompetenceTable;
 import DAO.CompetenceRepository;
+import DAOimplementation.CompetenceTable;
+import Models.Competence;
 import ServiceImplementation.CompetenceServiceImpl;
-import models.Competence;
 import java.util.List;
 import java.util.Scanner;
 
 public class CompetenceInterface {
 
     public static void Afficher() {
-        CompetenceRepository repo = new CompetenceTable();
+        CompetenceRepository repo= new CompetenceTable();
         CompetenceServiceImpl service = new CompetenceServiceImpl(repo);
         Scanner scanner = new Scanner(System.in);
         int choix;

@@ -2,11 +2,11 @@ package UI;
 
 import DAO.EtapeRepository;
 import DAOimplementation.EtapeTable;
+import Models.Etape;
 import ServiceImplementation.EtapeService;
 import Service.InterfaceEtape;
-import models.enums.StatutEtape;
-import models.Etape;
 import java.util.List;
+
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -83,7 +83,7 @@ public class EtapeInterface {
         System.out.print("Entrer le statut (Ex : A_FAIRE, EN_COURS, TERMINE): ");
         String statutStr = scanner.nextLine();
         try {
-            etape.setEtapeStatut(models.enums.StatutEtape.valueOf(statutStr.toUpperCase()));
+           // etape.setEtapeStatut(models.enums.StatutEtape.valueOf(statutStr.toUpperCase()));
         } catch (IllegalArgumentException e) {
             System.out.println("Statut invalide !");
         }
@@ -143,7 +143,7 @@ public class EtapeInterface {
         System.out.print("Nouveau statut : ");
         String newStatut = scanner.nextLine();
         try {
-            etapeModif.setEtapeStatut(models.enums.StatutEtape.valueOf(newStatut.toUpperCase()));
+            //etapeModif.setEtapeStatut(models.enums.StatutEtape.valueOf(newStatut.toUpperCase()));
         } catch (Exception e) {
             System.out.println("Statut invalide.");
             return;

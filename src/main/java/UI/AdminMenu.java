@@ -1,13 +1,10 @@
 package UI;
 
-<<<<<<< HEAD
-=======
-import Service.ProjetClientInterface;
-import models.Admin;
-import models.Client;
-import models.Utilisateur;
 
->>>>>>> 5088945f31ae76a6dd545d9d84d5ceb7804e82f0
+import Service.ProjetClientInterface;
+
+
+
 import java.util.Scanner;
 
 public class AdminMenu {
